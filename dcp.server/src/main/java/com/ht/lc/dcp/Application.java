@@ -1,5 +1,7 @@
 package com.ht.lc.dcp;
 
+import com.ht.lc.dcp.event.ApplicationReadyEventListener;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,6 +17,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication application = new SpringApplication(Application.class);
+        application.setBannerMode(Banner.Mode.OFF);
+
+        ApplicationReadyEventListener appListener = new ApplicationReadyEventListener();
+        application.addListeners(appListener);
+        application.run(args);
     }
 }
