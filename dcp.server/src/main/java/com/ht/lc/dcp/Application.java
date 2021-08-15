@@ -1,6 +1,7 @@
 package com.ht.lc.dcp;
 
 import com.ht.lc.dcp.event.ApplicationReadyEventListener;
+import com.ht.lc.dcp.test.MyBean;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

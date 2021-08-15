@@ -1,7 +1,6 @@
 package com.ht.lc.dcp.event;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 
 import org.slf4j.Logger;
