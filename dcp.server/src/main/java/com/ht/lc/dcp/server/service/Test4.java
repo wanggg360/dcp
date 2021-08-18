@@ -1,4 +1,4 @@
-package com.ht.lc.dcp.service;
+package com.ht.lc.dcp.server.service;
 
 /**
  * @program: dcp

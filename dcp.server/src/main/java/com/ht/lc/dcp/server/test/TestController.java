@@ -1,4 +1,4 @@
-package com.ht.lc.dcp.test;
+package com.ht.lc.dcp.server.test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     private static Logger LOG = LoggerFactory.getLogger("testlogger");
-    @Autowired
-    private MyBean myBean;
 
     @RequestMapping(value="/getConfig",method= RequestMethod.GET)
     public void getConfig() {

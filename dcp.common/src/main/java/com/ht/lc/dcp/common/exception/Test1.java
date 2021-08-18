@@ -1,4 +1,4 @@
-package com.ht.lc.dcp.exception;
+package com.ht.lc.dcp.common.exception;
 
 /**
  * @program: dcp
