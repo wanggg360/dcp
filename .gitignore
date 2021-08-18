@@ -20,3 +20,9 @@ hs_err_pid*
 *.iml
 
 **/target/
+.project
+.classpath
+.settings
+.flattened-pom.xml
+.DS_Store
+.vscode
