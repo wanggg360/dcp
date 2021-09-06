@@ -2,7 +2,6 @@
 
 <!-- 配置文件修改时重新加载，默认true -->
 <configuration scan="true" scanPeriod="30 seconds">
-
 	<!-- 定义日志文件的存储地址 -->
 	<property name="LOG_BASE" value="./logs"></property>
 	
@@ -35,7 +34,7 @@
 			<maxHistory>10</maxHistory>
 		</rollingPolicy>
 		<encoder charset="UTF-8">
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %msg%n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -47,8 +46,7 @@
 	<logger name="com.ht.lc.dcp" level="INFO" additivity="false">
 		<appender-ref ref="RUN_LOG" />
 	</logger>
-
-	<logger name="interface" level="INFO" additivity="false">
+	<logger name="interfacelog" level="INFO" additivity="false">
 		<appender-ref ref="INTERFACE_LOG" />
 	</logger>
 </configuration>

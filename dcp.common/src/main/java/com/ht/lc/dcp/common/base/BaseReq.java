@@ -8,4 +8,5 @@ package com.ht.lc.dcp.common.base;
  * @Version 1.0
  **/
 public class BaseReq {
+	
 }
