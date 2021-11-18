@@ -1,11 +1,13 @@
 server:
   port: 8080
 
-
 spring:
+  application:
+    name: dcp-server
   profiles:
     active: dev
 
-  application:
-    name: dcp-server
-
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
