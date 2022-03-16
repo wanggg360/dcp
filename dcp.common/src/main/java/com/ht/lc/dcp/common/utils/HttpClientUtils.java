@@ -1,17 +1,21 @@
 package com.ht.lc.dcp.common.utils;
 
 import com.ht.lc.dcp.common.base.ResultCode;
+import com.ht.lc.dcp.common.constants.HttpConstant;
 import com.ht.lc.dcp.common.exception.ServiceComException;
-import org.apache.hc.client5.http.classic.HttpClient;
+import com.ht.lc.dcp.common.http.HttpMethod;
+import org.apache.hc.client5.http.classic.methods.*;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
 import org.apache.hc.client5.http.io.HttpClientConnectionManager;
 import org.apache.hc.client5.http.protocol.HttpClientContext;
 import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
 import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactoryBuilder;
+import org.apache.hc.core5.http.*;
+import org.apache.hc.core5.http.io.HttpClientResponseHandler;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.ssl.TLS;
 import org.apache.hc.core5.ssl.SSLContexts;
 import org.apache.hc.core5.ssl.TrustStrategy;
@@ -19,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.X509TrustManager;
+import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -92,5 +96,53 @@ public class HttpClientUtils {
 
     public static HttpClientContext getDefaultHttpClientContext() {
         return HttpClientContext.create();
+    }
+
+    public static HttpUriRequest getHttpRequest(final String url, HttpMethod m) {
+        HttpUriRequest request = null;
+        switch (m.getName()) {
+            case "PUT":
+                request = new HttpGet(url);
+                break;
+            case "POST":
+                request = new HttpPost(url);
+                break;
+            case "GET":
+                request = new HttpGet(url);
+                break;
+            case "DELETE":
+                request = new HttpDelete(url);
+                break;
+            default:
+                request = new HttpPost(url);
+        }
+        return request;
+    }
+
+    public static String getHttpResponseString (HttpUriRequest req, CloseableHttpClient client) {
+        final HttpClientResponseHandler<String> handler = new HttpClientResponseHandler<String>() {
+            @Override
+            public String handleResponse(
+                    final ClassicHttpResponse response) {
+                final int status = response.getCode();
+                if (status >= HttpStatus.SC_SUCCESS && status < HttpStatus.SC_REDIRECTION) {
+                    final HttpEntity entity = response.getEntity();
+                    try {
+                        return entity != null ? EntityUtils.toString(entity, HttpConstant.RSP_ENTITY_CHARSET) : null;
+                    } catch (ParseException | IOException e ) {
+                        throw new ServiceComException(ResultCode.SUCCESS.getCode(), "parse http response error. ");
+                    }
+                } else {
+                    throw new ServiceComException(ResultCode.SUCCESS.getCode(), "response status error, status code: " + status);
+                }
+            }
+        };
+
+        try {
+           return client.execute(req, handler);
+        } catch (IOException e) {
+            throw new ServiceComException(ResultCode.SYS_HTTP_ERROR.getCode(), "request failed, url: " + req.getRequestUri());
+        }
+
     }
 }

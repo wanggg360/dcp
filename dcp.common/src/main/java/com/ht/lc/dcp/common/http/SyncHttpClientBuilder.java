@@ -3,6 +3,7 @@ package com.ht.lc.dcp.common.http;
 import com.ht.lc.dcp.common.utils.HttpClientUtils;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,23 +22,28 @@ public class SyncHttpClientBuilder {
     private int poolMaxConnPerRoute;
 
     public SyncHttpClientBuilder() {
+    }
 
+    public static SyncHttpClientBuilder create() {
+        return new SyncHttpClientBuilder();
     }
 
     public int getPoolMaxConnTotal() {
         return poolMaxConnTotal;
     }
 
-    public void setPoolMaxConnTotal(int poolMaxConnTotal) {
+    public SyncHttpClientBuilder setPoolMaxConnTotal(int poolMaxConnTotal) {
         this.poolMaxConnTotal = poolMaxConnTotal;
+        return this;
     }
 
     public int getPoolMaxConnPerRoute() {
         return poolMaxConnPerRoute;
     }
 
-    public void setPoolMaxConnPerRoute(int poolMaxConnPerRoute) {
+    public SyncHttpClientBuilder setPoolMaxConnPerRoute(int poolMaxConnPerRoute) {
         this.poolMaxConnPerRoute = poolMaxConnPerRoute;
+        return this;
     }
 
     // 获取同步客户端

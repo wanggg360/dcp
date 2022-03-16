@@ -1,7 +1,6 @@
 package com.ht.lc.dcp.task.controller;
 
 import com.ht.lc.dcp.common.http.HttpClientManager;
-import com.ht.lc.dcp.common.http.SyncHttpClientBuilder;
 import com.ht.lc.dcp.task.dao.SiteInfoDao;
 import com.ht.lc.dcp.task.daobean.SiteInfoDaoBean;
 import com.ht.lc.dcp.task.entity.pubinfo.SiteInfo;
@@ -38,10 +37,11 @@ public class TestController {
         //siteInfoDaoBean.setDataType(1);
         siteInfoDaoBean.setIsValid("1");
 
-        HttpClientManager.getInstance().test();
+        //HttpClientManager.getInstance().test();
 
         List<SiteInfo> aa = siteInfoDao.getSiteInfos(siteInfoDaoBean);
-
+        String  aaa = HttpClientManager.getInstance().doGet("http://www.csrc.gov.cn/csrc/c106259/common_list_gd.shtml", null, null);
+        LOG.info(aaa);
         return aa;
     }
 }

@@ -37,20 +37,20 @@ public class SystemConfig {
 
     @Configuration
     public static class HttpConfig {
-        @Value("${http.req.connect.timeout}")
+        @Value("${http.req.connect.timeout:180}")
         private int reqConnTimeout;
 
-        @Value("${http.req.connect.request.timeout}")
+        @Value("${http.req.connect.request.timeout:180}")
         private int reqConnRequestTimeout;
 
-        @Value("${http.rsp.timeout}")
+        @Value("${http.rsp.timeout:60}")
         private int rspTimeout;
 
-        @Value("${http.syncclient.pool.perroute.maxsize}")
-        private int poolMaxConnPerRoute = 0;
+        @Value("${http.syncclient.pool.perroute.maxsize:5}")
+        private int poolMaxConnPerRoute;
 
-        @Value("${http.syncclient.pool.maxsize}")
-        private int poolMaxConnTotal = 0;
+        @Value("${http.syncclient.pool.maxsize:20}")
+        private int poolMaxConnTotal;
 
         public int getReqConnTimeout() {
             return reqConnTimeout;
