@@ -13,6 +13,7 @@
         <module>dcp.server</module>
         <module>dcp.console</module>
 		<module>dcp.parent</module>
+		<module>dcp.task</module>
     </modules>
 
     <properties>

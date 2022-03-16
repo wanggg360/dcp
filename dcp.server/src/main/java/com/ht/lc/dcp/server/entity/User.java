@@ -55,11 +55,8 @@ public class User {
     @Column(name = "create_type")
     private char createType;
 
-    @Column(name = "comp_id")
-    private Integer companyId;
-
-    @Column(name = "dept_id")
-    private Integer departmentId;
+    @Column(name = "dept_code")
+    private String departmentCode;
 
     @Column(name = "avatar", length = 2048)
     private String avatar;
@@ -171,20 +168,12 @@ public class User {
         this.createBy = createBy;
     }
 
-    public Integer getCompanyId() {
-        return companyId;
+    public String getDepartmentCode() {
+        return departmentCode;
     }
 
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
-    }
-
-    public Integer getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode;
     }
 
     public String getAvatar() {

@@ -1,4 +1,4 @@
-package com.ht.lc.dcp.server.test;
+package com.ht.lc.dcp.server.controller;
 
 import com.ht.lc.dcp.common.constants.CipherConstant;
 import com.ht.lc.dcp.server.entity.User;
@@ -33,14 +33,12 @@ public class TestController {
     public void getConfig() {
 
         User user1 = new User();
-        user1.setUserId("018208");
+        user1.setUserId("018200");
         user1.setPassword("test");
         user1.setUsername("wanggang");
         user1.setCreateTime(LocalDateTime.now());
         userRepository.save(user1);
 
         LOG.info("wanggang test log");
-
-        LOG.debug("test test" + CipherConstant.AES_GCM_256);
     }
 }

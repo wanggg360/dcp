@@ -15,7 +15,8 @@ public enum ResultCode {
 
     SUCCESS(0, "SUCCESS"),
     SYS_INNER_ERROR(999999, "system inner error."),
-    SYS_CIPHER_ERROR(991001, "system cipher error.")
+    SYS_CIPHER_ERROR(991001, "system cipher error."),
+
     ;
 
     private int code;

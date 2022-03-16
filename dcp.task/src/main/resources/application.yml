@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: dcp-task
+
+  profiles:
+    active: dev
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

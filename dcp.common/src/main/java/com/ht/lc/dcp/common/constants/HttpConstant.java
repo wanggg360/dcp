@@ -9,6 +9,11 @@ package com.ht.lc.dcp.common.constants;
  */
 public interface HttpConstant {
 	
-	String REQ_ATTR_START_TIME = "req_attr_start_time";  
+	String REQ_ATTR_START_TIME = "req_attr_start_time";
 
+	int REQ_CONN_TIMEOUT = 5000;
+
+	int REQ_GET_CONN_TIMEOUT = 5000;
+
+	int RSP_TIMEOUT = 10000;
 }
