@@ -14,6 +14,13 @@ public class BaseRsp {
 
     private String resultDesc;
 
+    public BaseRsp() {}
+
+    public BaseRsp(int resultCode, String resultDesc) {
+        this.resultCode = resultCode;
+        this.resultDesc = resultDesc;
+    }
+
     public int getResultCode() {
         return resultCode;
     }

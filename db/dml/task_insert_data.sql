@@ -72,3 +72,6 @@ insert into `task_siteinfo` (data_type, branch_id, branch_name, hostname, url, s
 insert into `task_siteinfo` (data_type, branch_id, branch_name, hostname, url, site_menu, gather_type, gather_period, remark, isvalid) values (1, '3502','厦门局', 'http://www.csrc.gov.cn/','http://www.csrc.gov.cn/csrc/c100079/common_list_gd.shtml', '首页>政务信息>监管措施>厦门', '1', '每日一次', '证监会厦门局发布的监管措施公告', '1');
 
 insert into `task_siteinfo` (data_type, branch_id, branch_name, hostname, url, site_menu, gather_type, gather_period, remark, isvalid) values (1, '3702','青岛局', 'http://www.csrc.gov.cn/','http://www.csrc.gov.cn/csrc/c100080/common_list_gd.shtml', '首页>政务信息>监管措施>青岛', '1', '每日一次', '证监会青岛局发布的监管措施公告', '1');
+
+alter table task_siteinfo add column `branch_category` varchar(32) NOT NULL COMMENT '机构类型:zzh(证监会)';
+update task_siteinfo set branch_category = 'zjh' where 1=1;

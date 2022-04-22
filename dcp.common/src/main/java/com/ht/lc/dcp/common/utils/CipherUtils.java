@@ -1,7 +1,6 @@
 package com.ht.lc.dcp.common.utils;
 
 import com.ht.lc.dcp.common.base.ResultCode;
-import com.ht.lc.dcp.common.constants.CipherConstant;
 import com.ht.lc.dcp.common.exception.ServiceComException;
 import org.apache.commons.codec.DecoderException;
 import org.slf4j.Logger;

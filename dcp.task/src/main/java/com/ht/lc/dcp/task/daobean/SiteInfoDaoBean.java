@@ -9,28 +9,31 @@ package com.ht.lc.dcp.task.daobean;
  **/
 public class SiteInfoDaoBean {
 
+    private Integer id;
+
     private Integer dataType;
 
+    private String branchCategory;
+
     private String branchId;
+
+    private String branchName;
 
     private String hostname;
 
     private String url;
 
+    private String siteMenu;
+
     private String gatherType;
+
+    private String gatherPeriod;
+
+    private String remark;
 
     private String isValid;
 
     public SiteInfoDaoBean() {
-    }
-
-    public SiteInfoDaoBean(Integer dataType, String branchId, String hostname, String url, String gatherType, String isValid) {
-        this.dataType = dataType;
-        this.branchId = branchId;
-        this.hostname = hostname;
-        this.url = url;
-        this.gatherType = gatherType;
-        this.isValid = isValid;
     }
 
     public Integer getDataType() {
@@ -79,5 +82,53 @@ public class SiteInfoDaoBean {
 
     public void setIsValid(String isValid) {
         this.isValid = isValid;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getBranchName() {
+        return branchName;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    public String getSiteMenu() {
+        return siteMenu;
+    }
+
+    public void setSiteMenu(String siteMenu) {
+        this.siteMenu = siteMenu;
+    }
+
+    public String getGatherPeriod() {
+        return gatherPeriod;
+    }
+
+    public void setGatherPeriod(String gatherPeriod) {
+        this.gatherPeriod = gatherPeriod;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getBranchCategory() {
+        return branchCategory;
+    }
+
+    public void setBranchCategory(String branchCategory) {
+        this.branchCategory = branchCategory;
     }
 }

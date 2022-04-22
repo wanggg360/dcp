@@ -1,0 +1,16 @@
+###
+POST http://localhost:8080/notice/gatherNoticeBriefs
+Content-Type: application/json
+
+{}
+
+###
+POST http://localhost:8080/notice/gatherNoticeDetails
+Content-Type: application/json
+
+{
+  "taskId": "20220421145407-K3s",
+  "startDate": "2022-01-01",
+  "branchId": "",
+  "endDate": "2022-04-20"
+}

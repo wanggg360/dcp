@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ht.lc.dcp.task.dao.NoticeDetailsDao" >
+
+  <resultMap id="BaseResult" type="com.ht.lc.dcp.task.daobean.NoticeDetailsDaoBean" >
+    <id column="id" property="id" javaType="int" />
+    <result column="task_id" property="taskId" javaType="string" />
+    <result column="brief_id" property="briefId" javaType="int" />
+    <result column="title" property="title" javaType="string" />
+    <result column="notice_object" property="noticeObject" javaType="string" />
+    <result column="content" property="content" javaType="string" />
+    <result column="publish_date" property="publishDate" jdbcType="DATE" />
+    <result column="notice_date" property="noticeDate" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="getListByDaoBean" parameterType="com.ht.lc.dcp.task.daobean.NoticeDetailsDaoBean" resultMap="BaseResult">
+      select * from task_noticedetails
+  </select>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into task_noticedetails
+    (task_id, brief_id, title, notice_object, content, publish_date, notice_date, create_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+    (
+      #{item.taskId},
+      #{item.briefId},
+      #{item.title},
+      #{item.noticeObject},
+      #{item.content},
+      #{item.publishDate},
+      #{item.noticeDate},
+      #{item.createTime}
+      )
+    </foreach>
+  </insert>
+</mapper>

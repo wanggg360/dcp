@@ -3,9 +3,10 @@
 
 <mapper namespace="com.ht.lc.dcp.task.dao.SiteInfoDao" >
 
-  <resultMap id="BaseResult" type="com.ht.lc.dcp.task.entity.pubinfo.SiteInfo" >
+  <resultMap id="BaseResult" type="com.ht.lc.dcp.task.daobean.SiteInfoDaoBean" >
     <id column="id" property="id" javaType="int" />
     <result column="data_type" property="dataType" javaType="int" />
+    <result column="branch_category" property="branchCategory" javaType="string" />
     <result column="branch_id" property="branchId" javaType="string" />
     <result column="branch_name" property="branchName" javaType="string" />
     <result column="hostname" property="hostname" javaType="string" />
@@ -17,23 +18,22 @@
     <result column="isvalid" property="isValid" javaType="string" />
   </resultMap>
 
-  <sql id="MainColumn">
-    data_type, branch_id, url, gather_type, isvalid
-  </sql>
-
-  <select id="getSiteInfos" parameterType="com.ht.lc.dcp.task.daobean.SiteInfoDaoBean" resultMap="BaseResult">
+  <select id="getListByDaoBean" parameterType="com.ht.lc.dcp.task.daobean.SiteInfoDaoBean" resultMap="BaseResult">
       select * from task_siteinfo
     <where>
       <if test="dataType != null">
-        data_type = #{dataType}
+        and data_type = #{dataType}
       </if>
-      <if test="branchId != null">
+      <if test="branchCategory != null and branchCategory != ''">
+        and branch_category = #{branchCategory}
+      </if>
+      <if test="branchId != null and branchId != ''">
         and branch_id = #{branchId}
       </if>
-      <if test="gatherType != null">
+      <if test="gatherType != null and gatherType != ''">
         and gather_type = #{gatherType}
       </if>
-      <if test="isValid != null">
+      <if test="isValid != null and isValid != ''">
         and isvalid = #{isValid}
       </if>
     </where>

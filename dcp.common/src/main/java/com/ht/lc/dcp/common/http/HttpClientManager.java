@@ -70,7 +70,7 @@ public class HttpClientManager {
         return HttpClientUtils.getHttpResponseString(req, syncHttpClient);
     }
 
-    public String getUrlWithParameters(String url, Map<String, String> params) {
+    private String getUrlWithParameters(String url, Map<String, String> params) {
         String result;
         try {
             StringBuffer sb = new StringBuffer();
@@ -88,7 +88,7 @@ public class HttpClientManager {
         return result;
     }
 
-    public void setHeaders4Request(Map<String, String> headers, HttpUriRequest req) {
+    private void setHeaders4Request(Map<String, String> headers, HttpUriRequest req) {
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             req.addHeader(entry.getKey(), entry.getValue());
         }

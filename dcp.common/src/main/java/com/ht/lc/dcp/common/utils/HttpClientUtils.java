@@ -54,7 +54,7 @@ public class HttpClientUtils {
     }
 
     // 信任所有的证书
-    public static SSLContext getDefaultSSLContext() {
+    public static SSLContext getDefaultSSLContext() throws ServiceComException {
 
         SSLContext sslContext = null;
         try {
@@ -119,7 +119,7 @@ public class HttpClientUtils {
         return request;
     }
 
-    public static String getHttpResponseString (HttpUriRequest req, CloseableHttpClient client) {
+    public static String getHttpResponseString (HttpUriRequest req, CloseableHttpClient client) throws ServiceComException {
         final HttpClientResponseHandler<String> handler = new HttpClientResponseHandler<String>() {
             @Override
             public String handleResponse(

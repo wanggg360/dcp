@@ -1,9 +1,8 @@
 package com.ht.lc.dcp.task.dao;
 
 import com.ht.lc.dcp.task.daobean.SiteInfoDaoBean;
-import com.ht.lc.dcp.task.entity.pubinfo.SiteInfo;
+import com.ht.lc.dcp.task.entity.SiteInfo;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,6 +17,11 @@ import java.util.List;
 @Mapper
 public interface SiteInfoDao {
 
-    List<SiteInfo> getSiteInfos(SiteInfoDaoBean siteInfoDaoBean);
+    /**
+     * 获取siteinfodaobean列表
+     * @param daobean 查询条件bean
+     * @return daobean列表
+     */
+    List<SiteInfoDaoBean> getListByDaoBean(SiteInfoDaoBean daobean);
 
 }

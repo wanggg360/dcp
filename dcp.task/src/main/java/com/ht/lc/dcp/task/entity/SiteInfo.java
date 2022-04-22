@@ -1,4 +1,4 @@
-package com.ht.lc.dcp.task.entity.pubinfo;
+package com.ht.lc.dcp.task.entity;
 
 /**
  * @program: dcp
@@ -9,9 +9,9 @@ package com.ht.lc.dcp.task.entity.pubinfo;
  **/
 public class SiteInfo {
 
-    private Integer id;
-
     private Integer dataType;
+
+    private String branchCategory;
 
     private String branchId;
 
@@ -30,14 +30,6 @@ public class SiteInfo {
     private String remark;
 
     private String isValid;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getDataType() {
         return dataType;
@@ -117,5 +109,13 @@ public class SiteInfo {
 
     public void setIsValid(String isValid) {
         this.isValid = isValid;
+    }
+
+    public String getBranchCategory() {
+        return branchCategory;
+    }
+
+    public void setBranchCategory(String branchCategory) {
+        this.branchCategory = branchCategory;
     }
 }

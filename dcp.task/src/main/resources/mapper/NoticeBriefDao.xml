@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ht.lc.dcp.task.dao.NoticeBriefDao" >
+
+  <resultMap id="BaseResult" type="com.ht.lc.dcp.task.daobean.NoticeBriefDaoBean" >
+    <id column="id" property="id" javaType="int" />
+    <result column="task_id" property="taskId" javaType="string" />
+    <result column="data_type" property="dataType" javaType="int" />
+    <result column="branch_category" property="branchCategory" javaType="string" />
+    <result column="branch_id" property="branchId" javaType="string" />
+    <result column="content_url" property="contentUrl" javaType="string" />
+    <result column="title" property="title" javaType="string" />
+    <result column="publish_date" property="publishDate" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="getListByDaoBean" parameterType="com.ht.lc.dcp.task.daobean.NoticeBriefDaoBean" resultMap="BaseResult">
+      select * from task_noticebrief
+    <where>
+      <if test="taskId != null and taskId != ''">
+        and task_id = #{taskId}
+      </if>
+      <if test="dataType != null">
+        and data_type = #{dataType}
+      </if>
+      <if test="branchCategory != null and branchCategory != ''">
+        and branch_category = #{branchCategory}
+      </if>
+      <if test="branchId != null and branchId != ''">
+        and branch_id = #{branchId}
+      </if>
+      <if test="startDate != null">
+        <![CDATA[and publish_date >= #{startDate}]]>
+      </if>
+      <if test="endDate != null">
+        <![CDATA[and publish_date <= #{endDate}]]>
+      </if>
+    </where>
+  </select>
+
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into task_noticebrief
+    (task_id, data_type, branch_category, branch_id, content_url, title, publish_date, create_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+    (
+      #{item.taskId},
+      #{item.dataType},
+      #{item.branchCategory},
+      #{item.branchId},
+      #{item.contentUrl},
+      #{item.title},
+      #{item.publishDate},
+      #{item.createTime}
+      )
+    </foreach>
+  </insert>
+</mapper>
