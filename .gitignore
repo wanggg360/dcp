@@ -21,6 +21,7 @@ hs_err_pid*
 *.iml
 
 **/target/
+**/node_modules/
 .project
 .classpath
 .settings
