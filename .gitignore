@@ -28,3 +28,6 @@ hs_err_pid*
 .flattened-pom.xml
 .DS_Store
 .vscode
+
+# 前端的忽略文件
+**/.umi/

@@ -1,0 +1,17 @@
+**/*.svg
+package.json
+.umi
+.umi-production
+/dist
+.DS_Store
+*.png
+*.toml
+.editorconfig
+.prettierignore
+.eslintcache
+*.lock
+yarn-error.log
+.history
+CNAME
+/build
+/public
