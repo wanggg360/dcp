@@ -4,7 +4,6 @@ import com.ht.lc.dcp.server.event.ApplicationReadyEventListener;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * @program: dcp
@@ -14,7 +13,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @Version 1.0
  **/
 
-@SpringBootApplication(scanBasePackages = {"com.ht.lc.dcp.common","com.ht.lc.dcp.server"})
+@SpringBootApplication(scanBasePackages = {"com.ht.lc.dcp.common", "com.ht.lc.dcp.server"})
 public class Application {
 
     public static void main(String[] args) {

@@ -1,7 +1,5 @@
 package com.ht.lc.dcp.task.rsp;
 
-import com.ht.lc.dcp.common.base.BaseRsp;
-
 /**
  * @program: dcp
  * @description:
@@ -13,7 +11,7 @@ public class GatherNoticeDetailsRsp extends BaseRsp {
 
     public GatherNoticeDetailsRsp() {}
 
-    public GatherNoticeDetailsRsp(int code, String msg) {
+    public GatherNoticeDetailsRsp(String code, String msg) {
         super(code, msg);
     }
 

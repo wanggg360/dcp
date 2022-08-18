@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ht.lc.dcp.server.sys.dao.UserDao" >
+
+  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.entity.User" >
+    <id column="id" property="id"  jdbcType="BIGINT" />
+    <result column="user_id" property="userId" javaType="string" />
+    <result column="full_name" property="fullName" javaType="string" />
+    <result column="password" property="password" javaType="string" />
+    <result column="email" property="email" javaType="string" />
+    <result column="mobile" property="mobile" javaType="string" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_type" property="createType" jdbcType="CHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" javaType="string" />
+    <result column="create_by" property="createBy" javaType="string" />
+    <result column="dept_code" property="departmentCode" javaType="string" />
+    <result column="avatar" property="avatar" javaType="string" />
+    <result column="remark" property="remark" javaType="string" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, user_id, full_name, password, email, mobile, create_type, dept_code, avatar,
+    status, create_time, update_time, update_by, create_by, remark
+  </sql>
+  <sql id="Base_Column_List_NO_ID">
+    user_id, full_name, password, email, mobile, create_type, dept_code, avatar,
+    status, create_time, update_time, update_by, create_by, remark
+  </sql>
+
+  <select id="findByUserId" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from sys_user t where t.user_id = #{userId}
+  </select>
+
+  <select id="findUser" parameterType="com.ht.lc.dcp.server.sys.entity.User" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from sys_user t
+    <where>
+      <if test="userId != null and userId != ''">
+        and user_id = #{userId}
+      </if>
+      <if test="fullName != null and fullName != ''">
+        and full_name = #{fullName}
+      </if>
+      <if test="password != null and password != ''">
+        and password = #{password}
+      </if>
+      <if test="email != null and email != ''">
+        and email = #{email}
+      </if>
+      <if test="mobile != null and mobile != ''">
+        and mobile = #{mobile}
+      </if>
+      <if test="status != null and status != ''">
+        and status = #{status}
+      </if>
+      <if test="departmentCode != null and departmentCode != ''">
+        and dept_code = #{departmentCode}
+      </if>
+    </where>
+  </select>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ht.lc.dcp.server.sys.entity.User" useGeneratedKeys="true">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null and userId != ''">
+        user_id,
+      </if>
+      <if test="fullName != null and fullName != ''">
+        full_name,
+      </if>
+      <if test="password != null and password != ''">
+        password,
+      </if>
+      <if test="email != null and email != ''">
+        email,
+      </if>
+      <if test="mobile != null and mobile != ''">
+        mobile,
+      </if>
+      <if test="createType != null and createType != ''">
+        create_type,
+      </if>
+      <if test="departmentCode != null and departmentCode != ''">
+        dept_code,
+      </if>
+      <if test="avatar != null and avatar != ''">
+        avatar,
+      </if>
+
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null and userId != ''">
+        #{userId},
+      </if>
+      <if test="fullName != null and fullName != ''">
+        #{fullName},
+      </if>
+      <if test="password != null and password != ''">
+        #{password},
+      </if>
+      <if test="email != null and email != ''">
+        #{email},
+      </if>
+      <if test="mobile != null and mobile != ''">
+        #{mobile},
+      </if>
+      <if test="createType != null and createType != ''">
+        #{createType},
+      </if>
+      <if test="departmentCode != null and departmentCode != ''">
+        #{departmentCode},
+      </if>
+      <if test="avatar != null and avatar != ''">
+        #{avatar},
+      </if>
+
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy},
+      </if>
+      <if test="createBy != null">
+        #{createBy},
+      </if>
+      <if test="remark != null">
+        #{remark},
+      </if>
+    </trim>
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into sys_user (
+    user_id, full_name, password, email, mobile, create_type, dept_code, avatar,
+    status, create_time, update_time, update_by, create_by, remark
+    )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      #{item.userId},
+      #{item.fullName},
+      #{item.password},
+      #{item.email},
+      #{item.mobile},
+      #{item.createType},
+      #{item.departmentCode},
+      #{item.avatar},
+      #{item.status},
+      #{item.createTime},
+      #{item.updateTime},
+      #{item.updateBy},
+      #{item.createBy},
+      #{item.remark} )
+    </foreach>
+  </insert>
+</mapper>

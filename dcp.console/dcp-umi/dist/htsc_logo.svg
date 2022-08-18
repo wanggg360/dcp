@@ -1,0 +1,18 @@
+<svg width="220" height="220" xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<title>htsc logo</title>
+		<rect ry="20" rx="20" fill="#dd4128" width="220" height="220" id="background" stroke-width="0" stroke="#000"/>
+		<g id="svg_1">
+			<rect ry="5" rx="5" fill="#fff" width="75" height="75" id="rect_1" stroke="#000" x="72.5" y="13" stroke-width="0" transform="rotate(45 110 50.5)"/>
+			<line stroke-width="10" id="line_1" y2="220" x2="110" y1="95" x1="109" stroke="#fff" fill="none"/>
+		</g>
+		<g id="svg_2">
+			<rect transform="rotate(45 50.5 111.5)" ry="5" rx="5" fill="#fff" stroke="#000" x="13" y="74" width="75" height="75" id="rect_2" stroke-width="0"/>
+			<line stroke-width="10" id="line_1" y2="220" x2="52" y1="155" x1="51" stroke="#fff" fill="none"/>
+		</g>
+		<g id="svg_3">
+			<rect ry="5" rx="5" stroke-width="0" fill="#fff" stroke="#000" x="131" y="74" width="75" height="75" id="rect_3" transform="rotate(45 168.5 111.5)"/>
+			<line stroke-width="10" id="line_1" y2="220" x2="169" y1="155" x1="168" stroke="#fff" fill="none"/>
+		</g>
+	</g>
+</svg>

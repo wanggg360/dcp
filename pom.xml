@@ -14,6 +14,7 @@
         <module>dcp.console</module>
 		<module>dcp.parent</module>
 		<module>dcp.task</module>
+        <module>dcp.demo</module>
     </modules>
 
     <properties>

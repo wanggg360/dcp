@@ -3,10 +3,9 @@ package com.ht.lc.dcp.common.http;
 import com.ht.lc.dcp.common.base.ResultCode;
 import com.ht.lc.dcp.common.config.SystemConfig;
 import com.ht.lc.dcp.common.context.SpringContextManager;
-import com.ht.lc.dcp.common.exception.ServiceComException;
+import com.ht.lc.dcp.common.exception.ServiceException;
 import com.ht.lc.dcp.common.utils.HttpClientUtils;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.classic.methods.HttpUriRequest;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -54,7 +53,7 @@ public class HttpClientManager {
         return INSTANCE;
     }
 
-    public  String doGet(String url, Map<String, String> headers, Map<String, String> params) throws ServiceComException {
+    public  String doGet(String url, Map<String, String> headers, Map<String, String> params) throws ServiceException {
         if (!CollectionUtils.isEmpty(params)){
             LOG.info("ready to build httpget parameters. ");
             url = getUrlWithParameters(url, params);
@@ -83,7 +82,7 @@ public class HttpClientManager {
             }
             result =  sb.toString().substring(0, sb.length()-1);
         } catch (UnsupportedEncodingException e) {
-            throw new ServiceComException(ResultCode.SYS_HTTP_ERROR.getCode(), "build httpget parameters error. ");
+            throw new ServiceException(ResultCode.SYS_HTTP_ERROR.getCode(), "build httpget parameters error. ");
         }
         return result;
     }

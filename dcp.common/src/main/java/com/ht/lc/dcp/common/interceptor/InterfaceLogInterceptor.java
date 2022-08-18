@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ht.lc.dcp.common.constants.HttpConstant;
+import com.ht.lc.dcp.common.constants.HttpConst;
 
 public class InterfaceLogInterceptor implements HandlerInterceptor {
 	
@@ -19,7 +19,7 @@ public class InterfaceLogInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		long intime = System.currentTimeMillis();
-		request.setAttribute(HttpConstant.REQ_ATTR_START_TIME, intime);
+		request.setAttribute(HttpConst.REQ_ATTR_START_TIME, intime);
 		return true;
 	}
 	
@@ -31,7 +31,7 @@ public class InterfaceLogInterceptor implements HandlerInterceptor {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 	
-		long costtime = System.currentTimeMillis() - (long)request.getAttribute(HttpConstant.REQ_ATTR_START_TIME);
+		long costtime = System.currentTimeMillis() - (long)request.getAttribute(HttpConst.REQ_ATTR_START_TIME);
 		
 		LOG.info(request.getRequestURI() + LOG_SEPARATOR +
 				 request.getMethod() + LOG_SEPARATOR +

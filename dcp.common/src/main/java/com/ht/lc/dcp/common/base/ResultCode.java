@@ -10,28 +10,32 @@ package com.ht.lc.dcp.common.base;
 public enum ResultCode {
     /**
      * 错误码6位：前两位代表大类 99（系统错误）
+     * 前两位10（鉴权错误）
      *
      */
 
-    SUCCESS(0, "SUCCESS"),
-    SYS_INNER_ERROR(999999, "system inner error."),
-    SYS_CIPHER_ERROR(991001, "system cipher error."),
-    SYS_HTTP_ERROR(991002, "system http error. ")
+    SUCCESS("0", "success"),
+    AUTH_USER_NOT_EXIST("101001", "user not exist. "),
+    AUTH_WRONG_PASSWD("101002", "userid or passwd wrong. "),
+
+    SYS_INNER_ERROR("999999", "system inner error."),
+    SYS_CIPHER_ERROR("991001", "system cipher error."),
+    SYS_HTTP_ERROR("991002", "system http error. ")
     ;
 
-    private int code;
-    private String description;
+    private String code;
+    private String desc;
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 
-    ResultCode(int code, String description) {
+    ResultCode(String code, String desc) {
         this.code = code;
-        this.description = description;
+        this.desc = desc;
     }
 }

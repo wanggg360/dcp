@@ -1,6 +1,6 @@
 package com.ht.lc.dcp.common.crypto;
 
-import com.ht.lc.dcp.common.constants.CipherConstant;
+import com.ht.lc.dcp.common.constants.CipherConst;
 import org.springframework.util.StringUtils;
 
 /**
@@ -12,11 +12,11 @@ import org.springframework.util.StringUtils;
  **/
 public enum CipherAlgorithm {
     AES_GCM_NOPADDING_256(
-            CipherConstant.ALG_NAME_AES,
-            CipherConstant.ALG_MODE_GCM,
-            CipherConstant.ALG_PADDING_NOPADDING,
-            CipherConstant.SIZE_256,
-            CipherConstant.SIZE_128
+            CipherConst.ALG_NAME_AES,
+            CipherConst.ALG_MODE_GCM,
+            CipherConst.ALG_PADDING_NOPADDING,
+            CipherConst.SIZE_256,
+            CipherConst.SIZE_128
     );
 
     private String algName;

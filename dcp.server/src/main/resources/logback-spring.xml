@@ -64,11 +64,7 @@
 		<appender-ref ref="INTERFACE_LOG" />
 	</logger>
 
-	<logger name="org.hibernate.SQL" level="DEBUG" additivity="false" >
-		<appender-ref ref="SQL_LOG" />
-	</logger>
-
-	<logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" level="TRACE" >
+	<logger name="com.ht.lc.dcp.server.sys.dao" level="DEBUG" additivity="false" >
 		<appender-ref ref="SQL_LOG" />
 	</logger>
 </configuration>

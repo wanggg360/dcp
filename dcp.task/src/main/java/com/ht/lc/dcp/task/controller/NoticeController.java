@@ -48,7 +48,7 @@ public class NoticeController {
         int cnt = sites.stream().mapToInt(s -> noticeBriefService.addNoticeBriefBySiteInfo(s, taskId)).sum();
         GatherNoticeBriefsRsp rsp = new GatherNoticeBriefsRsp();
         rsp.setResultCode(ResultCode.SUCCESS.getCode());
-        rsp.setResultDesc(ResultCode.SUCCESS.getDescription());
+        rsp.setResultDesc(ResultCode.SUCCESS.getDesc());
         rsp.setTaskId(taskId);
         rsp.setSuccessCnt(cnt);
         return rsp;
@@ -60,7 +60,7 @@ public class NoticeController {
         List<NoticeBrief> noticeBriefs = noticeBriefService.getNoticeBriefsByDateRange(req.getTaskId(), req.getBranchId(), req.getStartDate(), req.getEndDate());
         noticeDetailsService.addNoticeDetailsByBriefs(noticeBriefs);
 
-        return new GatherNoticeDetailsRsp(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getDescription());
+        return new GatherNoticeDetailsRsp(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getDesc());
     }
 
 
@@ -70,7 +70,7 @@ public class NoticeController {
         GatherNoticeBriefsRsp rsp = new GatherNoticeBriefsRsp();
         List<NoticeBrief> lists = noticeBriefService.getNoticeBriefsByDateRange("20220328185400-lOo", "1", "2020-05-30", "2020-12-31");
         rsp.setResultCode(ResultCode.SUCCESS.getCode());
-        rsp.setResultDesc(ResultCode.SUCCESS.getDescription());
+        rsp.setResultDesc(ResultCode.SUCCESS.getDesc());
         return rsp;
     }
 }

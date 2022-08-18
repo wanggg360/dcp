@@ -1,7 +1,5 @@
 package com.ht.lc.dcp.task.rsp;
 
-import com.ht.lc.dcp.common.base.BaseRsp;
-
 /**
  * @program: dcp
  * @description:

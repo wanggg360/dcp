@@ -1,8 +1,8 @@
 package com.ht.lc.dcp.common.utils;
 
 import com.ht.lc.dcp.common.base.ResultCode;
-import com.ht.lc.dcp.common.constants.HttpConstant;
-import com.ht.lc.dcp.common.exception.ServiceComException;
+import com.ht.lc.dcp.common.constants.HttpConst;
+import com.ht.lc.dcp.common.exception.ServiceException;
 import com.ht.lc.dcp.common.http.HttpMethod;
 import org.apache.hc.client5.http.classic.methods.*;
 import org.apache.hc.client5.http.config.RequestConfig;
@@ -54,7 +54,7 @@ public class HttpClientUtils {
     }
 
     // 信任所有的证书
-    public static SSLContext getDefaultSSLContext() throws ServiceComException {
+    public static SSLContext getDefaultSSLContext() throws ServiceException {
 
         SSLContext sslContext = null;
         try {
@@ -65,7 +65,7 @@ public class HttpClientUtils {
                 }
             }).build();
         } catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException e) {
-            throw new ServiceComException(ResultCode.SYS_INNER_ERROR.getCode(), "init sslcontext error, can not load trust.", e);
+            throw new ServiceException(ResultCode.SYS_INNER_ERROR.getCode(), "init sslcontext error, can not load trust.", e);
         }
         return sslContext;
     }
@@ -119,7 +119,7 @@ public class HttpClientUtils {
         return request;
     }
 
-    public static String getHttpResponseString (HttpUriRequest req, CloseableHttpClient client) throws ServiceComException {
+    public static String getHttpResponseString (HttpUriRequest req, CloseableHttpClient client) throws ServiceException {
         final HttpClientResponseHandler<String> handler = new HttpClientResponseHandler<String>() {
             @Override
             public String handleResponse(
@@ -128,12 +128,12 @@ public class HttpClientUtils {
                 if (status >= HttpStatus.SC_SUCCESS && status < HttpStatus.SC_REDIRECTION) {
                     final HttpEntity entity = response.getEntity();
                     try {
-                        return entity != null ? EntityUtils.toString(entity, HttpConstant.RSP_ENTITY_CHARSET) : null;
+                        return entity != null ? EntityUtils.toString(entity, HttpConst.RSP_ENTITY_CHARSET) : null;
                     } catch (ParseException | IOException e ) {
-                        throw new ServiceComException(ResultCode.SUCCESS.getCode(), "parse http response error. ");
+                        throw new ServiceException(ResultCode.SUCCESS.getCode(), "parse http response error. ");
                     }
                 } else {
-                    throw new ServiceComException(ResultCode.SUCCESS.getCode(), "response status error, status code: " + status);
+                    throw new ServiceException(ResultCode.SUCCESS.getCode(), "response status error, status code: " + status);
                 }
             }
         };
@@ -141,7 +141,7 @@ public class HttpClientUtils {
         try {
            return client.execute(req, handler);
         } catch (IOException e) {
-            throw new ServiceComException(ResultCode.SYS_HTTP_ERROR.getCode(), "request failed, url: " + req.getRequestUri());
+            throw new ServiceException(ResultCode.SYS_HTTP_ERROR.getCode(), "request failed, url: " + req.getRequestUri());
         }
 
     }

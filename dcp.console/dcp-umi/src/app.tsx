@@ -1,11 +1,11 @@
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { SettingDrawer } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
-import type { RunTimeLayoutConfig } from 'umi';
+import type { RunTimeLayoutConfig, RequestConfig } from 'umi';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
+import { currentUser as queryCurrentUser } from './services/dcpconsole/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
 
@@ -105,4 +105,18 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     },
     ...initialState?.settings,
   };
+};
+
+// RequestConfig 统一处理响应
+export const request: RequestConfig = {
+  errorConfig: {
+    adaptor: (resData) => {
+      return {
+        success: resData.success,
+        data: resData.data,
+        errorCode: resData.code,
+        errorMessage: resData.message
+      };
+    },
+  },
 };

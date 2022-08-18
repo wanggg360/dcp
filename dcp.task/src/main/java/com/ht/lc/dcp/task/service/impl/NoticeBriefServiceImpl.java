@@ -1,8 +1,6 @@
 package com.ht.lc.dcp.task.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.ht.lc.dcp.common.exception.ServiceComException;
+import com.ht.lc.dcp.common.exception.ServiceException;
 import com.ht.lc.dcp.common.http.HttpClientManager;
 import com.ht.lc.dcp.task.constant.BizConst;
 import com.ht.lc.dcp.task.dao.NoticeBriefDao;
@@ -92,7 +90,7 @@ public class NoticeBriefServiceImpl implements NoticeBriefService {
             } else {
                 LOG.error("get pageinfo error, will not process notice brief. site url: {}", reqUrl);
             }
-        } catch (ServiceComException | InterruptedException | ExecutionException e) {
+        } catch (ServiceException | InterruptedException | ExecutionException e) {
             LOG.error("async parse sup measure exception,{}. ", e.getMessage());
         }
         return result;

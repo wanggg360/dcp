@@ -1,8 +1,7 @@
 package com.ht.lc.dcp.task.service.impl;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import com.ht.lc.dcp.common.constants.ComConstant;
+import com.ht.lc.dcp.common.constants.CommonConst;
+import com.ht.lc.dcp.common.utils.CommonUtils;
 import com.ht.lc.dcp.task.dao.NoticeDetailsDao;
 import com.ht.lc.dcp.task.entity.NoticeBrief;
 import com.ht.lc.dcp.task.entity.NoticeDetails;
@@ -17,7 +16,6 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -45,7 +43,7 @@ public class NoticeDetailsServiceImpl implements NoticeDetailsService {
             return;
         }
         List<NoticeDetails> details = new ArrayList<>(2);
-        List<List<NoticeBrief>> resultList = ComUtils.splitList(briefs, ComConstant.Number.NUM_100);
+        List<List<NoticeBrief>> resultList = CommonUtils.splitList(briefs, CommonConst.Number.NUM_100);
         CountDownLatch latch = new CountDownLatch(resultList.size());
         resultList.stream().forEach(l -> asyncService.addNoticeDetails(l, latch));
         try {

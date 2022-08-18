@@ -1,10 +1,8 @@
 package com.ht.lc.dcp.common.utils;
 
 import com.ht.lc.dcp.common.base.ResultCode;
-import com.ht.lc.dcp.common.exception.ServiceComException;
+import com.ht.lc.dcp.common.exception.ServiceException;
 import org.apache.commons.codec.DecoderException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -33,12 +31,12 @@ public class CipherUtils {
 
     //private static final Logger LOG = LoggerFactory.getLogger(CipherUtils.class);
 
-    public static SecretKey generateKey(int keyBitSize, String algorithmName) throws ServiceComException {
+    public static SecretKey generateKey(int keyBitSize, String algorithmName) throws ServiceException {
         KeyGenerator kg = null;
         try {
             kg = KeyGenerator.getInstance(algorithmName);
         } catch (NoSuchAlgorithmException e) {
-            throw new ServiceComException(ResultCode.SYS_CIPHER_ERROR.getCode(), "generate secretkey error", e);
+            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(), "generate secretkey error", e);
         }
         SecureRandom random = new SecureRandom();
         kg.init(keyBitSize, random);
@@ -49,9 +47,9 @@ public class CipherUtils {
         return new SecretKeySpec(key, algorithmName);
     }
 
-    public static byte[] getInitializationVector(int ivBitSize) throws ServiceComException {
+    public static byte[] getInitializationVector(int ivBitSize) throws ServiceException {
         if ((ivBitSize <= 0) || (ivBitSize % 8 != 0)) {
-            throw new ServiceComException(ResultCode.SYS_CIPHER_ERROR.getCode(),
+            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
                     "generate iv error error, input bytesize < 0 or not a multiple of 8");
         }
         int byteSize = ivBitSize / 8;
@@ -77,29 +75,29 @@ public class CipherUtils {
         return Base64.getDecoder().decode(content);
     }
 
-    public static byte[] decodeHex(String input) throws ServiceComException {
+    public static byte[] decodeHex(String input) throws ServiceException {
         byte[] result;
         try{
             result = Hex.decodeHex(input);
         } catch (DecoderException e) {
-            throw new ServiceComException(ResultCode.SYS_CIPHER_ERROR.getCode(),
+            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
                     "decode hex string error, can not decode.", e);
         }
         return result;
     }
 
-    public static String decodeHex2String(String input) throws ServiceComException {
+    public static String decodeHex2String(String input) throws ServiceException {
         return new String(decodeHex(input));
     }
 
-    public static Cipher getCipherInstance(String cipherName) throws ServiceComException {
+    public static Cipher getCipherInstance(String cipherName) throws ServiceException {
         try {
             return Cipher.getInstance(cipherName);
         } catch (NoSuchAlgorithmException e) {
-            throw new ServiceComException(ResultCode.SYS_CIPHER_ERROR.getCode(),
+            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
                     "get cipher instance error, no such algorithm. ", e);
         } catch (NoSuchPaddingException e) {
-            throw new ServiceComException(ResultCode.SYS_CIPHER_ERROR.getCode(),
+            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
                     "get cipher instance error, no such padding. ", e);
         }
     }

@@ -1,8 +1,8 @@
 package com.ht.lc.dcp.task.utils;
 
 import com.ht.lc.dcp.common.base.ResultCode;
-import com.ht.lc.dcp.common.constants.ComConstant;
-import com.ht.lc.dcp.common.exception.ServiceComException;
+import com.ht.lc.dcp.common.constants.CommonConst;
+import com.ht.lc.dcp.common.exception.ServiceException;
 import com.ht.lc.dcp.task.constant.BizConst;
 import com.ht.lc.dcp.task.entity.NoticeBrief;
 import com.ht.lc.dcp.task.entity.NoticeDetails;
@@ -40,30 +40,30 @@ public class JsoupUtils {
 
     private JsoupUtils() {}
 
-    public static Document getDocFromStr(String input) throws ServiceComException {
+    public static Document getDocFromStr(String input) throws ServiceException {
         if (!StringUtils.hasText(input)) {
-            throw new ServiceComException(ResultCode.SYS_INNER_ERROR.getCode(), "jsoup error, input string empty. ");
+            throw new ServiceException(ResultCode.SYS_INNER_ERROR.getCode(), "jsoup error, input string empty. ");
         }
         return Jsoup.parse(input);
     }
 
-    public static Element getElementById(Document doc, String id) throws ServiceComException {
+    public static Element getElementById(Document doc, String id) throws ServiceException {
         validateDocument(doc);
         return doc.getElementById(id);
     }
 
-    public static Elements getElementsByClass(Document doc, String className) throws ServiceComException {
+    public static Elements getElementsByClass(Document doc, String className) throws ServiceException {
         validateDocument(doc);
         return doc.getElementsByClass(className);
     }
 
-    public static void validateDocument(Document document) throws ServiceComException {
+    public static void validateDocument(Document document) throws ServiceException {
         if (Objects.isNull(document)) {
-            throw new ServiceComException(ResultCode.SYS_INNER_ERROR.getCode(), "jsoup error, input doc is null. ");
+            throw new ServiceException(ResultCode.SYS_INNER_ERROR.getCode(), "jsoup error, input doc is null. ");
         }
     }
 
-    public static NoticePageInfo getNoticePageInfo(Document document) throws ServiceComException {
+    public static NoticePageInfo getNoticePageInfo(Document document) throws ServiceException {
         validateDocument(document);
         NoticePageInfo noticePageInfo = new NoticePageInfo();
         String pageSize = Optional
@@ -80,12 +80,12 @@ public class JsoupUtils {
         }
         String temp = pageInfo.substring(pageInfo.indexOf('(')+1, pageInfo.indexOf(')'));
         String [] strArray = temp.split(",");
-        if (strArray.length < ComConstant.Number.NUM_6) {
+        if (strArray.length < CommonConst.Number.NUM_6) {
             LOG.info("page info string size not correct, str: {}. ", pageInfo);
             return noticePageInfo;
         }
-        String pageCnt = strArray[ComConstant.Number.NUM_1];
-        String totalCnt = strArray[ComConstant.Number.NUM_5];
+        String pageCnt = strArray[CommonConst.Number.NUM_1];
+        String totalCnt = strArray[CommonConst.Number.NUM_5];
         if (ComUtils.checkStr(BizConst.ElementKeyStr.NUMBER_CHECK_PATTERN, pageCnt)) {
             noticePageInfo.setPageCnt(Integer.valueOf(pageCnt));
         }
@@ -142,15 +142,15 @@ public class JsoupUtils {
 
         }
         Elements titleEles = document.select(titlePattern);
-        if (titleEles.size() != ComConstant.Number.NUM_0) {
+        if (titleEles.size() != CommonConst.Number.NUM_0) {
             noticeDetails.setTitle(titleEles.first().html());
         }
         Elements objectEles = document.select(objectPattern);
-        if (objectEles.size() != ComConstant.Number.NUM_0) {
+        if (objectEles.size() != CommonConst.Number.NUM_0) {
             noticeDetails.setNoticeObject(objectEles.first().html());
         }
         Elements contents = document.select(contentPattern);
-        if (contents.size() == ComConstant.Number.NUM_0) {
+        if (contents.size() == CommonConst.Number.NUM_0) {
             LOG.error("notice details content element empty, can not get content! ");
             return noticeDetails;
         }

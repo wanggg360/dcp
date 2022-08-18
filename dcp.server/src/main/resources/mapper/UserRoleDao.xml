@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.lc.dcp.server.sys.dao.UserRoleDao">
+  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.entity.UserRole">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="rid" jdbcType="VARCHAR" property="rid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, rid, create_time, update_time
+  </sql>
+  <sql id="Base_Column_List_NO_ID">
+    user_id, rid, create_time, update_time
+  </sql>
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_role
+    where user_id = #{userId}
+  </select>
+  <delete id="deleteByUserId" parameterType="java.lang.String">
+    delete from sys_user_role
+    where user_id = #{userId}
+  </delete>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into sys_user_role (user_id, rid, create_time, update_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+     (#{item.userId},
+      #{item.rid},
+      #{item.createTime},
+      #{item.updateTime}
+      )
+    </foreach>
+  </insert>
+</mapper>

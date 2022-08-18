@@ -1,8 +1,8 @@
 package com.ht.lc.dcp.common.config;
 
-import com.ht.lc.dcp.common.constants.CipherConstant;
-import com.ht.lc.dcp.common.crypto.CipherServiceManager;
-import com.ht.lc.dcp.common.exception.ServiceComException;
+import com.ht.lc.dcp.common.constants.CipherConst;
+import com.ht.lc.dcp.common.crypto.CipherManager;
+import com.ht.lc.dcp.common.exception.ServiceException;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,9 +57,9 @@ public class HikariDataSourceConfig {
         dataSource.setUsername(this.username);
         String pwd = "";
         try {
-            pwd = CipherServiceManager.getInstance().decrypt(CipherConstant.AES_GCM_256,
+            pwd = CipherManager.getInstance().decrypt(CipherConst.AES_GCM_256,
                     password, keyConfig.getAesKey(), keyConfig.getAesIv());
-        } catch (ServiceComException e) {
+        } catch (ServiceException e) {
             LOG.error("decrypt db password error, init datasource failed. ");
         }
         dataSource.setPassword(pwd);

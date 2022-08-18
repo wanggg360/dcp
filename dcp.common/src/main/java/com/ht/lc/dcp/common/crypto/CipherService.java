@@ -1,6 +1,6 @@
 package com.ht.lc.dcp.common.crypto;
 
-import com.ht.lc.dcp.common.exception.ServiceComException;
+import com.ht.lc.dcp.common.exception.ServiceException;
 
 /**
  * @program: dcp
@@ -11,11 +11,11 @@ import com.ht.lc.dcp.common.exception.ServiceComException;
  **/
 public interface CipherService {
 
-    byte[] encrypt(byte[] data, byte[] key, byte[] iv) throws ServiceComException;
+    byte[] encrypt(byte[] data, byte[] key, byte[] iv) throws ServiceException;
 
-    byte[] decrypt(byte[] data, byte[] key, byte[] iv) throws ServiceComException;
+    byte[] decrypt(byte[] data, byte[] key, byte[] iv) throws ServiceException;
 
-    String encrypt(String src, String hexKey, String hexIV) throws ServiceComException;
+    String encrypt(String src, String hexKey, String hexIV) throws ServiceException;
 
-    String decrypt(String src, String hexKey, String hexIV) throws ServiceComException;
+    String decrypt(String src, String hexKey, String hexIV) throws ServiceException;
 }

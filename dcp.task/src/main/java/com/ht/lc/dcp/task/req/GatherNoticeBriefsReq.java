@@ -1,7 +1,5 @@
 package com.ht.lc.dcp.task.req;
 
-import com.ht.lc.dcp.common.base.BaseReq;
-
 /**
  * @program: dcp
  * @description:

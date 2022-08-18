@@ -1,6 +1,5 @@
 package com.ht.lc.dcp.task.req;
 
-import com.ht.lc.dcp.common.base.BaseReq;
 import com.ht.lc.dcp.task.constant.BizConst;
 
 import javax.validation.constraints.NotBlank;

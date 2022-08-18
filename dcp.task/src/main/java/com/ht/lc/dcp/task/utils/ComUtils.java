@@ -1,17 +1,14 @@
 package com.ht.lc.dcp.task.utils;
 
+import com.ht.lc.dcp.common.utils.CommonUtils;
 import com.ht.lc.dcp.task.constant.BizConst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import java.util.regex.Pattern;
 
 /**
@@ -61,43 +58,7 @@ public class ComUtils {
         LocalDateTime time = LocalDateTime.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(BizConst.Common.DATE_FORMAT_TIMESTAMP);
         String dateTime = dtf.format(time);
-        return dateTime + "-" + generateRandomString(3);
-    }
-
-    public static String generateRandomString(int len) {
-        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random=new Random();
-        StringBuffer sb = new StringBuffer();
-        for(int i=0; i<len; i++){
-            int number=random.nextInt(62);
-            sb.append(str.charAt(number));
-        }
-        return sb.toString();
-    }
-
-    public static <T> List<List<T>> splitList(List<T> src, int num) {
-        List<List<T>> resultList = new ArrayList<List<T>>();
-        if (CollectionUtils.isEmpty(src)) {
-            LOG.error("src list empty. ");
-            return resultList;
-        }
-        int priIndex = 0;
-        int lastPriIndex = 0;
-        int insertTimes = src.size()/num;
-        List<T> subList;
-        for (int i = 0;i <= insertTimes;i++) {
-            priIndex = num * i;
-            lastPriIndex = priIndex + num;
-            if (i == insertTimes) {
-                subList = src.subList(priIndex, src.size());
-            } else {
-                subList = src.subList(priIndex, lastPriIndex);
-            }
-            if (subList.size() > 0) {
-                resultList.add(subList);
-            }
-        }
-        return resultList;
+        return dateTime + "-" + CommonUtils.getRandomString(3);
     }
 
     public static void main(String[] args) {
