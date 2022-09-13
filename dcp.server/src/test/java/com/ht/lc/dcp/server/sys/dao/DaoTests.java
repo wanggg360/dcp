@@ -1,13 +1,12 @@
 package com.ht.lc.dcp.server.sys.dao;
 
 import com.ht.lc.dcp.common.config.SystemConfig;
-import com.ht.lc.dcp.server.sys.entity.User;
+import com.ht.lc.dcp.server.sys.daobean.UserDaoBean;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,19 +33,19 @@ public class DaoTests {
 //        List<User> lists = userDao.findUser(user);
 //        System.out.println("www");
 
-        List<User> aa = new ArrayList<>(4);
-        User a = new User();
+        List<UserDaoBean> aa = new ArrayList<>(4);
+        UserDaoBean a = new UserDaoBean();
         a.setUserId("018222");
         a.setPassword("wannggggg");
         a.setFullName("wang gang");
         a.setDepartmentCode("zz000012");
         //userDao.insert(a);
-        User b = new User();
+        UserDaoBean b = new UserDaoBean();
         b.setUserId("018220");
         b.setPassword("123");
         b.setFullName("wang gang");
         b.setDepartmentCode("zz000012");
-        User c = new User();
+        UserDaoBean c = new UserDaoBean();
         c.setUserId("018221");
         c.setPassword("wannggggg");
         c.setFullName("wang gang");
@@ -61,9 +60,9 @@ public class DaoTests {
     @Test
     public void queryUser() {
         userDao.findByUserId("018220");
-        User user = new User();
-        user.setFullName("wang gang");
-        List<User> users = userDao.findUser(user);
-        System.out.println(users.toString());
+        UserDaoBean userDaoBean = new UserDaoBean();
+        userDaoBean.setFullName("wang gang");
+        List<UserDaoBean> userDaoBeans = userDao.findUser(userDaoBean);
+        System.out.println(userDaoBeans.toString());
     }
 }

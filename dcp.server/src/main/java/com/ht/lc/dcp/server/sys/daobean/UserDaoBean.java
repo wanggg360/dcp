@@ -1,10 +1,8 @@
-package com.ht.lc.dcp.server.sys.entity;
+package com.ht.lc.dcp.server.sys.daobean;
 
 import com.ht.lc.dcp.common.annotation.Sensitive;
 
 import java.time.LocalDateTime;
-
-import static com.ht.lc.dcp.common.crypto.CipherAlgorithm.AES_GCM_NOPADDING_256;
 
 /**
  * @program: dcp
@@ -13,8 +11,11 @@ import static com.ht.lc.dcp.common.crypto.CipherAlgorithm.AES_GCM_NOPADDING_256;
  * @create: 2021-09-07 09:20
  * @Version 1.0
  **/
-public class User {
+public class UserDaoBean {
 
+    /**
+     * 主键Id
+     */
     private Long id;
 
     private String userId;

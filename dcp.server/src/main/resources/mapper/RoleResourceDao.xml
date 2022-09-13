@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ht.lc.dcp.server.sys.dao.RoleResourceDao">
-  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.entity.RoleResource">
+  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.daobean.RoleResourceDaoBean">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="rid" jdbcType="VARCHAR" property="rid" />
     <result column="res_id" jdbcType="VARCHAR" property="resId" />

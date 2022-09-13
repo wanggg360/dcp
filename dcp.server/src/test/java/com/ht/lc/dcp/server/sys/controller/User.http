@@ -1,0 +1,10 @@
+###
+POST http://localhost:8080/api/resource/addPages
+Content-Type: application/json
+
+{
+  "pageDaoBeans": [
+    {"name": "..-"}
+
+  ]
+}

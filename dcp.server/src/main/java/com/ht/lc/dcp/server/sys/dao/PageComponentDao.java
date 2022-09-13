@@ -1,6 +1,6 @@
 package com.ht.lc.dcp.server.sys.dao;
 
-import com.ht.lc.dcp.server.sys.entity.PageComponent;
+import com.ht.lc.dcp.server.sys.daobean.PageComponentDaoBean;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -14,12 +14,12 @@ import org.apache.ibatis.annotations.Mapper;
 public interface PageComponentDao {
 
     // 根据元素ID查询（非主键ID）
-    PageComponent selectById(String cid);
+    PageComponentDaoBean selectById(String cid);
 
     // 根据元素ID删除（非主键ID）
     void deleteById(String cid);
 
-    void insert(PageComponent record);
+    void insert(PageComponentDaoBean record);
 
-    void update(PageComponent record);
+    void update(PageComponentDaoBean record);
 }

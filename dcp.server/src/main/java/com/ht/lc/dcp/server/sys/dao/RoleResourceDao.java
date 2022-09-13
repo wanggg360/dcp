@@ -1,6 +1,6 @@
 package com.ht.lc.dcp.server.sys.dao;
 
-import com.ht.lc.dcp.server.sys.entity.RoleResource;
+import com.ht.lc.dcp.server.sys.daobean.RoleResourceDaoBean;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,10 +15,10 @@ import java.util.List;
 @Mapper
 public interface RoleResourceDao {
 
-    RoleResource selectByRoleId(String rid);
+    RoleResourceDaoBean selectByRoleId(String rid);
 
     void deleteByRoleId(String rid);
 
-    void insertBatch(List<RoleResource> records);
+    void insertBatch(List<RoleResourceDaoBean> records);
 
 }

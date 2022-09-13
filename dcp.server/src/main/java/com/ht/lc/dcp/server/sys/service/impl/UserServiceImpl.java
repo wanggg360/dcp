@@ -3,7 +3,7 @@ package com.ht.lc.dcp.server.sys.service.impl;
 import com.ht.lc.dcp.common.base.ResultCode;
 import com.ht.lc.dcp.common.base.ResultObject;
 import com.ht.lc.dcp.server.sys.dao.UserDao;
-import com.ht.lc.dcp.server.sys.entity.User;
+import com.ht.lc.dcp.server.sys.daobean.UserDaoBean;
 import com.ht.lc.dcp.server.sys.req.LoginReq;
 import com.ht.lc.dcp.server.sys.req.LoginResult;
 import com.ht.lc.dcp.server.sys.service.UserService;
@@ -33,14 +33,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResultObject<LoginResult> login(LoginReq req) {
         LoginResult result = new LoginResult();
-        User user = userDao.findByUserId(req.getUserId());
-        if (Objects.isNull(user)) {
+        UserDaoBean userDaoBean = userDao.findByUserId(req.getUserId());
+        if (Objects.isNull(userDaoBean)) {
             LOG.error("can't find such user, id: {}. ", req.getUserId());
             return ResultObject.error(ResultCode.AUTH_USER_NOT_EXIST.getCode(),
                     ResultCode.AUTH_USER_NOT_EXIST.getDesc());
         }
 
-        if (!user.getPassword().equals(req.getPassword())) {
+        if (!userDaoBean.getPassword().equals(req.getPassword())) {
             LOG.error("username or password wrong. ");
             return ResultObject.error(ResultCode.AUTH_WRONG_PASSWD.getCode(),
                     ResultCode.AUTH_WRONG_PASSWD.getDesc());

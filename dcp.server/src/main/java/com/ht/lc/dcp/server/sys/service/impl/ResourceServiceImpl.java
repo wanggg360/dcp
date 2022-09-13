@@ -2,7 +2,6 @@ package com.ht.lc.dcp.server.sys.service.impl;
 
 import com.ht.lc.dcp.common.base.ResultObject;
 import com.ht.lc.dcp.server.sys.dao.PageDao;
-import com.ht.lc.dcp.server.sys.entity.Page;
 import com.ht.lc.dcp.server.sys.req.PageReq;
 import com.ht.lc.dcp.server.sys.service.ResourceService;
 import org.slf4j.Logger;
@@ -26,6 +25,10 @@ public class ResourceServiceImpl implements ResourceService {
     PageDao pageDao;
 
     public ResultObject addPages(PageReq req) {
+
+
+
+
         pageDao.insert(null);
         return null;
     }

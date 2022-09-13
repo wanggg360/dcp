@@ -53,7 +53,7 @@ const Login: React.FC = () => {
 
       if (msg?.data.status === 'ok') {
         const defaultLoginSuccessMessage = intl.formatMessage({
-          id: 'pages.login.success',
+          id: 'pageDaoBeans.login.success',
           defaultMessage: '登录成功！',
         });
         message.success(defaultLoginSuccessMessage);
@@ -70,7 +70,7 @@ const Login: React.FC = () => {
       setUserLoginState(msg);
     } catch (error) {
       const defaultLoginFailureMessage = intl.formatMessage({
-        id: 'pages.login.failure',
+        id: 'pageDaoBeans.login.failure',
         defaultMessage: '登录失败，请重试！',
       });
       message.error(defaultLoginFailureMessage);
@@ -87,7 +87,7 @@ const Login: React.FC = () => {
         <LoginForm
           logo={<img alt="logo" src="/htsc_logo.svg" />}
           title="Digital CP"
-          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
+          subTitle={intl.formatMessage({ id: 'pageDaoBeans.layouts.userLayout.title' })}
           initialValues={{
           }}
 
@@ -99,7 +99,7 @@ const Login: React.FC = () => {
           {status === 'error' && (
             <LoginMessage
               content={intl.formatMessage({
-                id: 'pages.login.error.username_or_passwd',
+                id: 'pageDaoBeans.login.error.username_or_passwd',
                 defaultMessage: '用户名或密码错误',
               })}
             />
@@ -113,7 +113,7 @@ const Login: React.FC = () => {
                   prefix: <UserOutlined className={styles.prefixIcon} />,
                 }}
                 placeholder={intl.formatMessage({
-                  id: 'pages.login.username.placeholder',
+                  id: 'pageDaoBeans.login.username.placeholder',
                   defaultMessage: '请输入用户名',
                 })}
                 rules={[
@@ -121,7 +121,7 @@ const Login: React.FC = () => {
                     required: true,
                     message: (
                       <FormattedMessage
-                        id="pages.login.username.required"
+                        id="pageDaoBeans.login.username.required"
                         defaultMessage="用户名必填!"
                       />
                     ),
@@ -130,7 +130,7 @@ const Login: React.FC = () => {
                     pattern: /[a-zA-Z0-9_-]{5,10}/,
                     message: (
                       <FormattedMessage
-                        id="pages.login.username.rule1"
+                        id="pageDaoBeans.login.username.rule1"
                         defaultMessage="用户名是5-10位字母或者数字！"
                       />
                     ),
@@ -144,7 +144,7 @@ const Login: React.FC = () => {
                   prefix: <LockOutlined className={styles.prefixIcon} />,
                 }}
                 placeholder={intl.formatMessage({
-                  id: 'pages.login.password.placeholder',
+                  id: 'pageDaoBeans.login.password.placeholder',
                   defaultMessage: '请输入密码',
                 })}
                 rules={[
@@ -152,7 +152,7 @@ const Login: React.FC = () => {
                     required: true,
                     message: (
                       <FormattedMessage
-                        id="pages.login.password.required"
+                        id="pageDaoBeans.login.password.required"
                         defaultMessage="密码必填！"
                       />
                     ),
@@ -168,14 +168,14 @@ const Login: React.FC = () => {
             }}
           >
             <ProFormCheckbox noStyle name="autoLogin">
-              <FormattedMessage id="pages.login.rememberMe" defaultMessage="自动登录" />
+              <FormattedMessage id="pageDaoBeans.login.rememberMe" defaultMessage="自动登录" />
             </ProFormCheckbox>
             <a
               style={{
                 float: 'right',
               }}
             >
-              <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
+              <FormattedMessage id="pageDaoBeans.login.forgotPassword" defaultMessage="忘记密码" />
             </a>
           </div>
         </LoginForm>

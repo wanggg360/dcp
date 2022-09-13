@@ -3,7 +3,7 @@
 
 <mapper namespace="com.ht.lc.dcp.server.sys.dao.UserDao" >
 
-  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.entity.User" >
+  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.daobean.UserDaoBean" >
     <id column="id" property="id"  jdbcType="BIGINT" />
     <result column="user_id" property="userId" javaType="string" />
     <result column="full_name" property="fullName" javaType="string" />
@@ -36,7 +36,7 @@
       from sys_user t where t.user_id = #{userId}
   </select>
 
-  <select id="findUser" parameterType="com.ht.lc.dcp.server.sys.entity.User" resultMap="BaseResultMap">
+  <select id="findUser" parameterType="com.ht.lc.dcp.server.sys.daobean.UserDaoBean" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
     from sys_user t
     <where>
@@ -64,7 +64,7 @@
     </where>
   </select>
 
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ht.lc.dcp.server.sys.entity.User" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ht.lc.dcp.server.sys.daobean.UserDaoBean" useGeneratedKeys="true">
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null and userId != ''">

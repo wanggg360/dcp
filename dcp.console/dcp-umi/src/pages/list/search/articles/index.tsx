@@ -159,7 +159,7 @@ const Articles: FC = () => {
           <StandardFormRow title="其它选项" grid last>
             <Row gutter={16}>
               <Col xl={8} lg={10} md={12} sm={24} xs={24}>
-                <FormItem {...formItemLayout} label="活跃用户" name="user">
+                <FormItem {...formItemLayout} label="活跃用户" name="userDaoBean">
                   <Select placeholder="不限" style={{ maxWidth: 200, width: '100%' }}>
                     <Option value="lisa">李三</Option>
                   </Select>

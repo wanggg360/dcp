@@ -1,6 +1,6 @@
 package com.ht.lc.dcp.server.sys.dao;
 
-import com.ht.lc.dcp.server.sys.entity.Role;
+import com.ht.lc.dcp.server.sys.daobean.RoleDaoBean;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -15,10 +15,10 @@ public interface RoleDao {
 
     void deleteById(String rid);
 
-    void insert(Role record);
+    void insert(RoleDaoBean record);
 
     // 根据元素ID查询（非主键ID）
-    Role selectById(String rid);
+    RoleDaoBean selectById(String rid);
 
-    void update(Role record);
+    void update(RoleDaoBean record);
 }

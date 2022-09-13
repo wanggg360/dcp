@@ -1,12 +1,10 @@
 package com.ht.lc.dcp.server.sys.req;
 
-import com.ht.lc.dcp.server.sys.entity.Page;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
+import com.ht.lc.dcp.server.sys.req.pojo.Page;
+
+import javax.validation.Validator;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -18,7 +16,6 @@ import java.util.List;
  **/
 public class PageReq extends BaseReq {
 
-    @Valid
     @NotEmpty
     List<Page> pages;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ht.lc.dcp.server.sys.dao.RoleDao">
-  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.entity.Role">
+  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.daobean.RoleDaoBean">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="rid" jdbcType="VARCHAR" property="rid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -28,7 +28,7 @@
     where rid = #{rid}
   </delete>
 
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ht.lc.dcp.server.sys.entity.Role" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ht.lc.dcp.server.sys.daobean.RoleDaoBean" useGeneratedKeys="true">
     insert into sys_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="rid != null">
@@ -91,7 +91,7 @@
       </if>
     </trim>
   </insert>
-  <update id="update" parameterType="com.ht.lc.dcp.server.sys.entity.Role">
+  <update id="update" parameterType="com.ht.lc.dcp.server.sys.daobean.RoleDaoBean">
     update sys_role
     <set>
       <if test="name != null">

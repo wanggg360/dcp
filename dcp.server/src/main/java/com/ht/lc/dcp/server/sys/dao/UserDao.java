@@ -1,6 +1,6 @@
 package com.ht.lc.dcp.server.sys.dao;
 
-import com.ht.lc.dcp.server.sys.entity.User;
+import com.ht.lc.dcp.server.sys.daobean.UserDaoBean;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,12 +16,12 @@ import java.util.List;
 @Mapper
 public interface UserDao {
 
-    User findByUserId(@Param("userId") String userId);
+    UserDaoBean findByUserId(@Param("userId") String userId);
 
-    List<User> findUser(User cond);
+    List<UserDaoBean> findUser(UserDaoBean cond);
 
-    void insert(User record);
+    void insert(UserDaoBean record);
 
-    void insertBatch(List<User> records);
+    void insertBatch(List<UserDaoBean> records);
 
 }

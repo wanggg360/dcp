@@ -1,6 +1,6 @@
 package com.ht.lc.dcp.server.sys.dao;
 
-import com.ht.lc.dcp.server.sys.entity.Menu;
+import com.ht.lc.dcp.server.sys.daobean.MenuDaoBean;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -14,12 +14,12 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MenuDao {
 
     // 根据元素ID查询（非主键ID）
-    Menu selectById(String mid);
+    MenuDaoBean selectById(String mid);
 
     // 根据元素ID删除（非主键ID）
     void deleteById(String mid);
 
-    void insert(Menu record);
+    void insert(MenuDaoBean record);
 
-    void update(Menu record);
+    void update(MenuDaoBean record);
 }

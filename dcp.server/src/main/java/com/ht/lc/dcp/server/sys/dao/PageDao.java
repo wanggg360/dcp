@@ -1,7 +1,9 @@
 package com.ht.lc.dcp.server.sys.dao;
 
-import com.ht.lc.dcp.server.sys.entity.Page;
+import com.ht.lc.dcp.server.sys.daobean.PageDaoBean;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @program: dcp
@@ -14,12 +16,15 @@ import org.apache.ibatis.annotations.Mapper;
 public interface PageDao {
 
     // 根据元素ID查询（非主键ID）
-    Page selectById(String pid);
+    PageDaoBean selectById(String pid);
 
     // 根据元素ID查询（非主键ID）
     void deleteById(String pid);
 
-    void insert(Page record);
+    void insert(PageDaoBean record);
 
-    void update(Page record);
+    void update(PageDaoBean record);
+
+    // 批量插入
+    void insertBatch(List<PageDaoBean> records);
 }

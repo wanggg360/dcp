@@ -1,4 +1,4 @@
-package com.ht.lc.dcp.server.sys.entity;
+package com.ht.lc.dcp.server.sys.daobean;
 
 import java.time.LocalDateTime;
 
@@ -9,29 +9,30 @@ import java.time.LocalDateTime;
  * @create: 2022-08-03 19:40
  * @Version 1.0
  **/
-public class PageComponent {
+public class MenuDaoBean {
 
+    /**
+     * 主键Id
+     */
     private Long id;
 
-    /**
-     * 系统组件ID
-     */
-    private String cid;
+    private String mid;
 
-    /**
-     * 名称
-     */
     private String name;
 
-    /**
-     * 中文标签
-     */
-    private String label;
-
-    /**
-     * 所在页面ID
-     */
     private String pid;
+
+    private String parentMid;
+
+    private int weight;
+
+    private String icon;
+
+    private String componentPath;
+
+    private String redirectPath;
+
+    private char level;
 
     private char status;
 
@@ -45,12 +46,12 @@ public class PageComponent {
 
     private String remark;
 
-    public String getCid() {
-        return cid;
+    public String getMid() {
+        return mid;
     }
 
-    public void setCid(String cid) {
-        this.cid = cid;
+    public void setMid(String mid) {
+        this.mid = mid;
     }
 
     public String getName() {
@@ -67,6 +68,54 @@ public class PageComponent {
 
     public void setPid(String pid) {
         this.pid = pid;
+    }
+
+    public String getParentMid() {
+        return parentMid;
+    }
+
+    public void setParentMid(String parentMid) {
+        this.parentMid = parentMid;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getComponentPath() {
+        return componentPath;
+    }
+
+    public void setComponentPath(String componentPath) {
+        this.componentPath = componentPath;
+    }
+
+    public String getRedirectPath() {
+        return redirectPath;
+    }
+
+    public void setRedirectPath(String redirectPath) {
+        this.redirectPath = redirectPath;
+    }
+
+    public char getLevel() {
+        return level;
+    }
+
+    public void setLevel(char level) {
+        this.level = level;
     }
 
     public Long getId() {
@@ -123,13 +172,5 @@ public class PageComponent {
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
     }
 }

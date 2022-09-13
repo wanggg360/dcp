@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/api/user")
 public class UserController {
 
-    private static Logger LOG = LoggerFactory.getLogger(UserController.class);
-
     @Autowired
     UserService userService;
 

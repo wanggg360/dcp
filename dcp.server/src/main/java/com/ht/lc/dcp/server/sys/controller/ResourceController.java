@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class ResourceController {
 
-    private static Logger LOG = LoggerFactory.getLogger(ResourceController.class);
-
     @Autowired
     private ResourceService resourceService;
 

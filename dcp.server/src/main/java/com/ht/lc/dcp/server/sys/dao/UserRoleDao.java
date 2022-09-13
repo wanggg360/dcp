@@ -1,6 +1,6 @@
 package com.ht.lc.dcp.server.sys.dao;
 
-import com.ht.lc.dcp.server.sys.entity.UserRole;
+import com.ht.lc.dcp.server.sys.daobean.UserRoleDaoBean;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public interface UserRoleDao {
 
     void deleteByUserId(String userId);
 
-    void insertBatch(List<UserRole> records);
+    void insertBatch(List<UserRoleDaoBean> records);
 
-    UserRole selectByUserId(String userId);
+    UserRoleDaoBean selectByUserId(String userId);
 }

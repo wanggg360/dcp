@@ -1,29 +1,22 @@
-package com.ht.lc.dcp.server.sys.entity;
+package com.ht.lc.dcp.server.sys.daobean;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
-/**
- * @program: dcp
- * @description:
- * @author: wanggang
- * @create: 2022-08-03 19:40
- * @Version 1.0
- **/
-public class Page {
+public class RoleDaoBean {
 
+    /**
+     * 主键Id
+     */
     private Long id;
-    /**
-     * 系统页面ID
-     */
-    private String pid;
 
     /**
-     * 页面名称
+     * 系统角色ID
      */
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]{1,}$", message = "only support letter or number")
+    private String rid;
+
+    /**
+     * 角色名称
+     */
     private String name;
 
     /**
@@ -31,10 +24,21 @@ public class Page {
      */
     private String label;
 
-    /**
-     * 页面访问相对路径,host后面部分
-     */
-    private String path;
+    public String getRid() {
+        return rid;
+    }
+
+    public void setRid(String rid) {
+        this.rid = rid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     private char status;
 
@@ -47,30 +51,6 @@ public class Page {
     private LocalDateTime updateTime;
 
     private String remark;
-
-    public String getPid() {
-        return pid;
-    }
-
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
 
     public Long getId() {
         return id;

@@ -1,10 +1,13 @@
-package com.ht.lc.dcp.server.sys.entity;
+package com.ht.lc.dcp.server.sys.daobean;
 
 
 import java.time.LocalDateTime;
 
-public class UserRole {
+public class UserRoleDaoBean {
 
+    /**
+     * 主键Id
+     */
     private Long id;
     /**
      * 用户ID

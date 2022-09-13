@@ -1,18 +1,29 @@
-package com.ht.lc.dcp.server.sys.entity;
+package com.ht.lc.dcp.server.sys.daobean;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
-public class Role {
-
-    private Long id;
+/**
+ * @program: dcp
+ * @description:
+ * @author: wanggang
+ * @create: 2022-08-03 19:40
+ * @Version 1.0
+ **/
+public class PageDaoBean {
 
     /**
-     * 系统角色ID
+     * 主键Id
      */
-    private String rid;
+    private Long id;
+    /**
+     * 系统页面ID
+     */
+    private String pid;
 
     /**
-     * 角色名称
+     * 页面名称
      */
     private String name;
 
@@ -21,21 +32,10 @@ public class Role {
      */
     private String label;
 
-    public String getRid() {
-        return rid;
-    }
-
-    public void setRid(String rid) {
-        this.rid = rid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    /**
+     * 页面访问相对路径,host后面部分
+     */
+    private String path;
 
     private char status;
 
@@ -48,6 +48,30 @@ public class Role {
     private LocalDateTime updateTime;
 
     private String remark;
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public Long getId() {
         return id;

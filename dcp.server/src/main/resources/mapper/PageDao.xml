@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ht.lc.dcp.server.sys.dao.PageDao">
-  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.entity.Page">
+  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.daobean.PageDaoBean">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="pid" jdbcType="VARCHAR" property="pid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -14,10 +14,17 @@
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+
   <sql id="Base_Column_List">
     id, pid, `name`, `label`, `path`, `status`, create_time, update_time, update_by,
     create_by, remark
   </sql>
+
+  <sql id="Base_Column_List_NO_ID">
+    pid, `name`, `label`, `path`, `status`, create_time, update_time, update_by,
+    create_by, remark
+  </sql>
+
   <select id="selectById" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -29,7 +36,7 @@
     where pid = #{pid}
   </delete>
 
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ht.lc.dcp.server.sys.entity.Page" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ht.lc.dcp.server.sys.daobean.PageDaoBean" useGeneratedKeys="true">
     insert into sys_page
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pid != null">
@@ -97,7 +104,7 @@
       </if>
     </trim>
   </insert>
-  <update id="update" parameterType="com.ht.lc.dcp.server.sys.entity.Page">
+  <update id="update" parameterType="com.ht.lc.dcp.server.sys.daobean.PageDaoBean">
     update sys_page
     <set>
       <if test="name != null">
@@ -131,4 +138,25 @@
     </set>
     where pid = #{pid}
   </update>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into sys_page (
+        pid, `name`, `label`, `path`, `status`, create_time, update_time, update_by, create_by, remark
+    )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      #{item.pid},
+      #{item.name},
+      #{item.label},
+      #{item.path},
+      #{item.status},
+      #{item.createTime},
+      #{item.updateTime},
+      #{item.createBy},
+      #{item.updateBy},
+      #{item.remark}
+       )
+    </foreach>
+  </insert>
 </mapper>

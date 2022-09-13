@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ht.lc.dcp.server.sys.dao.PageComponentDao">
-  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.entity.PageComponent">
+  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.daobean.PageComponentDaoBean">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="cid" jdbcType="VARCHAR" property="cid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -31,7 +31,7 @@
     where cid = #{cid}
   </delete>
 
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ht.lc.dcp.server.sys.entity.PageComponent" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ht.lc.dcp.server.sys.daobean.PageComponentDaoBean" useGeneratedKeys="true">
     insert into sys_page_component
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cid != null">
@@ -99,7 +99,7 @@
       </if>
     </trim>
   </insert>
-  <update id="update" parameterType="com.ht.lc.dcp.server.sys.entity.PageComponent">
+  <update id="update" parameterType="com.ht.lc.dcp.server.sys.daobean.PageComponentDaoBean">
     update sys_page_component
     <set>
       <if test="name != null">

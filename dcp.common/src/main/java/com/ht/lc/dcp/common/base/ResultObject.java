@@ -73,4 +73,8 @@ public class ResultObject<T> implements Serializable {
         return  new ResultObject(false, code, msg, null);
     }
 
+    public static <T> ResultObject error(ResultCode resultCode) {
+        return new ResultObject(false, resultCode.getCode(), resultCode.getDesc(), null);
+    }
+
 }
