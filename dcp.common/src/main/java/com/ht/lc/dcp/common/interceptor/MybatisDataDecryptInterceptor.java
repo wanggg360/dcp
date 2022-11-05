@@ -3,8 +3,6 @@ package com.ht.lc.dcp.common.interceptor;
 import com.ht.lc.dcp.common.annotation.Sensitive;
 import com.ht.lc.dcp.common.config.SystemConfig;
 import com.ht.lc.dcp.common.crypto.CipherManager;
-import org.apache.ibatis.binding.MapperMethod;
-import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.plugin.*;
 import org.slf4j.Logger;
@@ -15,11 +13,8 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
-import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**

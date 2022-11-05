@@ -9,10 +9,10 @@
     <result column="parent_mid" jdbcType="VARCHAR" property="parentMid" />
     <result column="weight" jdbcType="INTEGER" property="weight" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
-    <result column="level" jdbcType="CHAR" property="level" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
     <result column="component_path" jdbcType="VARCHAR" property="componentPath" />
     <result column="redirect_path" jdbcType="VARCHAR" property="redirectPath" />
-    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
@@ -108,7 +108,7 @@
         #{icon,jdbcType=VARCHAR},
       </if>
       <if test="level != null">
-        #{level,jdbcType=CHAR},
+        #{level,jdbcType=VARCHAR},
       </if>
       <if test="componentPath != null">
         #{componentPath,jdbcType=VARCHAR},
@@ -117,7 +117,7 @@
         #{redirectPath,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=CHAR},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -155,7 +155,7 @@
         icon = #{icon,jdbcType=VARCHAR},
       </if>
       <if test="level != null">
-        `level` = #{level,jdbcType=CHAR},
+        `level` = #{level,jdbcType=VARCHAR},
       </if>
       <if test="componentPath != null">
         component_path = #{componentPath,jdbcType=VARCHAR},
@@ -164,7 +164,7 @@
         redirect_path = #{redirectPath,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=CHAR},
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},

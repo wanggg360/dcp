@@ -18,24 +18,37 @@ public class UserDaoBean {
      */
     private Long id;
 
+    /**
+     * 用户ID
+     */
     private String userId;
 
+    /**
+     * 用户全称
+     */
     private String fullName;
 
+    /**
+     * 密码
+     */
     @Sensitive
     private String password;
 
+    /**
+     * 邮箱
+     */
     private String email;
 
+    /**
+     * 电话
+     */
     private String mobile;
 
-    private char createType;
-
-    private String departmentCode;
+    private String createType;
 
     private String avatar;
 
-    private char status;
+    private String status;
 
     private String createBy;
 
@@ -87,14 +100,6 @@ public class UserDaoBean {
         this.mobile = mobile;
     }
 
-    public String getDepartmentCode() {
-        return departmentCode;
-    }
-
-    public void setDepartmentCode(String departmentCode) {
-        this.departmentCode = departmentCode;
-    }
-
     public String getAvatar() {
         return avatar;
     }
@@ -103,11 +108,11 @@ public class UserDaoBean {
         this.avatar = avatar;
     }
 
-    public char getCreateType() {
+    public String getCreateType() {
         return createType;
     }
 
-    public void setCreateType(char createType) {
+    public void setCreateType(String createType) {
         this.createType = createType;
     }
 
@@ -119,11 +124,11 @@ public class UserDaoBean {
         this.id = id;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

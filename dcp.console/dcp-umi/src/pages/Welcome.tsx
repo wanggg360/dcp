@@ -20,7 +20,7 @@ const Welcome: React.FC = () => {
       <Card>
         <Alert
           message={intl.formatMessage({
-            id: 'pageDaoBeans.welcome.alertMessage',
+            id: 'pages.welcome.alertMessage',
             defaultMessage: 'Faster and stronger heavy-duty components have been released.',
           })}
           type="success"
@@ -32,13 +32,13 @@ const Welcome: React.FC = () => {
           }}
         />
         <Typography.Text strong>
-          <FormattedMessage id="pageDaoBeans.welcome.advancedComponent" defaultMessage="Advanced Form" />{' '}
+          <FormattedMessage id="pages.welcome.advancedComponent" defaultMessage="Advanced Form" />{' '}
           <a
             href="https://procomponents.ant.design/components/table"
             rel="noopener noreferrer"
             target="__blank"
           >
-            <FormattedMessage id="pageDaoBeans.welcome.link" defaultMessage="Welcome" />
+            <FormattedMessage id="pages.welcome.link" defaultMessage="Welcome" />
           </a>
         </Typography.Text>
         <CodePreview>yarn add @ant-design/pro-table</CodePreview>
@@ -48,13 +48,13 @@ const Welcome: React.FC = () => {
             marginBottom: 12,
           }}
         >
-          <FormattedMessage id="pageDaoBeans.welcome.advancedLayout" defaultMessage="Advanced layout" />{' '}
+          <FormattedMessage id="pages.welcome.advancedLayout" defaultMessage="Advanced layout" />{' '}
           <a
             href="https://procomponents.ant.design/components/layout"
             rel="noopener noreferrer"
             target="__blank"
           >
-            <FormattedMessage id="pageDaoBeans.welcome.link" defaultMessage="Welcome" />
+            <FormattedMessage id="pages.welcome.link" defaultMessage="Welcome" />
           </a>
         </Typography.Text>
         <CodePreview>yarn add @ant-design/pro-layout</CodePreview>

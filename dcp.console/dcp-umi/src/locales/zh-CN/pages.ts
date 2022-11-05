@@ -10,6 +10,14 @@ export default {
   'pages.login.rememberMe': '自动登录',
   'pages.login.forgotPassword': '忘记密码 ?',
   'pages.login.username.rule1': '用户名是5-10位字母或者数字！',
+  'pages.logout.success': '登出成功！',
+  'pages.logout.failure': '登出失败！',
+
+
+
+
+
+
 
 
 

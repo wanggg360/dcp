@@ -36,7 +36,7 @@ public class CipherUtils {
         try {
             kg = KeyGenerator.getInstance(algorithmName);
         } catch (NoSuchAlgorithmException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(), "generate secretkey error", e);
+            throw new ServiceException("generate secretkey error", e);
         }
         SecureRandom random = new SecureRandom();
         kg.init(keyBitSize, random);
@@ -49,8 +49,7 @@ public class CipherUtils {
 
     public static byte[] getInitializationVector(int ivBitSize) throws ServiceException {
         if ((ivBitSize <= 0) || (ivBitSize % 8 != 0)) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "generate iv error error, input bytesize < 0 or not a multiple of 8");
+            throw new ServiceException("generate iv error error, input bytesize < 0 or not a multiple of 8");
         }
         int byteSize = ivBitSize / 8;
         byte[] ivBytes = new byte[byteSize];
@@ -80,8 +79,7 @@ public class CipherUtils {
         try{
             result = Hex.decodeHex(input);
         } catch (DecoderException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "decode hex string error, can not decode.", e);
+            throw new ServiceException("decode hex string error, can not decode.", e);
         }
         return result;
     }
@@ -94,11 +92,9 @@ public class CipherUtils {
         try {
             return Cipher.getInstance(cipherName);
         } catch (NoSuchAlgorithmException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "get cipher instance error, no such algorithm. ", e);
+            throw new ServiceException("get cipher instance error, no such algorithm. ", e);
         } catch (NoSuchPaddingException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "get cipher instance error, no such padding. ", e);
+            throw new ServiceException("get cipher instance error, no such padding. ", e);
         }
     }
 

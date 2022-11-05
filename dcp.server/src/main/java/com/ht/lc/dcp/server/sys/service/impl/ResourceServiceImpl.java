@@ -1,8 +1,11 @@
 package com.ht.lc.dcp.server.sys.service.impl;
 
 import com.ht.lc.dcp.common.base.ResultObject;
+import com.ht.lc.dcp.server.sys.dao.MenuDao;
 import com.ht.lc.dcp.server.sys.dao.PageDao;
-import com.ht.lc.dcp.server.sys.req.PageReq;
+import com.ht.lc.dcp.server.sys.pojo.req.AddMenusReq;
+import com.ht.lc.dcp.server.sys.pojo.req.AddPageComponentsReq;
+import com.ht.lc.dcp.server.sys.pojo.req.AddPagesReq;
 import com.ht.lc.dcp.server.sys.service.ResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,13 +27,21 @@ public class ResourceServiceImpl implements ResourceService {
     @Autowired
     PageDao pageDao;
 
-    public ResultObject addPages(PageReq req) {
+    @Autowired
+    MenuDao menuDao;
 
-
-
+    public ResultObject addPages(AddPagesReq req) {
 
         pageDao.insert(null);
         return null;
+    }
+
+    public ResultObject addMenus(AddMenusReq req) {
+        return null;
+    }
+
+    public ResultObject addPageComponents(AddPageComponentsReq req) {
+        return  null;
     }
 
 }

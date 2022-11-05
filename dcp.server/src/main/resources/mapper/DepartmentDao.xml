@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.lc.dcp.server.sys.dao.DepartmentDao">
+  <resultMap id="BaseResultMap" type="com.ht.lc.dcp.server.sys.daobean.DepartmentDaoBean">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dept_code" jdbcType="VARCHAR" property="deptCode" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="dept_level" jdbcType="VARCHAR" property="deptLevel" />
+    <result column="dept_type" jdbcType="VARCHAR" property="deptType" />
+    <result column="dept_manager_id" jdbcType="VARCHAR" property="deptManagerId" />
+    <result column="dept_manager_name" jdbcType="VARCHAR" property="deptManagerName" />
+    <result column="parent_dept_code" jdbcType="VARCHAR" property="parentDeptCode" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, dept_code, dept_name, dept_level, dept_type, dept_manager_id, dept_manager_name, parent_dept_code,
+    status, create_time, update_time, create_by, update_by, remark
+  </sql>
+
+  <select id="selectByDeptCode" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_department
+    where dept_code = #{deptCode}
+  </select>
+</mapper>

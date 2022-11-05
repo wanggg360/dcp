@@ -1,4 +1,13 @@
 export default {
+  'menu.workspace': '工作空间',
+  'menu.workspace.home': '我的首页',
+  'menu.workspace.center': '个人中心',
+
+
+
+
+
+
   'menu.welcome': '欢迎',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',

@@ -4,7 +4,6 @@ import com.ht.lc.dcp.common.annotation.Sensitive;
 import com.ht.lc.dcp.common.config.SystemConfig;
 import com.ht.lc.dcp.common.crypto.CipherManager;
 import org.apache.ibatis.binding.MapperMethod;
-import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.plugin.*;
 import org.slf4j.Logger;

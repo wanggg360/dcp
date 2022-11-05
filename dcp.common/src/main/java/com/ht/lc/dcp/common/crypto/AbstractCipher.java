@@ -36,11 +36,9 @@ public abstract class AbstractCipher implements CipherService {
         try {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "encrypt error, illegal block size. ", e);
+            throw new ServiceException("encrypt error, illegal block size. ", e);
         } catch (BadPaddingException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "encrypt error, bad padding. ", e);
+            throw new ServiceException("encrypt error, bad padding. ", e);
         }
     }
 
@@ -49,11 +47,9 @@ public abstract class AbstractCipher implements CipherService {
         try {
             return cipher.doFinal(data);
         } catch (IllegalBlockSizeException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "encrypt error, illegal block size. ", e);
+            throw new ServiceException("encrypt error, illegal block size. ", e);
         } catch (BadPaddingException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "encrypt error, bad padding. ", e);
+            throw new ServiceException("encrypt error, bad padding. ", e);
         }
     }
 
@@ -75,11 +71,9 @@ public abstract class AbstractCipher implements CipherService {
                 cipher.init(encryptMode, keySpec, algSpec);
             }
         } catch (InvalidKeyException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "init cipher error, invalid key. ", e);
+            throw new ServiceException("init cipher error, invalid key. ", e);
         } catch (InvalidAlgorithmParameterException e) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "init cipher error, invalid algorithm parameter. ", e);
+            throw new ServiceException("init cipher error, invalid algorithm parameter. ", e);
         }
         return cipher;
     }

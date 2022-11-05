@@ -1,7 +1,5 @@
-package com.ht.lc.dcp.server.sys.req.pojo;
+package com.ht.lc.dcp.server.sys.pojo;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 /**
@@ -33,7 +31,7 @@ public class Page {
      */
     private String path;
 
-    private char status;
+    private String status;
 
     private String createBy;
 
@@ -77,11 +75,11 @@ public class Page {
         this.path = path;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

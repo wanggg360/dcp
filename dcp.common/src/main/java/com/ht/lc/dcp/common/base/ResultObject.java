@@ -70,11 +70,11 @@ public class ResultObject<T> implements Serializable {
     }
 
     public static <T> ResultObject error(String code, String msg) {
-        return  new ResultObject(false, code, msg, null);
+        return  new ResultObject(false, code, msg, "");
     }
 
     public static <T> ResultObject error(ResultCode resultCode) {
-        return new ResultObject(false, resultCode.getCode(), resultCode.getDesc(), null);
+        return new ResultObject(false, resultCode.getCode(), resultCode.getDesc(), "");
     }
 
 }

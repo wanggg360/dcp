@@ -7,7 +7,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="label" jdbcType="VARCHAR" property="label" />
     <result column="path" jdbcType="VARCHAR" property="path" />
-    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
@@ -84,7 +84,7 @@
         #{path,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=CHAR},
+        #{status,jdbcType=VARCHAR},
       </if>
 
       <if test="createTime != null">
@@ -117,7 +117,7 @@
         `path` = #{path,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=CHAR},
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
 
       <if test="createTime != null">

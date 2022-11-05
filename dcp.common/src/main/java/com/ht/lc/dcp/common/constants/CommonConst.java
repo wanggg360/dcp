@@ -27,4 +27,11 @@ public interface CommonConst {
 
         int NUM_200 = 200;
     }
+
+    interface RegexRule {
+
+        String VALID_EMAIL = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+
+        String VALID_MOBILE = "^1[23456789]\\d{9}$";
+    }
 }

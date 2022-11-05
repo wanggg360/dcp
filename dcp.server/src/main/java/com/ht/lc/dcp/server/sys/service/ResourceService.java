@@ -1,7 +1,9 @@
 package com.ht.lc.dcp.server.sys.service;
 
 import com.ht.lc.dcp.common.base.ResultObject;
-import com.ht.lc.dcp.server.sys.req.PageReq;
+import com.ht.lc.dcp.server.sys.pojo.req.AddMenusReq;
+import com.ht.lc.dcp.server.sys.pojo.req.AddPageComponentsReq;
+import com.ht.lc.dcp.server.sys.pojo.req.AddPagesReq;
 
 /**
  * @program: dcp
@@ -14,9 +16,26 @@ public interface ResourceService {
 
     /**
      * 新增页面
+     *
      * @param req
      * @return
      */
-    ResultObject addPages(PageReq req);
+    ResultObject addPages(AddPagesReq req);
 
+    /**
+     * 新增菜单
+     *
+     * @param req
+     * @return
+     */
+    ResultObject addMenus(AddMenusReq req);
+
+
+    /**
+     * 添加页面组件
+     *
+     * @param req
+     * @return
+     */
+    ResultObject addPageComponents(AddPageComponentsReq req);
 }

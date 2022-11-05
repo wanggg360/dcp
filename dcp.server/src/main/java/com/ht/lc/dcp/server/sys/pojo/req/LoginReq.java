@@ -1,4 +1,4 @@
-package com.ht.lc.dcp.server.sys.req;
+package com.ht.lc.dcp.server.sys.pojo.req;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

@@ -24,4 +24,11 @@ public interface BizConst {
         String PAGE_COMPONENT_ID_PREFIX = "pc_";
 
     }
+
+    interface DictCollection {
+
+        String[] USER_CREATE_TYPE = {"1", "2"};
+
+    }
+
 }

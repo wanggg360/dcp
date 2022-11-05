@@ -3,6 +3,9 @@ package com.ht.lc.dcp.common.crypto;
 import com.ht.lc.dcp.common.base.ResultCode;
 import com.ht.lc.dcp.common.constants.CipherConst;
 import com.ht.lc.dcp.common.exception.ServiceException;
+import com.ht.lc.dcp.common.http.HttpClientManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Map;
@@ -33,16 +36,14 @@ public class CipherManager {
 
     public String encrypt(String type, String src, String key, String iv) throws ServiceException {
         if (CollectionUtils.isEmpty(cipherMap)) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "CipherServiceManager init failed, no algorithm instance. ");
+            throw new ServiceException("CipherServiceManager init failed, no algorithm instance. ");
         }
         return cipherMap.get(type).encrypt(src, key, iv);
     }
 
     public String decrypt(String type, String src, String key, String iv) throws ServiceException {
         if (CollectionUtils.isEmpty(cipherMap)) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "CipherServiceManager init failed, no algorithm instance. ");
+            throw new ServiceException("CipherServiceManager init failed, no algorithm instance. ");
         }
         return cipherMap.get(type).decrypt(src, key, iv);
     }

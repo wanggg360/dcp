@@ -10,23 +10,22 @@
     <result column="password" property="password" javaType="string" />
     <result column="email" property="email" javaType="string" />
     <result column="mobile" property="mobile" javaType="string" />
-    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="create_type" property="createType" jdbcType="CHAR" />
+    <result column="create_type" property="createType" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" javaType="string" />
     <result column="create_by" property="createBy" javaType="string" />
-    <result column="dept_code" property="departmentCode" javaType="string" />
     <result column="avatar" property="avatar" javaType="string" />
     <result column="remark" property="remark" javaType="string" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, user_id, full_name, password, email, mobile, create_type, dept_code, avatar,
+    id, user_id, full_name, password, email, mobile, create_type, avatar,
     status, create_time, update_time, update_by, create_by, remark
   </sql>
   <sql id="Base_Column_List_NO_ID">
-    user_id, full_name, password, email, mobile, create_type, dept_code, avatar,
+    user_id, full_name, password, email, mobile, create_type, avatar,
     status, create_time, update_time, update_by, create_by, remark
   </sql>
 
@@ -46,9 +45,6 @@
       <if test="fullName != null and fullName != ''">
         and full_name = #{fullName}
       </if>
-      <if test="password != null and password != ''">
-        and password = #{password}
-      </if>
       <if test="email != null and email != ''">
         and email = #{email}
       </if>
@@ -58,8 +54,14 @@
       <if test="status != null and status != ''">
         and status = #{status}
       </if>
-      <if test="departmentCode != null and departmentCode != ''">
-        and dept_code = #{departmentCode}
+      <if test="createType != null and createType != ''">
+        and create_type = #{createType}
+      </if>
+      <if test="createBy != null and createBy != ''">
+        and create_by = #{createBy}
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        and update_by = #{updateBy}
       </if>
     </where>
   </select>
@@ -84,9 +86,6 @@
       </if>
       <if test="createType != null and createType != ''">
         create_type,
-      </if>
-      <if test="departmentCode != null and departmentCode != ''">
-        dept_code,
       </if>
       <if test="avatar != null and avatar != ''">
         avatar,
@@ -130,9 +129,7 @@
       <if test="createType != null and createType != ''">
         #{createType},
       </if>
-      <if test="departmentCode != null and departmentCode != ''">
-        #{departmentCode},
-      </if>
+
       <if test="avatar != null and avatar != ''">
         #{avatar},
       </if>
@@ -160,7 +157,7 @@
 
   <insert id="insertBatch" parameterType="java.util.List">
     insert into sys_user (
-    user_id, full_name, password, email, mobile, create_type, dept_code, avatar,
+    user_id, full_name, password, email, mobile, create_type, avatar,
     status, create_time, update_time, update_by, create_by, remark
     )
     values
@@ -172,7 +169,6 @@
       #{item.email},
       #{item.mobile},
       #{item.createType},
-      #{item.departmentCode},
       #{item.avatar},
       #{item.status},
       #{item.createTime},

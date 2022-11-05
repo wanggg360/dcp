@@ -42,7 +42,7 @@ public class JsoupUtils {
 
     public static Document getDocFromStr(String input) throws ServiceException {
         if (!StringUtils.hasText(input)) {
-            throw new ServiceException(ResultCode.SYS_INNER_ERROR.getCode(), "jsoup error, input string empty. ");
+            throw new ServiceException("jsoup error, input string empty. ");
         }
         return Jsoup.parse(input);
     }
@@ -59,7 +59,7 @@ public class JsoupUtils {
 
     public static void validateDocument(Document document) throws ServiceException {
         if (Objects.isNull(document)) {
-            throw new ServiceException(ResultCode.SYS_INNER_ERROR.getCode(), "jsoup error, input doc is null. ");
+            throw new ServiceException("jsoup error, input doc is null. ");
         }
     }
 

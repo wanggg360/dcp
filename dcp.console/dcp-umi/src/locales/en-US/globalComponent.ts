@@ -1,5 +1,4 @@
 export default {
-  'component.globalHeader.search': 'Search',
   'component.globalHeader.search.example1': 'Search example 1',
   'component.globalHeader.search.example2': 'Search example 2',
   'component.globalHeader.search.example3': 'Search example 3',
@@ -20,8 +19,10 @@ export default {
 
 
 
+
+
+
   'component.glbFooter.link1.name': 'Huatai Securities',
   'component.glbFooter.copyright': 'Produced by Huatai Securities Compliance & Law Department',
-
-
+  'component.globalHeader.search': 'Search',
 };

@@ -25,7 +25,6 @@ export type NoticeIconProps = {
   clearText?: string;
   viewMoreText?: string;
   clearClose?: boolean;
-  emptyImage?: string;
   children?: React.ReactElement<NoticeIconTabProps>[];
 };
 
@@ -117,9 +116,6 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
   );
 };
 
-NoticeIcon.defaultProps = {
-  emptyImage: 'https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg',
-};
 
 NoticeIcon.Tab = NoticeList;
 

@@ -3,6 +3,7 @@ import { Avatar, List } from 'antd';
 import React from 'react';
 import classNames from 'classnames';
 import styles from './NoticeList.less';
+import { NotificationOutlined } from '@ant-design/icons'
 
 export type NoticeIconTabProps = {
   count?: number;
@@ -10,13 +11,13 @@ export type NoticeIconTabProps = {
   showViewMore?: boolean;
   style?: React.CSSProperties;
   title: string;
-  tabKey: API.NoticeIconItemType;
-  onClick?: (item: API.NoticeIconItem) => void;
+  tabKey: Sys.NoticeIconItemType;
+  onClick?: (item: Sys.NoticeIconItem) => void;
   onClear?: () => void;
   emptyText?: string;
   clearText?: string;
   viewMoreText?: string;
-  list: API.NoticeIconItem[];
+  list: Sys.NoticeIconItem[];
   onViewMore?: (e: any) => void;
 };
 const NoticeList: React.FC<NoticeIconTabProps> = ({
@@ -34,17 +35,14 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
   if (!list || list.length === 0) {
     return (
       <div className={styles.notFound}>
-        <img
-          src="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
-          alt="not found"
-        />
+        <NotificationOutlined style={{ fontSize: "32px" }}/>
         <div>{emptyText}</div>
       </div>
     );
   }
   return (
     <div>
-      <List<API.NoticeIconItem>
+      <List<Sys.NoticeIconItem>
         className={styles.list}
         dataSource={list}
         renderItem={(item, i) => {

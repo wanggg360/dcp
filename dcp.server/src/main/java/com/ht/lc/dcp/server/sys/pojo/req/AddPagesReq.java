@@ -1,9 +1,8 @@
-package com.ht.lc.dcp.server.sys.req;
+package com.ht.lc.dcp.server.sys.pojo.req;
 
 
-import com.ht.lc.dcp.server.sys.req.pojo.Page;
+import com.ht.lc.dcp.server.sys.pojo.Page;
 
-import javax.validation.Validator;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
  * @create: 2022-08-12 19:52
  * @Version 1.0
  **/
-public class PageReq extends BaseReq {
+public class AddPagesReq extends BaseReq {
 
     @NotEmpty
     List<Page> pages;

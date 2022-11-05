@@ -23,5 +23,4 @@ public interface UserDao {
     void insert(UserDaoBean record);
 
     void insertBatch(List<UserDaoBean> records);
-
 }

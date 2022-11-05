@@ -32,9 +32,9 @@ public class MenuDaoBean {
 
     private String redirectPath;
 
-    private char level;
+    private String level;
 
-    private char status;
+    private String status;
 
     private String createBy;
 
@@ -110,11 +110,11 @@ public class MenuDaoBean {
         this.redirectPath = redirectPath;
     }
 
-    public char getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(char level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 
@@ -126,11 +126,11 @@ public class MenuDaoBean {
         this.id = id;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

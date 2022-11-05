@@ -53,7 +53,7 @@ public class HttpClientManager {
         return INSTANCE;
     }
 
-    public  String doGet(String url, Map<String, String> headers, Map<String, String> params) throws ServiceException {
+    public  String doGet(String url, Map<String, String> headers, Map<String, String> params) {
         if (!CollectionUtils.isEmpty(params)){
             LOG.info("ready to build httpget parameters. ");
             url = getUrlWithParameters(url, params);
@@ -70,7 +70,7 @@ public class HttpClientManager {
     }
 
     private String getUrlWithParameters(String url, Map<String, String> params) {
-        String result;
+        String result = "";
         try {
             StringBuffer sb = new StringBuffer();
             sb.append(url).append("?");
@@ -82,7 +82,7 @@ public class HttpClientManager {
             }
             result =  sb.toString().substring(0, sb.length()-1);
         } catch (UnsupportedEncodingException e) {
-            throw new ServiceException(ResultCode.SYS_HTTP_ERROR.getCode(), "build httpget parameters error. ");
+            LOG.error("build httpget parameters error, exception : {}. ", e.getMessage());
         }
         return result;
     }

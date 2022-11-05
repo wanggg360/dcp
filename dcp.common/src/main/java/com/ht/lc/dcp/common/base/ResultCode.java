@@ -9,18 +9,20 @@ package com.ht.lc.dcp.common.base;
  **/
 public enum ResultCode {
     /**
-     * 错误码6位：前两位代表大类 99（系统错误）
+     * 返回码6位：前两位代表大类 99（系统错误）
      * 前两位10（鉴权错误）
+     * 前两位
      *
      */
 
     SUCCESS("0", "success"),
-    AUTH_USER_NOT_EXIST("101001", "user not exist. "),
-    AUTH_WRONG_PASSWD("101002", "userid or passwd wrong. "),
 
-    SYS_INNER_ERROR("999999", "system inner error."),
-    SYS_CIPHER_ERROR("991001", "system cipher error."),
-    SYS_HTTP_ERROR("991002", "system http error. ")
+    USER_NOT_EXIST("101001", "user not exist. "),
+    USER_LOGIN_FAILED("101002", "userid or passwd wrong. "),
+    USER_ALREADY_EXIST("101003", "user already exist. "),
+
+    SYS_REQ_PARAM_ERROR("991001", "request param error. "),
+    SYS_INNER_ERROR("999999", "system inner error. ")
     ;
 
     private String code;

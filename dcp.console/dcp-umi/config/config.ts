@@ -46,19 +46,69 @@ export default defineConfig({
           redirect: '/user/login',
         },
         {
-          name: 'register-result',
-          icon: 'smile',
-          path: '/user/register-result',
-          component: './user/register-result',
-        },
-        {
-          name: 'register',
-          icon: 'smile',
-          path: '/user/register',
-          component: './user/register',
-        },
-        {
           component: '404',
+        },
+      ],
+    },
+    {
+      name: 'workspace',
+      icon: 'desktop',
+      path: '/workspace',
+      routes: [
+        {
+          path: '/workspace',
+          redirect: '/workspace/home',
+        },
+        {
+          name: 'home',
+          icon: 'home',
+          path: '/workspace/home',
+          component: './workspace/home',
+        },
+        {
+          name: 'center',
+          icon: 'user',
+          path: '/workspace/center',
+          component: './account/settings',
+        }
+      ],
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+      name: 'account',
+      icon: 'user',
+      path: '/account',
+      routes: [
+        {
+          path: '/account',
+          redirect: '/account/center',
+        },
+        {
+          name: 'center',
+          icon: 'smile',
+          path: '/account/center',
+          component: './account/center',
+        },
+        {
+          name: 'settings',
+          icon: 'smile',
+          path: '/account/settings',
+          component: './account/settings',
         },
       ],
     },
@@ -250,29 +300,6 @@ export default defineConfig({
           icon: 'smile',
           path: '/exception/500',
           component: './exception/500',
-        },
-      ],
-    },
-    {
-      name: 'account',
-      icon: 'user',
-      path: '/account',
-      routes: [
-        {
-          path: '/account',
-          redirect: '/account/center',
-        },
-        {
-          name: 'center',
-          icon: 'smile',
-          path: '/account/center',
-          component: './account/center',
-        },
-        {
-          name: 'settings',
-          icon: 'smile',
-          path: '/account/settings',
-          component: './account/settings',
         },
       ],
     },

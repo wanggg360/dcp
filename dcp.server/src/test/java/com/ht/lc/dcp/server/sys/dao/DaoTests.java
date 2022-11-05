@@ -38,18 +38,15 @@ public class DaoTests {
         a.setUserId("018222");
         a.setPassword("wannggggg");
         a.setFullName("wang gang");
-        a.setDepartmentCode("zz000012");
         //userDao.insert(a);
         UserDaoBean b = new UserDaoBean();
         b.setUserId("018220");
         b.setPassword("123");
         b.setFullName("wang gang");
-        b.setDepartmentCode("zz000012");
         UserDaoBean c = new UserDaoBean();
         c.setUserId("018221");
         c.setPassword("wannggggg");
         c.setFullName("wang gang");
-        c.setDepartmentCode("zz000012");
 
         aa.add(a);
         aa.add(b);

@@ -40,7 +40,7 @@ public class RoleDaoBean {
         this.name = name;
     }
 
-    private char status;
+    private String status;
 
     private String createBy;
 
@@ -68,11 +68,11 @@ public class RoleDaoBean {
         this.label = label;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

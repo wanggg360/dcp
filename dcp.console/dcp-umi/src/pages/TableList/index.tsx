@@ -107,7 +107,7 @@ const TableList: React.FC = () => {
     {
       title: (
         <FormattedMessage
-          id="pageDaoBeans.searchTable.updateForm.ruleName.nameLabel"
+          id="pages.searchTable.updateForm.ruleName.nameLabel"
           defaultMessage="Rule name"
         />
       ),
@@ -127,14 +127,14 @@ const TableList: React.FC = () => {
       },
     },
     {
-      title: <FormattedMessage id="pageDaoBeans.searchTable.titleDesc" defaultMessage="Description" />,
+      title: <FormattedMessage id="pages.searchTable.titleDesc" defaultMessage="Description" />,
       dataIndex: 'desc',
       valueType: 'textarea',
     },
     {
       title: (
         <FormattedMessage
-          id="pageDaoBeans.searchTable.titleCallNo"
+          id="pages.searchTable.titleCallNo"
           defaultMessage="Number of service calls"
         />
       ),
@@ -143,19 +143,19 @@ const TableList: React.FC = () => {
       hideInForm: true,
       renderText: (val: string) =>
         `${val}${intl.formatMessage({
-          id: 'pageDaoBeans.searchTable.tenThousand',
+          id: 'pages.searchTable.tenThousand',
           defaultMessage: ' 万 ',
         })}`,
     },
     {
-      title: <FormattedMessage id="pageDaoBeans.searchTable.titleStatus" defaultMessage="Status" />,
+      title: <FormattedMessage id="pages.searchTable.titleStatus" defaultMessage="Status" />,
       dataIndex: 'status',
       hideInForm: true,
       valueEnum: {
         0: {
           text: (
             <FormattedMessage
-              id="pageDaoBeans.searchTable.nameStatus.default"
+              id="pages.searchTable.nameStatus.default"
               defaultMessage="Shut down"
             />
           ),
@@ -163,20 +163,20 @@ const TableList: React.FC = () => {
         },
         1: {
           text: (
-            <FormattedMessage id="pageDaoBeans.searchTable.nameStatus.running" defaultMessage="Running" />
+            <FormattedMessage id="pages.searchTable.nameStatus.running" defaultMessage="Running" />
           ),
           status: 'Processing',
         },
         2: {
           text: (
-            <FormattedMessage id="pageDaoBeans.searchTable.nameStatus.online" defaultMessage="Online" />
+            <FormattedMessage id="pages.searchTable.nameStatus.online" defaultMessage="Online" />
           ),
           status: 'Success',
         },
         3: {
           text: (
             <FormattedMessage
-              id="pageDaoBeans.searchTable.nameStatus.abnormal"
+              id="pages.searchTable.nameStatus.abnormal"
               defaultMessage="Abnormal"
             />
           ),
@@ -187,7 +187,7 @@ const TableList: React.FC = () => {
     {
       title: (
         <FormattedMessage
-          id="pageDaoBeans.searchTable.titleUpdatedAt"
+          id="pages.searchTable.titleUpdatedAt"
           defaultMessage="Last scheduled time"
         />
       ),
@@ -204,7 +204,7 @@ const TableList: React.FC = () => {
             <Input
               {...rest}
               placeholder={intl.formatMessage({
-                id: 'pageDaoBeans.searchTable.exception',
+                id: 'pages.searchTable.exception',
                 defaultMessage: 'Please enter the reason for the exception!',
               })}
             />
@@ -214,7 +214,7 @@ const TableList: React.FC = () => {
       },
     },
     {
-      title: <FormattedMessage id="pageDaoBeans.searchTable.titleOption" defaultMessage="Operating" />,
+      title: <FormattedMessage id="pages.searchTable.titleOption" defaultMessage="Operating" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
@@ -225,11 +225,11 @@ const TableList: React.FC = () => {
             setCurrentRow(record);
           }}
         >
-          <FormattedMessage id="pageDaoBeans.searchTable.config" defaultMessage="Configuration" />
+          <FormattedMessage id="pages.searchTable.config" defaultMessage="Configuration" />
         </a>,
         <a key="subscribeAlert" href="https://procomponents.ant.design/">
           <FormattedMessage
-            id="pageDaoBeans.searchTable.subscribeAlert"
+            id="pages.searchTable.subscribeAlert"
             defaultMessage="Subscribe to alerts"
           />
         </a>,
@@ -241,7 +241,7 @@ const TableList: React.FC = () => {
     <PageContainer>
       <ProTable<API.RuleListItem, API.PageParams>
         headerTitle={intl.formatMessage({
-          id: 'pageDaoBeans.searchTable.title',
+          id: 'pages.searchTable.title',
           defaultMessage: 'Enquiry form',
         })}
         actionRef={actionRef}
@@ -257,7 +257,7 @@ const TableList: React.FC = () => {
               handleModalVisible(true);
             }}
           >
-            <PlusOutlined /> <FormattedMessage id="pageDaoBeans.searchTable.new" defaultMessage="New" />
+            <PlusOutlined /> <FormattedMessage id="pages.searchTable.new" defaultMessage="New" />
           </Button>,
         ]}
         request={rule}
@@ -272,17 +272,17 @@ const TableList: React.FC = () => {
         <FooterToolbar
           extra={
             <div>
-              <FormattedMessage id="pageDaoBeans.searchTable.chosen" defaultMessage="Chosen" />{' '}
+              <FormattedMessage id="pages.searchTable.chosen" defaultMessage="Chosen" />{' '}
               <a style={{ fontWeight: 600 }}>{selectedRowsState.length}</a>{' '}
-              <FormattedMessage id="pageDaoBeans.searchTable.item" defaultMessage="项" />
+              <FormattedMessage id="pages.searchTable.item" defaultMessage="项" />
               &nbsp;&nbsp;
               <span>
                 <FormattedMessage
-                  id="pageDaoBeans.searchTable.totalServiceCalls"
+                  id="pages.searchTable.totalServiceCalls"
                   defaultMessage="Total number of service calls"
                 />{' '}
                 {selectedRowsState.reduce((pre, item) => pre + item.callNo!, 0)}{' '}
-                <FormattedMessage id="pageDaoBeans.searchTable.tenThousand" defaultMessage="万" />
+                <FormattedMessage id="pages.searchTable.tenThousand" defaultMessage="万" />
               </span>
             </div>
           }
@@ -295,13 +295,13 @@ const TableList: React.FC = () => {
             }}
           >
             <FormattedMessage
-              id="pageDaoBeans.searchTable.batchDeletion"
+              id="pages.searchTable.batchDeletion"
               defaultMessage="Batch deletion"
             />
           </Button>
           <Button type="primary">
             <FormattedMessage
-              id="pageDaoBeans.searchTable.batchApproval"
+              id="pages.searchTable.batchApproval"
               defaultMessage="Batch approval"
             />
           </Button>
@@ -309,7 +309,7 @@ const TableList: React.FC = () => {
       )}
       <ModalForm
         title={intl.formatMessage({
-          id: 'pageDaoBeans.searchTable.createForm.newRule',
+          id: 'pages.searchTable.createForm.newRule',
           defaultMessage: 'New rule',
         })}
         width="400px"
@@ -331,7 +331,7 @@ const TableList: React.FC = () => {
               required: true,
               message: (
                 <FormattedMessage
-                  id="pageDaoBeans.searchTable.ruleName"
+                  id="pages.searchTable.ruleName"
                   defaultMessage="Rule name is required"
                 />
               ),

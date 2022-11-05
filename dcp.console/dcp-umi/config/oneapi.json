@@ -23,7 +23,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginParams"
+                "$ref": "#/components/schemas/LoginReq"
               }
             }
           },
@@ -35,17 +35,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+                  "$ref": "#/components/schemas/BaseResponse"
                 }
               }
             }
@@ -272,11 +262,10 @@
   },
   "components": {
     "schemas": {
-
       "LoginReq": {
         "type": "object",
         "properties": {
-          "username": {
+          "userId": {
             "type": "string"
           },
           "password": {
@@ -466,21 +455,25 @@
         }
       },
 
-      "ErrorResponse": {
-        "required": ["errorCode"],
+      "BaseResponse": {
+        "required": ["code"],
         "type": "object",
         "properties": {
-          "errorCode": {
+          "code": {
             "type": "string",
-            "description": "业务约定的错误码"
+            "description": "业务约定的返回码"
           },
-          "errorMessage": {
+          "message": {
             "type": "string",
-            "description": "业务上的错误信息"
+            "description": "业务上的返回信息"
           },
           "success": {
             "type": "boolean",
             "description": "业务上的请求是否成功"
+          },
+          "data": {
+            "type": "string",
+            "description": "业务接口返回数据"
           }
         }
       },

@@ -1,10 +1,47 @@
 ###
-POST http://localhost:8080/api/resource/addPages
+POST http://localhost:8080/api/user/login
 Content-Type: application/json
 
 {
-  "pageDaoBeans": [
-    {"name": "..-"}
-
-  ]
+  "userId": "018208",
+  "password": "wanggg360&"
 }
+
+###
+POST http://localhost:8080/api/user/logout
+Content-Type: application/json
+
+{
+
+}
+
+
+###
+POST http://localhost:8080/api/user/addUser
+Content-Type: application/json
+
+{
+  "userId": "018208",
+  "fullName": "王刚",
+  "email": "",
+  "mobile": "",
+  "createType": "1",
+  "departmentCode": "",
+  "password": "wanggg360&"
+}
+
+
+###
+POST http://localhost:8080/api/user/queryUsers
+Content-Type: application/json
+
+{
+  "userId": "018208",
+  "fullName": "",
+  "email": "",
+  "mobile": "",
+  "createType": "1",
+  "departmentCode": ""
+}
+
+

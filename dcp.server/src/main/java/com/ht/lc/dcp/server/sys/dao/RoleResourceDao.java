@@ -20,5 +20,4 @@ public interface RoleResourceDao {
     void deleteByRoleId(String rid);
 
     void insertBatch(List<RoleResourceDaoBean> records);
-
 }

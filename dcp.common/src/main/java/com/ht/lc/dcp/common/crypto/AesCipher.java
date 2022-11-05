@@ -22,8 +22,7 @@ public class AesCipher extends AbstractCipher {
 
     public String encrypt(String src, String hexKey, String hexIV) throws ServiceException {
         if (!StringUtils.hasText(hexKey) || !StringUtils.hasText(hexIV) || !StringUtils.hasText(src)) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "aes encrypt error, srcdata or key or iv string is blank. ");
+            throw new ServiceException("aes encrypt error, srcdata or key or iv string is blank. ");
         }
         byte[] encryptData =  encrypt(src.getBytes(StandardCharsets.UTF_8), CipherUtils.decodeHex(hexKey),
                 CipherUtils.decodeHex(hexIV));
@@ -32,8 +31,7 @@ public class AesCipher extends AbstractCipher {
     }
     public String decrypt(String src, String hexKey, String hexIV) throws ServiceException {
         if (!StringUtils.hasText(hexKey) || !StringUtils.hasText(hexIV) || !StringUtils.hasText(src)) {
-            throw new ServiceException(ResultCode.SYS_CIPHER_ERROR.getCode(),
-                    "aes decrypt error, srcdata or key or iv string is blank. ");
+            throw new ServiceException("aes decrypt error, srcdata or key or iv string is blank. ");
         }
         return new String(decrypt(CipherUtils.decodeHex(src), CipherUtils.decodeHex(hexKey),
                 CipherUtils.decodeHex(hexIV)));

@@ -39,7 +39,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             bodyStyle={{ padding: '32px 40px 48px' }}
             destroyOnClose
             title={intl.formatMessage({
-              id: 'pageDaoBeans.searchTable.updateForm.ruleConfig',
+              id: 'pages.searchTable.updateForm.ruleConfig',
               defaultMessage: '规则配置',
             })}
             visible={props.updateModalVisible}
@@ -60,14 +60,14 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           desc: props.values.desc,
         }}
         title={intl.formatMessage({
-          id: 'pageDaoBeans.searchTable.updateForm.basicConfig',
+          id: 'pages.searchTable.updateForm.basicConfig',
           defaultMessage: '基本信息',
         })}
       >
         <ProFormText
           name="name"
           label={intl.formatMessage({
-            id: 'pageDaoBeans.searchTable.updateForm.ruleName.nameLabel',
+            id: 'pages.searchTable.updateForm.ruleName.nameLabel',
             defaultMessage: '规则名称',
           })}
           width="md"
@@ -76,7 +76,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
               required: true,
               message: (
                 <FormattedMessage
-                  id="pageDaoBeans.searchTable.updateForm.ruleName.nameRules"
+                  id="pages.searchTable.updateForm.ruleName.nameRules"
                   defaultMessage="请输入规则名称！"
                 />
               ),
@@ -87,11 +87,11 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           name="desc"
           width="md"
           label={intl.formatMessage({
-            id: 'pageDaoBeans.searchTable.updateForm.ruleDesc.descLabel',
+            id: 'pages.searchTable.updateForm.ruleDesc.descLabel',
             defaultMessage: '规则描述',
           })}
           placeholder={intl.formatMessage({
-            id: 'pageDaoBeans.searchTable.updateForm.ruleDesc.descPlaceholder',
+            id: 'pages.searchTable.updateForm.ruleDesc.descPlaceholder',
             defaultMessage: '请输入至少五个字符',
           })}
           rules={[
@@ -99,7 +99,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
               required: true,
               message: (
                 <FormattedMessage
-                  id="pageDaoBeans.searchTable.updateForm.ruleDesc.descRules"
+                  id="pages.searchTable.updateForm.ruleDesc.descRules"
                   defaultMessage="请输入至少五个字符的规则描述！"
                 />
               ),
@@ -114,7 +114,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           template: '0',
         }}
         title={intl.formatMessage({
-          id: 'pageDaoBeans.searchTable.updateForm.ruleProps.title',
+          id: 'pages.searchTable.updateForm.ruleProps.title',
           defaultMessage: '配置规则属性',
         })}
       >
@@ -122,7 +122,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           name="target"
           width="md"
           label={intl.formatMessage({
-            id: 'pageDaoBeans.searchTable.updateForm.object',
+            id: 'pages.searchTable.updateForm.object',
             defaultMessage: '监控对象',
           })}
           valueEnum={{
@@ -134,7 +134,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           name="template"
           width="md"
           label={intl.formatMessage({
-            id: 'pageDaoBeans.searchTable.updateForm.ruleProps.templateLabel',
+            id: 'pages.searchTable.updateForm.ruleProps.templateLabel',
             defaultMessage: '规则模板',
           })}
           valueEnum={{
@@ -145,7 +145,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
         <ProFormRadio.Group
           name="type"
           label={intl.formatMessage({
-            id: 'pageDaoBeans.searchTable.updateForm.ruleProps.typeLabel',
+            id: 'pages.searchTable.updateForm.ruleProps.typeLabel',
             defaultMessage: '规则类型',
           })}
           options={[
@@ -166,7 +166,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           frequency: 'month',
         }}
         title={intl.formatMessage({
-          id: 'pageDaoBeans.searchTable.updateForm.schedulingPeriod.title',
+          id: 'pages.searchTable.updateForm.schedulingPeriod.title',
           defaultMessage: '设定调度周期',
         })}
       >
@@ -174,7 +174,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           name="time"
           width="md"
           label={intl.formatMessage({
-            id: 'pageDaoBeans.searchTable.updateForm.schedulingPeriod.timeLabel',
+            id: 'pages.searchTable.updateForm.schedulingPeriod.timeLabel',
             defaultMessage: '开始时间',
           })}
           rules={[
@@ -182,7 +182,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
               required: true,
               message: (
                 <FormattedMessage
-                  id="pageDaoBeans.searchTable.updateForm.schedulingPeriod.timeRules"
+                  id="pages.searchTable.updateForm.schedulingPeriod.timeRules"
                   defaultMessage="请选择开始时间！"
                 />
               ),
@@ -192,7 +192,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
         <ProFormSelect
           name="frequency"
           label={intl.formatMessage({
-            id: 'pageDaoBeans.searchTable.updateForm.object',
+            id: 'pages.searchTable.updateForm.object',
             defaultMessage: '监控对象',
           })}
           width="md"

@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="rid" jdbcType="VARCHAR" property="rid" />
     <result column="res_id" jdbcType="VARCHAR" property="resId" />
-    <result column="res_type" jdbcType="CHAR" property="resType" />
+    <result column="res_type" jdbcType="VARCHAR" property="resType" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>

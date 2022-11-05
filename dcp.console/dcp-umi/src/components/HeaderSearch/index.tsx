@@ -66,9 +66,9 @@ const HeaderSearch: React.FC<HeaderSearchProps> = (props) => {
     >
       <SearchOutlined
         key="Icon"
-        style={{
-          cursor: 'pointer',
-        }}
+        // style={{
+        //   cursor: 'pointer',
+        // }}
       />
       <AutoComplete
         key="AutoComplete"

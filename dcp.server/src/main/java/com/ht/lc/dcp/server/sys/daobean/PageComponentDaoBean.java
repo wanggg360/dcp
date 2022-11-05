@@ -36,7 +36,7 @@ public class PageComponentDaoBean {
      */
     private String pid;
 
-    private char status;
+    private String status;
 
     private String createBy;
 
@@ -80,11 +80,11 @@ public class PageComponentDaoBean {
         this.id = id;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

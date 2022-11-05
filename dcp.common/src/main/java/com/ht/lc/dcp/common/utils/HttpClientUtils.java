@@ -54,7 +54,7 @@ public class HttpClientUtils {
     }
 
     // 信任所有的证书
-    public static SSLContext getDefaultSSLContext() throws ServiceException {
+    public static SSLContext getDefaultSSLContext() {
 
         SSLContext sslContext = null;
         try {
@@ -65,7 +65,7 @@ public class HttpClientUtils {
                 }
             }).build();
         } catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException e) {
-            throw new ServiceException(ResultCode.SYS_INNER_ERROR.getCode(), "init sslcontext error, can not load trust.", e);
+            LOG.error("init sslcontext error, can not load trust, exception: {}. ", e.getMessage());
         }
         return sslContext;
     }
@@ -119,30 +119,31 @@ public class HttpClientUtils {
         return request;
     }
 
-    public static String getHttpResponseString (HttpUriRequest req, CloseableHttpClient client) throws ServiceException {
+    public static String getHttpResponseString (HttpUriRequest req, CloseableHttpClient client) {
+        String response = "";
         final HttpClientResponseHandler<String> handler = new HttpClientResponseHandler<String>() {
             @Override
-            public String handleResponse(
-                    final ClassicHttpResponse response) {
+            public String handleResponse(final ClassicHttpResponse response) {
+                String result = "";
                 final int status = response.getCode();
+                LOG.info("response status error, status code: {}. ", status);
                 if (status >= HttpStatus.SC_SUCCESS && status < HttpStatus.SC_REDIRECTION) {
                     final HttpEntity entity = response.getEntity();
                     try {
-                        return entity != null ? EntityUtils.toString(entity, HttpConst.RSP_ENTITY_CHARSET) : null;
+                        result =  entity != null ? EntityUtils.toString(entity, HttpConst.RSP_ENTITY_CHARSET) : "";
                     } catch (ParseException | IOException e ) {
-                        throw new ServiceException(ResultCode.SUCCESS.getCode(), "parse http response error. ");
+                        LOG.error("parse http response error, exception: {}. ", e.getMessage());
                     }
-                } else {
-                    throw new ServiceException(ResultCode.SUCCESS.getCode(), "response status error, status code: " + status);
                 }
+                return result;
             }
         };
 
         try {
-           return client.execute(req, handler);
+           response = client.execute(req, handler);
         } catch (IOException e) {
-            throw new ServiceException(ResultCode.SYS_HTTP_ERROR.getCode(), "request failed, url: " + req.getRequestUri());
+            LOG.error("request failed, url: {}, exception: {}. ", req.getRequestUri(), e.getMessage());
         }
-
+        return response;
     }
 }

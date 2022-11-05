@@ -10,6 +10,12 @@ export default {
   'pages.login.rememberMe': 'Remember me',
   'pages.login.forgotPassword': 'Forgot Password ?',
   'pages.login.username.rule1': 'Username only contains 5-10 number or letter!',
+  'pages.logout.success': 'Logout success!',
+  'pages.logout.failure': 'Logout failed!',
+
+
+
+
 
 
   'pages.login.loginWith': 'Login with :',

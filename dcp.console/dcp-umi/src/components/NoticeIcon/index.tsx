@@ -130,14 +130,7 @@ const NoticeIconView: React.FC = () => {
         emptyText="你已查看所有通知"
         showViewMore
       />
-      <NoticeIcon.Tab
-        tabKey="message"
-        count={unreadMsg.message}
-        list={noticeData.message}
-        title="消息"
-        emptyText="您已读完所有消息"
-        showViewMore
-      />
+
       <NoticeIcon.Tab
         tabKey="event"
         title="待办"

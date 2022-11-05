@@ -1,7 +1,5 @@
 package com.ht.lc.dcp.server.sys.daobean;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 /**
@@ -37,7 +35,7 @@ public class PageDaoBean {
      */
     private String path;
 
-    private char status;
+    private String status;
 
     private String createBy;
 
@@ -89,11 +87,11 @@ public class PageDaoBean {
         this.label = label;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

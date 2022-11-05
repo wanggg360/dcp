@@ -13,9 +13,18 @@ public class ServiceException extends RuntimeException {
 
     private String msg;
 
+    public ServiceException(String msg) {
+        super(msg);
+    }
+
     public ServiceException(String code, String msg) {
         super(msg);
         this.code = code;
+    }
+
+    public ServiceException( String msg, Throwable cause) {
+        super(msg, cause);
+        this.msg = msg;
     }
 
     public ServiceException(String code, String msg, Throwable cause) {

@@ -1,4 +1,10 @@
 export default {
+  'menu.workspace': 'Workspace',
+  'menu.workspace.home': 'Home',
+  'menu.workspace.center': 'Center',
+
+
+
   'menu.welcome': 'Welcome',
   'menu.more-blocks': 'More Blocks',
   'menu.home': 'Home',
