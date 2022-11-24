@@ -25,17 +25,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @Version 1.0
  **/
 
-@DataJpaTest
-@Import(SystemConfig.class)
-@AutoConfigureTestDatabase(replace = Replace.NONE)
-@Transactional(propagation = Propagation.NOT_SUPPORTED)
-public class UserRepositoryTests {
+@DataJpaTest @Import(SystemConfig.class) @AutoConfigureTestDatabase(replace = Replace.NONE)
+@Transactional(propagation = Propagation.NOT_SUPPORTED) public class UserRepositoryTests {
 
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
-    @Test
-    void addUser() {
+    @Test void addUser() {
         User user = new User();
         user.setUserId("018200");
         user.setUsername("wanggangww");
@@ -43,7 +38,7 @@ public class UserRepositoryTests {
         user.setCreateTime(LocalDateTime.now());
         user.setDepartmentCode("wwww");
         userRepository.save(user);
-        User user1 = userRepository.findById(5).orElseThrow(()-> new ServiceException("9999", "can not find user"));
+        User user1 = userRepository.findById(5).orElseThrow(() -> new ServiceException("9999", "can not find user"));
         assertThat(user1.getUsername()).isEqualTo(user.getUsername());
     }
 }

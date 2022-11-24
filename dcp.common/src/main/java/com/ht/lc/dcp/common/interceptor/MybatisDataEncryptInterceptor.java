@@ -28,21 +28,16 @@ import java.util.Objects;
  * @Version 1.0
  **/
 
-@Intercepts({
-        @Signature(type = ParameterHandler.class, method = "setParameters", args = PreparedStatement.class)
-})
-@Component
-public class MybatisDataEncryptInterceptor implements Interceptor {
+@Intercepts({@Signature(type = ParameterHandler.class, method = "setParameters", args = PreparedStatement.class)})
+@Component public class MybatisDataEncryptInterceptor implements Interceptor {
 
     private static final Logger LOG = LoggerFactory.getLogger(MybatisDataEncryptInterceptor.class);
 
-    @Autowired
-    SystemConfig.KeyConfig keyConfig;
+    @Autowired SystemConfig.KeyConfig keyConfig;
 
-    @Override
-    public Object intercept(Invocation invocation) throws Throwable {
+    @Override public Object intercept(Invocation invocation) throws Throwable {
         // 处理参数
-        ParameterHandler parameterHandler = (ParameterHandler) invocation.getTarget();
+        ParameterHandler parameterHandler = (ParameterHandler)invocation.getTarget();
         Field parameterField = parameterHandler.getClass().getDeclaredField("parameterObject");
         parameterField.setAccessible(true);
         // 获取参数对象
@@ -51,7 +46,8 @@ public class MybatisDataEncryptInterceptor implements Interceptor {
             return invocation.proceed();
         }
         if (parameterObject instanceof MapperMethod.ParamMap) {
-            List collectionObjects = (List) ((Map<String, Object>) parameterObject).getOrDefault("collection", Collections.emptyList());
+            List collectionObjects =
+                (List)((Map<String, Object>)parameterObject).getOrDefault("collection", Collections.emptyList());
             // 如果未获取到目标集合，直接退出
             if (!CollectionUtils.isEmpty(collectionObjects)) {
                 for (Object collection : collectionObjects) {
@@ -64,13 +60,13 @@ public class MybatisDataEncryptInterceptor implements Interceptor {
         return invocation.proceed();
     }
 
-    @Override
-    public Object plugin(Object target) {
+    @Override public Object plugin(Object target) {
         return Plugin.wrap(target, this);
     }
 
     /**
      * 加密数据
+     *
      * @param paramObj
      */
     private void encryptSensitiveField(Object paramObj) {
@@ -87,8 +83,8 @@ public class MybatisDataEncryptInterceptor implements Interceptor {
                     Object obj = f.get(paramObj);
                     // 设置加密结果
                     if (obj instanceof String) {
-                        String encryptStr = CipherManager.getInstance().encrypt(sensitive.algorithm(), (String)obj,
-                                keyConfig.getAesKey(), keyConfig.getAesIv());
+                        String encryptStr = CipherManager.getInstance()
+                            .encrypt(sensitive.algorithm(), (String)obj, keyConfig.getAesKey(), keyConfig.getAesIv());
                         f.set(paramObj, encryptStr);
                     }
                 } catch (Throwable t) {

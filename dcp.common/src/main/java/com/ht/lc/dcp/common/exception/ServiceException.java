@@ -22,7 +22,7 @@ public class ServiceException extends RuntimeException {
         this.code = code;
     }
 
-    public ServiceException( String msg, Throwable cause) {
+    public ServiceException(String msg, Throwable cause) {
         super(msg, cause);
         this.msg = msg;
     }

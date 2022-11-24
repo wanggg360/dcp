@@ -9,7 +9,8 @@ package com.ht.lc.dcp.task.rsp;
  **/
 public class GatherNoticeDetailsRsp extends BaseRsp {
 
-    public GatherNoticeDetailsRsp() {}
+    public GatherNoticeDetailsRsp() {
+    }
 
     public GatherNoticeDetailsRsp(String code, String msg) {
         super(code, msg);

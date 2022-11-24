@@ -23,6 +23,12 @@ public class RoleDaoBean {
      * 中文标签
      */
     private String label;
+    private String status;
+    private String createBy;
+    private LocalDateTime createTime;
+    private String updateBy;
+    private LocalDateTime updateTime;
+    private String remark;
 
     public String getRid() {
         return rid;
@@ -39,18 +45,6 @@ public class RoleDaoBean {
     public void setName(String name) {
         this.name = name;
     }
-
-    private String status;
-
-    private String createBy;
-
-    private LocalDateTime createTime;
-
-    private String updateBy;
-
-    private LocalDateTime updateTime;
-
-    private String remark;
 
     public Long getId() {
         return id;

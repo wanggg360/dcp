@@ -8,5 +8,5 @@ package com.ht.lc.dcp.task.req;
  * @Version 1.0
  **/
 public class BaseReq {
-	
+
 }

@@ -18,42 +18,31 @@ import java.util.stream.Collectors;
  * @create: 2022-03-24 19:52
  * @Version 1.0
  **/
-@Service
-public class SiteInfoServiceImpl implements SiteInfoService {
+@Service public class SiteInfoServiceImpl implements SiteInfoService {
 
-    @Autowired
-    SiteInfoDao siteInfoDao;
+    @Autowired SiteInfoDao siteInfoDao;
 
-    @Override
-    public List<SiteInfo> getAllValidSiteInfos() {
+    @Override public List<SiteInfo> getAllValidSiteInfos() {
         SiteInfoDaoBean bean = new SiteInfoDaoBean();
         bean.setIsValid(BizConst.Common.DATA_FLAG_VALID);
         List<SiteInfoDaoBean> daoBeans = siteInfoDao.getListByDaoBean(bean);
-        List<SiteInfo> result =  daoBeans.stream()
-                .map(dao-> cvt2SiteInfo(dao))
-                .collect(Collectors.toList());
+        List<SiteInfo> result = daoBeans.stream().map(dao -> cvt2SiteInfo(dao)).collect(Collectors.toList());
         return result;
     }
 
-    @Override
-    public List<SiteInfo> getSiteInfosByDataType(int dataType) {
+    @Override public List<SiteInfo> getSiteInfosByDataType(int dataType) {
         SiteInfoDaoBean bean = new SiteInfoDaoBean();
         bean.setDataType(dataType);
         List<SiteInfoDaoBean> daoBeans = siteInfoDao.getListByDaoBean(bean);
-        List<SiteInfo> result =  daoBeans.stream()
-                .map(dao-> cvt2SiteInfo(dao))
-                .collect(Collectors.toList());
+        List<SiteInfo> result = daoBeans.stream().map(dao -> cvt2SiteInfo(dao)).collect(Collectors.toList());
         return result;
     }
 
-    @Override
-    public List<SiteInfo> getSiteInfosByBranchId(String branchId) {
+    @Override public List<SiteInfo> getSiteInfosByBranchId(String branchId) {
         SiteInfoDaoBean bean = new SiteInfoDaoBean();
         bean.setBranchId(branchId);
         List<SiteInfoDaoBean> daoBeans = siteInfoDao.getListByDaoBean(bean);
-        List<SiteInfo> result =  daoBeans.stream()
-                .map(dao-> cvt2SiteInfo(dao))
-                .collect(Collectors.toList());
+        List<SiteInfo> result = daoBeans.stream().map(dao -> cvt2SiteInfo(dao)).collect(Collectors.toList());
         return result;
     }
 

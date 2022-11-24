@@ -20,36 +20,18 @@ import org.springframework.context.annotation.PropertySource;
  * @create: 2022-03-11 11:32
  * @Version 1.0
  **/
-@Configuration
-@PropertySource("classpath:/conf/system.properties")
-public class HikariDataSourceConfig {
+@Configuration @PropertySource("classpath:/conf/system.properties") public class HikariDataSourceConfig {
 
     private static final Logger LOG = LoggerFactory.getLogger(SystemConfig.class);
+    @Autowired SystemConfig.KeyConfig keyConfig;
+    @Value("${jdbc.url}") private String url;
+    @Value("${jdbc.driverClass}") private String driverClass;
+    @Value("${jdbc.username}") private String username;
+    @Value("${jdbc.password}") private String password;
+    @Value("${datasource.minIdle}") private int minIdle;
+    @Value("${datasource.maxPoolSize}") private int maxPoolSize;
 
-    @Value("${jdbc.url}")
-    private String url;
-
-    @Value("${jdbc.driverClass}")
-    private String driverClass;
-
-    @Value("${jdbc.username}")
-    private String username;
-
-    @Value("${jdbc.password}")
-    private String password;
-
-    @Value("${datasource.minIdle}")
-    private int minIdle;
-
-    @Value("${datasource.maxPoolSize}")
-    private int maxPoolSize;
-
-    @Autowired
-    SystemConfig.KeyConfig keyConfig;
-
-    @Bean(name = "hikariDataSource")
-    @Qualifier("hikariDataSource")
-    public HikariDataSource dataSource() {
+    @Bean(name = "hikariDataSource") @Qualifier("hikariDataSource") public HikariDataSource dataSource() {
         LOG.info("Load hikari datasource");
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName(this.driverClass);
@@ -57,8 +39,8 @@ public class HikariDataSourceConfig {
         dataSource.setUsername(this.username);
         String pwd = "";
         try {
-            pwd = CipherManager.getInstance().decrypt(CipherConst.AES_GCM_256,
-                    password, keyConfig.getAesKey(), keyConfig.getAesIv());
+            pwd = CipherManager.getInstance()
+                .decrypt(CipherConst.AES_GCM_256, password, keyConfig.getAesKey(), keyConfig.getAesIv());
         } catch (ServiceException e) {
             LOG.error("decrypt db password error, init datasource failed. ");
         }

@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version 1.0
  **/
 
-@SpringBootApplication(scanBasePackages = {"com.ht.lc.dcp.common","com.ht.lc.dcp.task"})
+@SpringBootApplication(scanBasePackages = {"com.ht.lc.dcp.common", "com.ht.lc.dcp.task"})
 //@SpringBootApplication
 public class Application {
 

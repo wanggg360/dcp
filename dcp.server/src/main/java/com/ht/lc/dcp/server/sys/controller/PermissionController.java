@@ -18,14 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  **/
 
-@RestController
-@RequestMapping(value = "/api/permission")
-public class PermissionController {
+@RestController @RequestMapping(value = "/api/permission") public class PermissionController {
 
-    @Autowired
-    PermissionService permissionService;
+    @Autowired PermissionService permissionService;
 
-    @RequestMapping(value="/addRoles",method= RequestMethod.POST)
+    @RequestMapping(value = "/addRoles", method = RequestMethod.POST)
     public ResultObject addRoles(@RequestBody @Validated AddRolesReq req) {
         return permissionService.addRoles(req);
     }

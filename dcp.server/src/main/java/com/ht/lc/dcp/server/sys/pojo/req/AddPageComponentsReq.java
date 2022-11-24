@@ -14,8 +14,7 @@ import java.util.List;
  **/
 public class AddPageComponentsReq extends BaseReq {
 
-    @NotEmpty
-    List<PageComponent> pageComponents;
+    @NotEmpty List<PageComponent> pageComponents;
 
     public List<PageComponent> getPageComponents() {
         return pageComponents;

@@ -3,9 +3,6 @@ package com.ht.lc.dcp.common.http;
 import com.ht.lc.dcp.common.utils.HttpClientUtils;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @program: dcp
@@ -49,11 +46,8 @@ public class SyncHttpClientBuilder {
     // 获取同步客户端
     public CloseableHttpClient build() {
 
-        return HttpClients.custom()
-                .setConnectionManager(
-                        HttpClientUtils.getConnectManager(
-                                HttpClientUtils.getDefaultSSLSocketFactory(
-                                        HttpClientUtils.getDefaultSSLContext()), poolMaxConnTotal, poolMaxConnPerRoute)
-                ).build();
+        return HttpClients.custom().setConnectionManager(HttpClientUtils
+            .getConnectManager(HttpClientUtils.getDefaultSSLSocketFactory(HttpClientUtils.getDefaultSSLContext()),
+                poolMaxConnTotal, poolMaxConnPerRoute)).build();
     }
 }

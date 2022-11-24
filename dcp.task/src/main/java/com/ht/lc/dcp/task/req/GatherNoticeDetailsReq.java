@@ -14,18 +14,15 @@ import javax.validation.constraints.Size;
  * @Version 1.0
  **/
 
-
 public class GatherNoticeDetailsReq extends BaseReq {
 
-    @NotBlank
-    @Size(min = 16, message = "size must larger than 16")
-    private String taskId;
+    @NotBlank @Size(min = 16, message = "size must larger than 16") private String taskId;
 
-    @Pattern(regexp = BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, message = "format yyyy-MM-dd")
-    private String startDate = "1990-01-01";
+    @Pattern(regexp = BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, message = "format yyyy-MM-dd") private String
+        startDate = "1990-01-01";
 
-    @Pattern(regexp = BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, message = "format yyyy-MM-dd")
-    private String endDate = "2200-12-31";
+    @Pattern(regexp = BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, message = "format yyyy-MM-dd") private String
+        endDate = "2200-12-31";
 
     private String branchId;
 

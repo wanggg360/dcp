@@ -15,7 +15,5 @@ public class QueryUserDetailReq extends BaseReq {
     /**
      * 用户ID
      */
-    @NotEmpty
-    @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10")
-    private String userId;
+    @NotEmpty @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10") private String userId;
 }

@@ -13,7 +13,7 @@ public interface BizConst {
 
         String PAGE = "page";
 
-        String MENU= "menu";
+        String MENU = "menu";
 
         String PAGE_COMPONENT = "pagecomponent";
 

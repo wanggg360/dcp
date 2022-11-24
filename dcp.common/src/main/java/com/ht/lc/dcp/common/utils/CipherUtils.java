@@ -1,8 +1,8 @@
 package com.ht.lc.dcp.common.utils;
 
-import com.ht.lc.dcp.common.base.ResultCode;
 import com.ht.lc.dcp.common.exception.ServiceException;
 import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -16,7 +16,6 @@ import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Base64;
 
-import org.apache.commons.codec.binary.Hex;
 /**
  * @program: dcp
  * @description:
@@ -76,7 +75,7 @@ public class CipherUtils {
 
     public static byte[] decodeHex(String input) throws ServiceException {
         byte[] result;
-        try{
+        try {
             result = Hex.decodeHex(input);
         } catch (DecoderException e) {
             throw new ServiceException("decode hex string error, can not decode.", e);
@@ -98,12 +97,11 @@ public class CipherUtils {
         }
     }
 
-
     public static void main(String[] args) {
         SecretKey key = CipherUtils.generateKey(256, "AES");
         String keyString = encodeHexString(key.getEncoded());
         System.out.println("key byte : " + key.getEncoded());
-        System.out.println("key byte string : " + new String (key.getEncoded()));
+        System.out.println("key byte string : " + new String(key.getEncoded()));
         System.out.println("key hex string : " + keyString);
 
         byte[] aa = getInitializationVector(128);

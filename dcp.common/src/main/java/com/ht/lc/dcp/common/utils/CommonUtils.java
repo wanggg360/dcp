@@ -21,13 +21,14 @@ public class CommonUtils {
 
     private static final String CHARACTER_SET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    private CommonUtils() {}
+    private CommonUtils() {
+    }
 
     public static String getRandomString(int len) {
-        Random random=new Random();
+        Random random = new Random();
         StringBuffer sb = new StringBuffer();
-        for(int i=0; i<len; i++){
-            int number=random.nextInt(62);
+        for (int i = 0; i < len; i++) {
+            int number = random.nextInt(62);
             sb.append(CHARACTER_SET.charAt(number));
         }
         return sb.toString();
@@ -41,9 +42,9 @@ public class CommonUtils {
         }
         int priIndex = 0;
         int lastPriIndex = 0;
-        int insertTimes = src.size()/num;
+        int insertTimes = src.size() / num;
         List<T> subList;
-        for (int i = 0;i <= insertTimes;i++) {
+        for (int i = 0; i <= insertTimes; i++) {
             priIndex = num * i;
             lastPriIndex = priIndex + num;
             if (i == insertTimes) {

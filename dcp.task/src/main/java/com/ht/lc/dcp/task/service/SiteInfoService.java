@@ -15,12 +15,14 @@ public interface SiteInfoService {
 
     /**
      * 获取有效的站点信息
+     *
      * @return 站点list
      */
     List<SiteInfo> getAllValidSiteInfos();
 
     /**
      * 根据dataType获取站点信息
+     *
      * @param dataType 数据类型
      * @return 站点list
      */
@@ -28,6 +30,7 @@ public interface SiteInfoService {
 
     /**
      * 根据机构ID获取站点信息
+     *
      * @param branchId 机构ID
      * @return 站点list
      */

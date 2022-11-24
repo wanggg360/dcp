@@ -4,10 +4,6 @@ import com.ht.lc.dcp.common.base.ResultObject;
 import com.ht.lc.dcp.server.sys.pojo.req.AddUserReq;
 import com.ht.lc.dcp.server.sys.pojo.req.LoginReq;
 import com.ht.lc.dcp.server.sys.pojo.req.QueryUserDetailReq;
-import com.ht.lc.dcp.server.sys.pojo.req.QueryUsersReq;
-import com.ht.lc.dcp.server.sys.pojo.User;
-
-import java.util.List;
 
 /**
  * @program: dcp
@@ -20,6 +16,7 @@ public interface UserService {
 
     /**
      * 登陆
+     *
      * @param req
      * @return
      */
@@ -27,6 +24,7 @@ public interface UserService {
 
     /**
      * 添加用户
+     *
      * @param req
      * @return
      */
@@ -34,6 +32,7 @@ public interface UserService {
 
     /**
      * 查询用户详情
+     *
      * @param req
      * @return
      */

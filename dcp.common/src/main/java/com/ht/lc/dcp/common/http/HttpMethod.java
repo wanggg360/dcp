@@ -13,17 +13,17 @@ public enum HttpMethod {
 
     POST("POST"),
 
-    PUT	("PUT"),
+    PUT("PUT"),
 
-    DELETE	("DELETE");
+    DELETE("DELETE");
 
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
     private HttpMethod(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }

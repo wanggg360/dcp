@@ -18,22 +18,15 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @create: 2022-03-25 15:28
  * @Version 1.0
  **/
-@Configuration
-@EnableAsync
-@PropertySource("classpath:/conf/system.properties")
-public class ThreadPoolConfig {
+@Configuration @EnableAsync @PropertySource("classpath:/conf/system.properties") public class ThreadPoolConfig {
 
-    @Value("${custom.threadpool.corepoolsize:5}")
-    private int corePoolSize;
+    @Value("${custom.threadpool.corepoolsize:5}") private int corePoolSize;
 
-    @Value("${custom.threadpool.maxpoolsize:10}")
-    private int maxPoolSize;
+    @Value("${custom.threadpool.maxpoolsize:10}") private int maxPoolSize;
 
-    @Value("${custom.threadpool.queuecapacity:20}")
-    private int queueCapacity;
+    @Value("${custom.threadpool.queuecapacity:20}") private int queueCapacity;
 
-    @Value("${custom.threadpool.threadnameprefix:dcp-thread-pool-}")
-    private String threadNamePrefix;
+    @Value("${custom.threadpool.threadnameprefix:dcp-thread-pool-}") private String threadNamePrefix;
 
     public int getCorePoolSize() {
         return corePoolSize;
@@ -67,8 +60,7 @@ public class ThreadPoolConfig {
         this.threadNamePrefix = threadNamePrefix;
     }
 
-    @Bean
-    public Executor taskExecutor() {
+    @Bean public Executor taskExecutor() {
         ThreadPoolTaskExecutor pool = new CustomizedThreadPoolTaskExecutor();
         //线程核心数目
         pool.setCorePoolSize(corePoolSize);

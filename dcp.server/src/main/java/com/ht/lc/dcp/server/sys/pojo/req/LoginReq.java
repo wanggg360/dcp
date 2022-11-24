@@ -2,6 +2,7 @@ package com.ht.lc.dcp.server.sys.pojo.req;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
 /**
  * @program: dcp
  * @description:
@@ -11,12 +12,9 @@ import javax.validation.constraints.Size;
  **/
 public class LoginReq extends BaseReq {
 
-    @NotBlank
-    @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10")
-    private String userId;
+    @NotBlank @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10") private String userId;
 
-    @NotBlank
-    private String password;
+    @NotBlank private String password;
 
     public String getUserId() {
         return userId;

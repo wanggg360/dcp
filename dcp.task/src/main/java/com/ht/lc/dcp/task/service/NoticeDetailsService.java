@@ -1,7 +1,6 @@
 package com.ht.lc.dcp.task.service;
 
 import com.ht.lc.dcp.task.entity.NoticeBrief;
-import com.ht.lc.dcp.task.entity.SiteInfo;
 
 import java.util.List;
 
@@ -16,6 +15,7 @@ public interface NoticeDetailsService {
 
     /**
      * 根据公告简介增加公告详情
+     *
      * @param briefs
      */
     void addNoticeDetailsByBriefs(List<NoticeBrief> briefs);

@@ -10,51 +10,34 @@ import java.time.LocalDateTime;
  * @create: 2021-09-07 09:20
  * @Version 1.0
  **/
-@Entity
-@Table(name = "sys_department")
-public class Department {
+@Entity @Table(name = "sys_department") public class Department {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "dept_code", nullable = false, length = 32)
-    private String departmentCode;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Integer id;
+    @Column(name = "dept_code", nullable = false, length = 32) private String departmentCode;
 
-    @Column(name = "dept_name", nullable = false, length = 256)
-    private String departmentName;
+    @Column(name = "dept_name", nullable = false, length = 256) private String departmentName;
 
-    @Column(name = "dept_level", nullable = false)
-    private char departmentLevel;
+    @Column(name = "dept_level", nullable = false) private char departmentLevel;
 
-    @Column(name = "dept_type", nullable = false)
-    private char departmentType;
+    @Column(name = "dept_type", nullable = false) private char departmentType;
 
-    @Column(name = "dept_manager_id", length = 64)
-    private String deptManagerId;
+    @Column(name = "dept_manager_id", length = 64) private String deptManagerId;
 
-    @Column(name = "dept_manager_name", length = 256)
-    private String deptManagerName;
+    @Column(name = "dept_manager_name", length = 256) private String deptManagerName;
 
-    @Column(name = "parent_dept_code", length = 32)
-    private String parentDeptCode;
+    @Column(name = "parent_dept_code", length = 32) private String parentDeptCode;
 
-    @Column(name = "del_flag")
-    private char deleteFlag;
+    @Column(name = "del_flag") private char deleteFlag;
 
-    @Column(name = "create_time", nullable = false)
-    private LocalDateTime createTime;
+    @Column(name = "create_time", nullable = false) private LocalDateTime createTime;
 
-    @Column(name = "update_time")
-    private LocalDateTime updateTime;
+    @Column(name = "update_time") private LocalDateTime updateTime;
 
-    @Column(name = "update_by", length = 64)
-    private String updateBy;
+    @Column(name = "update_by", length = 64) private String updateBy;
 
-    @Column(name = "create_by", length = 64)
-    private String createBy;
+    @Column(name = "create_by", length = 64) private String createBy;
 
-    @Column(name = "remark", length = 512)
-    private String remark;
+    @Column(name = "remark", length = 512) private String remark;
 
     public Integer getId() {
         return id;

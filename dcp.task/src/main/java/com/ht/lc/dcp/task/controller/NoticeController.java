@@ -6,16 +6,19 @@ import com.ht.lc.dcp.task.entity.SiteInfo;
 import com.ht.lc.dcp.task.req.GatherNoticeDetailsReq;
 import com.ht.lc.dcp.task.rsp.GatherNoticeBriefsRsp;
 import com.ht.lc.dcp.task.rsp.GatherNoticeDetailsRsp;
+import com.ht.lc.dcp.task.service.NoticeBriefService;
 import com.ht.lc.dcp.task.service.NoticeDetailsService;
 import com.ht.lc.dcp.task.service.SiteInfoService;
-import com.ht.lc.dcp.task.service.NoticeBriefService;
-
 import com.ht.lc.dcp.task.utils.ComUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 /**
@@ -26,22 +29,17 @@ import java.util.List;
  * @Version 1.0
  **/
 
-@RestController
-@RequestMapping(value = "/notice")
-public class NoticeController {
+@RestController @RequestMapping(value = "/notice") public class NoticeController {
 
     private static Logger LOG = LoggerFactory.getLogger(NoticeController.class);
 
-    @Autowired
-    SiteInfoService siteInfoService;
+    @Autowired SiteInfoService siteInfoService;
 
-    @Autowired
-    NoticeBriefService noticeBriefService;
+    @Autowired NoticeBriefService noticeBriefService;
 
-    @Autowired
-    NoticeDetailsService noticeDetailsService;
+    @Autowired NoticeDetailsService noticeDetailsService;
 
-    @RequestMapping(value="/gatherNoticeBriefs",method= RequestMethod.POST)
+    @RequestMapping(value = "/gatherNoticeBriefs", method = RequestMethod.POST)
     public GatherNoticeBriefsRsp gatherNoticeBriefs(@RequestBody GatherNoticeDetailsReq req) {
         String taskId = ComUtils.generateUniqueTaskId();
         List<SiteInfo> sites = siteInfoService.getAllValidSiteInfos();
@@ -54,21 +52,21 @@ public class NoticeController {
         return rsp;
     }
 
-    @RequestMapping(value="/gatherNoticeDetails",method= RequestMethod.POST)
+    @RequestMapping(value = "/gatherNoticeDetails", method = RequestMethod.POST)
     public GatherNoticeDetailsRsp gatherNoticeDetails(@RequestBody @Validated GatherNoticeDetailsReq req) {
 
-        List<NoticeBrief> noticeBriefs = noticeBriefService.getNoticeBriefsByDateRange(req.getTaskId(), req.getBranchId(), req.getStartDate(), req.getEndDate());
+        List<NoticeBrief> noticeBriefs = noticeBriefService
+            .getNoticeBriefsByDateRange(req.getTaskId(), req.getBranchId(), req.getStartDate(), req.getEndDate());
         noticeDetailsService.addNoticeDetailsByBriefs(noticeBriefs);
 
         return new GatherNoticeDetailsRsp(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getDesc());
     }
 
-
-    @RequestMapping(value="/test",method= RequestMethod.GET)
-    public GatherNoticeBriefsRsp test() {
+    @RequestMapping(value = "/test", method = RequestMethod.GET) public GatherNoticeBriefsRsp test() {
 
         GatherNoticeBriefsRsp rsp = new GatherNoticeBriefsRsp();
-        List<NoticeBrief> lists = noticeBriefService.getNoticeBriefsByDateRange("20220328185400-lOo", "1", "2020-05-30", "2020-12-31");
+        List<NoticeBrief> lists =
+            noticeBriefService.getNoticeBriefsByDateRange("20220328185400-lOo", "1", "2020-05-30", "2020-12-31");
         rsp.setResultCode(ResultCode.SUCCESS.getCode());
         rsp.setResultDesc(ResultCode.SUCCESS.getDesc());
         return rsp;

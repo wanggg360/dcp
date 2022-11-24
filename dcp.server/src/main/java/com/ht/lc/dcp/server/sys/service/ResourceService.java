@@ -30,7 +30,6 @@ public interface ResourceService {
      */
     ResultObject addMenus(AddMenusReq req);
 
-
     /**
      * 添加页面组件
      *

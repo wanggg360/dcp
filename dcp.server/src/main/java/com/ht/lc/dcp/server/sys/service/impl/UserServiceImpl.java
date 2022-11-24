@@ -1,5 +1,4 @@
 package com.ht.lc.dcp.server.sys.service.impl;
-import java.time.LocalDateTime;
 
 import com.ht.lc.dcp.common.base.ResultCode;
 import com.ht.lc.dcp.common.base.ResultObject;
@@ -12,8 +11,6 @@ import com.ht.lc.dcp.server.sys.daobean.UserDepartmentDaoBean;
 import com.ht.lc.dcp.server.sys.pojo.req.AddUserReq;
 import com.ht.lc.dcp.server.sys.pojo.req.LoginReq;
 import com.ht.lc.dcp.server.sys.pojo.req.QueryUserDetailReq;
-import com.ht.lc.dcp.server.sys.pojo.req.QueryUsersReq;
-import com.ht.lc.dcp.server.sys.pojo.User;
 import com.ht.lc.dcp.server.sys.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +19,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * @program: dcp
@@ -35,39 +32,31 @@ import java.util.stream.Collectors;
  * @Version 1.0
  **/
 
-@Service
-public class UserServiceImpl implements UserService {
+@Service public class UserServiceImpl implements UserService {
 
     private static Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    @Autowired
-    UserDao userDao;
+    @Autowired UserDao userDao;
 
-    @Autowired
-    UserDepartmentDao userDepartmentDao;
+    @Autowired UserDepartmentDao userDepartmentDao;
 
-    @Autowired
-    DepartmentDao departmentDao;
+    @Autowired DepartmentDao departmentDao;
 
-    @Override
-    public ResultObject login(LoginReq req) {
+    @Override public ResultObject login(LoginReq req) {
         UserDaoBean userDaoBean = userDao.findByUserId(req.getUserId());
         if (Objects.isNull(userDaoBean)) {
             LOG.error("can't find such user, id: {}. ", req.getUserId());
-            return ResultObject.error(ResultCode.USER_NOT_EXIST.getCode(),
-                    ResultCode.USER_NOT_EXIST.getDesc());
+            return ResultObject.error(ResultCode.USER_NOT_EXIST.getCode(), ResultCode.USER_NOT_EXIST.getDesc());
         }
 
         if (!userDaoBean.getPassword().equals(req.getPassword())) {
             LOG.error("username or password wrong. ");
-            return ResultObject.error(ResultCode.USER_LOGIN_FAILED.getCode(),
-                    ResultCode.USER_LOGIN_FAILED.getDesc());
+            return ResultObject.error(ResultCode.USER_LOGIN_FAILED.getCode(), ResultCode.USER_LOGIN_FAILED.getDesc());
         }
         return ResultObject.success("");
     }
 
-    @Override
-    public ResultObject addUser(@RequestBody AddUserReq req) {
+    @Override public ResultObject addUser(@RequestBody AddUserReq req) {
         // 校验请求参数
         if (!req.isValidRequest()) {
             LOG.error("email, mobile or createtype may wrong, please check! ");
@@ -87,8 +76,7 @@ public class UserServiceImpl implements UserService {
         }
         // 判断请求中的部门编码是否在库中存在，如果不存在不添加
         List<UserDepartmentDaoBean> lists = new ArrayList<>();
-        if (!CollectionUtils.isEmpty(req.getDepartments()))
-        {
+        if (!CollectionUtils.isEmpty(req.getDepartments())) {
             for (String deptCode : req.getDepartments()) {
                 DepartmentDaoBean temp = departmentDao.selectByDeptCode(deptCode);
                 if (Objects.isNull(temp)) {
@@ -124,8 +112,7 @@ public class UserServiceImpl implements UserService {
         return ResultObject.success("");
     }
 
-    @Override
-    public ResultObject queryUserDetails(QueryUserDetailReq req){
+    @Override public ResultObject queryUserDetails(QueryUserDetailReq req) {
 
         return ResultObject.success("");
     }

@@ -1,6 +1,5 @@
 package com.ht.lc.dcp.server.sys.daobean;
 
-
 import java.time.LocalDateTime;
 
 public class UserRoleDaoBean {

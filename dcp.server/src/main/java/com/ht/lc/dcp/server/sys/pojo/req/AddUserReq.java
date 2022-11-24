@@ -23,21 +23,17 @@ public class AddUserReq extends BaseReq {
     /**
      * 工号
      */
-    @NotEmpty
-    @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10")
-    private String userId;
+    @NotEmpty @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10") private String userId;
 
     /**
      * 全名
      */
-    @NotEmpty
-    private String fullName;
+    @NotEmpty private String fullName;
 
     /**
      * 密码
      */
-    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[$@!%*?&])[A-Za-z\\d$@!%*?&]{8,}",
-            message = "password must contains letter, number, symbol ($@!%*?&) and length >= 8")
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[$@!%*?&])[A-Za-z\\d$@!%*?&]{8,}", message = "password must contains letter, number, symbol ($@!%*?&) and length >= 8")
     private String password;
 
     /**
@@ -53,8 +49,7 @@ public class AddUserReq extends BaseReq {
     /**
      * 创建类型
      */
-    @NotEmpty
-    private String createType;
+    @NotEmpty private String createType;
 
     /**
      * 部门编码
@@ -129,6 +124,7 @@ public class AddUserReq extends BaseReq {
 
     /**
      * 校验请求
+     *
      * @return
      */
     public boolean isValidRequest() {

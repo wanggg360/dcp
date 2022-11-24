@@ -1,11 +1,7 @@
 package com.ht.lc.dcp.common.crypto;
 
-import com.ht.lc.dcp.common.base.ResultCode;
 import com.ht.lc.dcp.common.constants.CipherConst;
 import com.ht.lc.dcp.common.exception.ServiceException;
-import com.ht.lc.dcp.common.http.HttpClientManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Map;

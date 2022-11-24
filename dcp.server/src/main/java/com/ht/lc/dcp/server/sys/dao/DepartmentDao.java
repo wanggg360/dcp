@@ -4,8 +4,6 @@ import com.ht.lc.dcp.server.sys.daobean.DepartmentDaoBean;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 /**
  * @program: dcp
  * @description:
@@ -13,8 +11,7 @@ import java.util.List;
  * @create: 2022-07-29 22:35
  * @Version 1.0
  **/
-@Mapper
-public interface DepartmentDao {
+@Mapper public interface DepartmentDao {
 
     DepartmentDaoBean selectByDeptCode(@Param("deptCode") String deptCode);
 }

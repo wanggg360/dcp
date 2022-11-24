@@ -12,8 +12,7 @@ import java.util.List;
  * @create: 2022-07-29 22:35
  * @Version 1.0
  **/
-@Mapper
-public interface PageDao {
+@Mapper public interface PageDao {
 
     // 根据元素ID查询（非主键ID）
     PageDaoBean selectById(String pid);

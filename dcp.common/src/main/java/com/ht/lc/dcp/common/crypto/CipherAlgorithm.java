@@ -11,13 +11,8 @@ import org.springframework.util.StringUtils;
  * @Version 1.0
  **/
 public enum CipherAlgorithm {
-    AES_GCM_NOPADDING_256(
-            CipherConst.ALG_NAME_AES,
-            CipherConst.ALG_MODE_GCM,
-            CipherConst.ALG_PADDING_NOPADDING,
-            CipherConst.SIZE_256,
-            CipherConst.SIZE_128
-    );
+    AES_GCM_NOPADDING_256(CipherConst.ALG_NAME_AES, CipherConst.ALG_MODE_GCM, CipherConst.ALG_PADDING_NOPADDING,
+        CipherConst.SIZE_256, CipherConst.SIZE_128);
 
     private String algName;
 
@@ -28,6 +23,14 @@ public enum CipherAlgorithm {
     private int keySize;
 
     private int ivSize;
+
+    CipherAlgorithm(String algName, String algMode, String algPadding, int keySize, int ivSize) {
+        this.algName = algName;
+        this.algMode = algMode;
+        this.algPadding = algPadding;
+        this.keySize = keySize;
+        this.ivSize = ivSize;
+    }
 
     public String getAlgName() {
         return algName;
@@ -47,14 +50,6 @@ public enum CipherAlgorithm {
 
     public int getIvSize() {
         return ivSize;
-    }
-
-    CipherAlgorithm(String algName, String algMode, String algPadding, int keySize, int ivSize) {
-        this.algName = algName;
-        this.algMode = algMode;
-        this.algPadding = algPadding;
-        this.keySize = keySize;
-        this.ivSize = ivSize;
     }
 
     public String getTransformationString() {

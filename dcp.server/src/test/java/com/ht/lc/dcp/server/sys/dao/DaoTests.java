@@ -17,21 +17,17 @@ import java.util.List;
  * @create: 2022-08-09 18:42
  * @Version 1.0
  **/
-@Import(SystemConfig.class)
-@SpringBootTest
-public class DaoTests {
+@Import(SystemConfig.class) @SpringBootTest public class DaoTests {
 
-    @Autowired
-    private UserDao userDao;
+    @Autowired private UserDao userDao;
 
-    @Test
-    public void addUser() {
+    @Test public void addUser() {
 
-//        User user = new User();
-//        user.setUserId("018208");
-//        user.setFullName("wanggang");
-//        List<User> lists = userDao.findUser(user);
-//        System.out.println("www");
+        //        User user = new User();
+        //        user.setUserId("018208");
+        //        user.setFullName("wanggang");
+        //        List<User> lists = userDao.findUser(user);
+        //        System.out.println("www");
 
         List<UserDaoBean> aa = new ArrayList<>(4);
         UserDaoBean a = new UserDaoBean();
@@ -54,8 +50,7 @@ public class DaoTests {
         userDao.insertBatch(aa);
     }
 
-    @Test
-    public void queryUser() {
+    @Test public void queryUser() {
         userDao.findByUserId("018220");
         UserDaoBean userDaoBean = new UserDaoBean();
         userDaoBean.setFullName("wang gang");

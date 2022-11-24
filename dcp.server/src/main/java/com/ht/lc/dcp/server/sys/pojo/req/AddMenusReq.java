@@ -14,8 +14,7 @@ import java.util.List;
  **/
 public class AddMenusReq extends BaseReq {
 
-    @NotEmpty
-    List<Menu> menus;
+    @NotEmpty List<Menu> menus;
 
     public List<Menu> getMenus() {
         return menus;

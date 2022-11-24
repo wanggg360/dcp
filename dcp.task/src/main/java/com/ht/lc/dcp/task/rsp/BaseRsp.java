@@ -14,7 +14,8 @@ public class BaseRsp {
 
     private String resultDesc;
 
-    public BaseRsp() {}
+    public BaseRsp() {
+    }
 
     public BaseRsp(String resultCode, String resultDesc) {
         this.resultCode = resultCode;

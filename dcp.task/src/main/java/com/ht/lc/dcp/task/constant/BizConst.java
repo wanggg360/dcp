@@ -68,9 +68,11 @@ public interface BizConst {
 
         String LOC_NOTICE_DETAILS_TEXT_CHILD_BJ = "font > span";
 
-        String LOC_NOTICE_DETAILS_OBJECT_BJ = "div.detail-news > p[style=line-height: 1.5;]:not([align]) > font[face] > span";
+        String LOC_NOTICE_DETAILS_OBJECT_BJ =
+            "div.detail-news > p[style=line-height: 1.5;]:not([align]) > font[face] > span";
 
-        String NOTICE_DETAILS_DATE_FORMAT_PATTERN = "[1-4][0-9]{3}年(([1-9]|[1][0-2])|([0][1-9]|[1][0-2]))月(([1-9]|[1-3][0-9])|([0][1-9]|[1-3][0-9]))日";
+        String NOTICE_DETAILS_DATE_FORMAT_PATTERN =
+            "[1-4][0-9]{3}年(([1-9]|[1][0-2])|([0][1-9]|[1][0-2]))月(([1-9]|[1-3][0-9])|([0][1-9]|[1-3][0-9]))日";
 
         String ATTR_VALUE = "value";
 

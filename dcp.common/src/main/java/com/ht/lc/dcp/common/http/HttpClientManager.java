@@ -1,9 +1,7 @@
 package com.ht.lc.dcp.common.http;
 
-import com.ht.lc.dcp.common.base.ResultCode;
 import com.ht.lc.dcp.common.config.SystemConfig;
 import com.ht.lc.dcp.common.context.SpringContextManager;
-import com.ht.lc.dcp.common.exception.ServiceException;
 import com.ht.lc.dcp.common.utils.HttpClientUtils;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpUriRequest;
@@ -37,24 +35,21 @@ public class HttpClientManager {
 
     private RequestConfig requestConfig;
 
-    public HttpClientManager () {
+    public HttpClientManager() {
         this.httpConfig = SpringContextManager.getInstance().getBean(SystemConfig.HttpConfig.class);
-        this.requestConfig = HttpClientUtils.getDefaultRequestConfig(
-                httpConfig.getReqConnTimeout(),
-                httpConfig.getReqConnRequestTimeout(),
+        this.requestConfig = HttpClientUtils
+            .getDefaultRequestConfig(httpConfig.getReqConnTimeout(), httpConfig.getReqConnRequestTimeout(),
                 httpConfig.getRspTimeout());
-        this.syncHttpClient = SyncHttpClientBuilder.create()
-                .setPoolMaxConnPerRoute(httpConfig.getPoolMaxConnPerRoute())
-                .setPoolMaxConnTotal(httpConfig.getPoolMaxConnTotal())
-                .build();
+        this.syncHttpClient = SyncHttpClientBuilder.create().setPoolMaxConnPerRoute(httpConfig.getPoolMaxConnPerRoute())
+            .setPoolMaxConnTotal(httpConfig.getPoolMaxConnTotal()).build();
     }
 
     public static HttpClientManager getInstance() {
         return INSTANCE;
     }
 
-    public  String doGet(String url, Map<String, String> headers, Map<String, String> params) {
-        if (!CollectionUtils.isEmpty(params)){
+    public String doGet(String url, Map<String, String> headers, Map<String, String> params) {
+        if (!CollectionUtils.isEmpty(params)) {
             LOG.info("ready to build httpget parameters. ");
             url = getUrlWithParameters(url, params);
         }
@@ -75,12 +70,9 @@ public class HttpClientManager {
             StringBuffer sb = new StringBuffer();
             sb.append(url).append("?");
             for (Map.Entry<String, String> entry : params.entrySet()) {
-                sb.append(entry.getKey())
-                        .append("=")
-                        .append(URLEncoder.encode(entry.getValue(), "UTF-8"))
-                        .append("&");
+                sb.append(entry.getKey()).append("=").append(URLEncoder.encode(entry.getValue(), "UTF-8")).append("&");
             }
-            result =  sb.toString().substring(0, sb.length()-1);
+            result = sb.toString().substring(0, sb.length() - 1);
         } catch (UnsupportedEncodingException e) {
             LOG.error("build httpget parameters error, exception : {}. ", e.getMessage());
         }

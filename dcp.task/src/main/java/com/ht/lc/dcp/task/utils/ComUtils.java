@@ -22,7 +22,8 @@ public class ComUtils {
 
     private static final Logger LOG = LoggerFactory.getLogger(ComUtils.class);
 
-    private ComUtils() {}
+    private ComUtils() {
+    }
 
     public static boolean checkStr(String pattern, String source) {
         return Pattern.matches(pattern, source);
@@ -34,6 +35,7 @@ public class ComUtils {
 
     /**
      * 将2000年1月1日转化成时间类型
+     *
      * @param date 日期字符串
      * @return 日期
      */

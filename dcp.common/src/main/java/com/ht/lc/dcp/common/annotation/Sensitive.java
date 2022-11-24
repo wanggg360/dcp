@@ -1,6 +1,7 @@
 package com.ht.lc.dcp.common.annotation;
 
 import com.ht.lc.dcp.common.constants.CipherConst;
+
 import java.lang.annotation.*;
 
 /**
@@ -11,11 +12,7 @@ import java.lang.annotation.*;
  * @Version 1.0
  **/
 
-@Target(ElementType.FIELD)
-@Retention(RetentionPolicy.RUNTIME)
-@Inherited
-@Documented
-public @interface Sensitive {
+@Target(ElementType.FIELD) @Retention(RetentionPolicy.RUNTIME) @Inherited @Documented public @interface Sensitive {
 
     String algorithm() default CipherConst.AES_GCM_256;
 

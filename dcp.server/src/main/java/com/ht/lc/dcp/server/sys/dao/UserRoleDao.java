@@ -12,8 +12,7 @@ import java.util.List;
  * @create: 2022-07-29 22:35
  * @Version 1.0
  **/
-@Mapper
-public interface UserRoleDao {
+@Mapper public interface UserRoleDao {
 
     void deleteByUserId(String userId);
 

@@ -1,5 +1,6 @@
-﻿import type { Page } from '@playwright/test';
-import { test, expect } from '@playwright/test';
+﻿import type {Page} from '@playwright/test';
+import {expect, test} from '@playwright/test';
+
 const { uniq } = require('lodash');
 const RouterConfig = require('../../config/routes').default;
 

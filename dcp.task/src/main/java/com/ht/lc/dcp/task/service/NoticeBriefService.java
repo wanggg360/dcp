@@ -17,6 +17,7 @@ public interface NoticeBriefService {
 
     /**
      * 增加公告简介
+     *
      * @param siteInfo
      * @param taskId
      * @return
@@ -25,6 +26,7 @@ public interface NoticeBriefService {
 
     /**
      * 根据任务ID获取公告简介
+     *
      * @param taskId
      * @return 公告简介list
      */
@@ -32,6 +34,7 @@ public interface NoticeBriefService {
 
     /**
      * 根据条件查询noticebrief
+     *
      * @param taskId
      * @param startDate
      * @param endDate
@@ -41,6 +44,7 @@ public interface NoticeBriefService {
 
     /**
      * 根据条件查询noticebrief
+     *
      * @param daoBean
      * @return
      */

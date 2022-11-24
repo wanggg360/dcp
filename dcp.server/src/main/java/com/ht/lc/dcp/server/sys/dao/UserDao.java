@@ -13,8 +13,7 @@ import java.util.List;
  * @create: 2022-07-29 22:35
  * @Version 1.0
  **/
-@Mapper
-public interface UserDao {
+@Mapper public interface UserDao {
 
     UserDaoBean findByUserId(@Param("userId") String userId);
 

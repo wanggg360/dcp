@@ -14,8 +14,7 @@ import java.util.List;
  **/
 public class AddRolesReq extends BaseReq {
 
-    @NotEmpty
-    List<Role> roles;
+    @NotEmpty List<Role> roles;
 
     public List<Role> getRoles() {
         return roles;

@@ -1,5 +1,4 @@
 package com.ht.lc.dcp.task.service.impl;
-import java.time.LocalDateTime;
 
 import com.ht.lc.dcp.common.http.HttpClientManager;
 import com.ht.lc.dcp.task.dao.NoticeDetailsDao;
@@ -17,6 +16,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -30,16 +30,13 @@ import java.util.stream.Collectors;
  * @create: 2022-03-28 09:30
  * @Version 1.0
  **/
-@Service
-public class AsyncServiceImpl implements AsyncService {
+@Service public class AsyncServiceImpl implements AsyncService {
 
     private static Logger LOG = LoggerFactory.getLogger(AsyncServiceImpl.class);
 
-    @Autowired
-    NoticeDetailsDao noticeDetailsDao;
+    @Autowired NoticeDetailsDao noticeDetailsDao;
 
-    @Async
-    public CompletableFuture<List<NoticeBrief>> getNoticeBriefByPageUrl(String url, int dataType) {
+    @Async public CompletableFuture<List<NoticeBrief>> getNoticeBriefByPageUrl(String url, int dataType) {
         List<NoticeBrief> list = new ArrayList<>(2);
         if (!ComUtils.isValidHtmlUrl(url)) {
             LOG.error("notice brief url is wrong, url: {}. ", url);
@@ -52,8 +49,7 @@ public class AsyncServiceImpl implements AsyncService {
         return CompletableFuture.completedFuture(list);
     }
 
-    @Async
-    public void addNoticeDetails(List<NoticeBrief> noticeBriefs, CountDownLatch latch) {
+    @Async public void addNoticeDetails(List<NoticeBrief> noticeBriefs, CountDownLatch latch) {
         List<NoticeDetails> list = new ArrayList<>(2);
         if (CollectionUtils.isEmpty(noticeBriefs)) {
             LOG.error("notice brief is null, can not get notice details. ");
@@ -66,7 +62,8 @@ public class AsyncServiceImpl implements AsyncService {
                 list.add(nd);
             });
             LOG.info("parse notice details success, size {}. ", list.size());
-            List<NoticeDetailsDaoBean> daoBeans = list.stream().map(nd -> cvt2NoticeDetailsDaoBean(nd)).collect(Collectors.toList());
+            List<NoticeDetailsDaoBean> daoBeans =
+                list.stream().map(nd -> cvt2NoticeDetailsDaoBean(nd)).collect(Collectors.toList());
             noticeDetailsDao.insertBatch(daoBeans);
             LOG.info("insert notice details success, size {}. ", daoBeans.size());
         }

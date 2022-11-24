@@ -12,8 +12,7 @@ import java.util.List;
  * @create: 2022-07-29 22:35
  * @Version 1.0
  **/
-@Mapper
-public interface RoleResourceDao {
+@Mapper public interface RoleResourceDao {
 
     RoleResourceDaoBean selectByRoleId(String rid);
 

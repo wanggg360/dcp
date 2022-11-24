@@ -13,11 +13,11 @@ import java.util.List;
  * @create: 2022-07-29 22:35
  * @Version 1.0
  **/
-@Mapper
-public interface UserDepartmentDao {
+@Mapper public interface UserDepartmentDao {
 
     /**
      * 根据用户ID查询关系
+     *
      * @param userId
      * @return
      */
@@ -25,6 +25,7 @@ public interface UserDepartmentDao {
 
     /**
      * 批量插入
+     *
      * @param records
      */
     void insertBatch(List<UserDepartmentDaoBean> records);
