@@ -19,13 +19,16 @@ import org.springframework.stereotype.Service;
  * @create: 2022-08-11 19:50
  * @Version 1.0
  **/
-@Service public class ResourceServiceImpl implements ResourceService {
+@Service
+public class ResourceServiceImpl implements ResourceService {
 
     private static Logger LOG = LoggerFactory.getLogger(ResourceServiceImpl.class);
 
-    @Autowired PageDao pageDao;
+    @Autowired
+    PageDao pageDao;
 
-    @Autowired MenuDao menuDao;
+    @Autowired
+    MenuDao menuDao;
 
     public ResultObject addPages(AddPagesReq req) {
 

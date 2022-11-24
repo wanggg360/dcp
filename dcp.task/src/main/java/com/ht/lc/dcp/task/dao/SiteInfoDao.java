@@ -13,7 +13,8 @@ import java.util.List;
  * @Version 1.0
  **/
 
-@Mapper public interface SiteInfoDao {
+@Mapper
+public interface SiteInfoDao {
 
     /**
      * 获取siteinfodaobean列表

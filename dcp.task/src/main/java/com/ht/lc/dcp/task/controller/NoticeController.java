@@ -29,15 +29,20 @@ import java.util.List;
  * @Version 1.0
  **/
 
-@RestController @RequestMapping(value = "/notice") public class NoticeController {
+@RestController
+@RequestMapping(value = "/notice")
+public class NoticeController {
 
     private static Logger LOG = LoggerFactory.getLogger(NoticeController.class);
 
-    @Autowired SiteInfoService siteInfoService;
+    @Autowired
+    SiteInfoService siteInfoService;
 
-    @Autowired NoticeBriefService noticeBriefService;
+    @Autowired
+    NoticeBriefService noticeBriefService;
 
-    @Autowired NoticeDetailsService noticeDetailsService;
+    @Autowired
+    NoticeDetailsService noticeDetailsService;
 
     @RequestMapping(value = "/gatherNoticeBriefs", method = RequestMethod.POST)
     public GatherNoticeBriefsRsp gatherNoticeBriefs(@RequestBody GatherNoticeDetailsReq req) {
@@ -56,17 +61,18 @@ import java.util.List;
     public GatherNoticeDetailsRsp gatherNoticeDetails(@RequestBody @Validated GatherNoticeDetailsReq req) {
 
         List<NoticeBrief> noticeBriefs = noticeBriefService
-            .getNoticeBriefsByDateRange(req.getTaskId(), req.getBranchId(), req.getStartDate(), req.getEndDate());
+                .getNoticeBriefsByDateRange(req.getTaskId(), req.getBranchId(), req.getStartDate(), req.getEndDate());
         noticeDetailsService.addNoticeDetailsByBriefs(noticeBriefs);
 
         return new GatherNoticeDetailsRsp(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getDesc());
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET) public GatherNoticeBriefsRsp test() {
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public GatherNoticeBriefsRsp test() {
 
         GatherNoticeBriefsRsp rsp = new GatherNoticeBriefsRsp();
         List<NoticeBrief> lists =
-            noticeBriefService.getNoticeBriefsByDateRange("20220328185400-lOo", "1", "2020-05-30", "2020-12-31");
+                noticeBriefService.getNoticeBriefsByDateRange("20220328185400-lOo", "1", "2020-05-30", "2020-12-31");
         rsp.setResultCode(ResultCode.SUCCESS.getCode());
         rsp.setResultDesc(ResultCode.SUCCESS.getDesc());
         return rsp;

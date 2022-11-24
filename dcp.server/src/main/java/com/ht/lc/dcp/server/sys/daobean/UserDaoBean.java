@@ -31,7 +31,8 @@ public class UserDaoBean {
     /**
      * 密码
      */
-    @Sensitive private String password;
+    @Sensitive
+    private String password;
 
     /**
      * 邮箱

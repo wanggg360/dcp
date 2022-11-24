@@ -19,12 +19,17 @@ import org.springframework.transaction.annotation.Transactional;
  * @Version 1.0
  **/
 
-@DataJpaTest @Import(SystemConfig.class) @AutoConfigureTestDatabase(replace = Replace.NONE)
-@Transactional(propagation = Propagation.NOT_SUPPORTED) public class DepartmentRepositoryTests {
+@DataJpaTest
+@Import(SystemConfig.class)
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Transactional(propagation = Propagation.NOT_SUPPORTED)
+public class DepartmentRepositoryTests {
 
-    @Autowired private DepartmentRepository departmentRepository;
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
-    @Test void addDepartment() {
+    @Test
+    void addDepartment() {
 
     }
 }

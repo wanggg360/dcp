@@ -10,39 +10,59 @@ import java.time.LocalDateTime;
  * @create: 2021-09-07 09:20
  * @Version 1.0
  **/
-@Entity @Table(name = "sys_user") public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Integer id;
-    @Column(name = "user_id", nullable = false, length = 64) private String userId;
+@Entity
+@Table(name = "sys_user")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "user_id", nullable = false, length = 64)
+    private String userId;
 
-    @Column(name = "user_name", nullable = false, length = 256) private String username;
+    @Column(name = "user_name", nullable = false, length = 256)
+    private String username;
 
-    @Column(name = "password", nullable = false, length = 512) private String password;
+    @Column(name = "password", nullable = false, length = 512)
+    private String password;
 
-    @Column(name = "pwd_update_date") private LocalDateTime pwdUpdateTime;
+    @Column(name = "pwd_update_date")
+    private LocalDateTime pwdUpdateTime;
 
-    @Column(name = "email", length = 64) private String email;
+    @Column(name = "email", length = 64)
+    private String email;
 
-    @Column(name = "mobile", length = 20) private String mobile;
+    @Column(name = "mobile", length = 20)
+    private String mobile;
 
-    @Column(name = "status") private char status;
+    @Column(name = "status")
+    private char status;
 
-    @Column(name = "del_flag") private char deleteFlag;
+    @Column(name = "del_flag")
+    private char deleteFlag;
 
-    @Column(name = "create_time", nullable = false) private LocalDateTime createTime;
+    @Column(name = "create_time", nullable = false)
+    private LocalDateTime createTime;
 
-    @Column(name = "update_time") private LocalDateTime updateTime;
+    @Column(name = "update_time")
+    private LocalDateTime updateTime;
 
-    @Column(name = "update_by", length = 64) private String updateBy;
+    @Column(name = "update_by", length = 64)
+    private String updateBy;
 
-    @Column(name = "create_by", length = 64) private String createBy;
+    @Column(name = "create_by", length = 64)
+    private String createBy;
 
-    @Column(name = "create_type") private char createType;
+    @Column(name = "create_type")
+    private char createType;
 
-    @Column(name = "dept_code") private String departmentCode;
+    @Column(name = "dept_code")
+    private String departmentCode;
 
-    @Column(name = "avatar", length = 2048) private String avatar;
+    @Column(name = "avatar", length = 2048)
+    private String avatar;
 
-    @Column(name = "remark", length = 512) private String remark;
+    @Column(name = "remark", length = 512)
+    private String remark;
 
     public Integer getId() {
         return id;

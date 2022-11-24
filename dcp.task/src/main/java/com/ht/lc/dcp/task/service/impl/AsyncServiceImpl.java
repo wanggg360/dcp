@@ -30,13 +30,16 @@ import java.util.stream.Collectors;
  * @create: 2022-03-28 09:30
  * @Version 1.0
  **/
-@Service public class AsyncServiceImpl implements AsyncService {
+@Service
+public class AsyncServiceImpl implements AsyncService {
 
     private static Logger LOG = LoggerFactory.getLogger(AsyncServiceImpl.class);
 
-    @Autowired NoticeDetailsDao noticeDetailsDao;
+    @Autowired
+    NoticeDetailsDao noticeDetailsDao;
 
-    @Async public CompletableFuture<List<NoticeBrief>> getNoticeBriefByPageUrl(String url, int dataType) {
+    @Async
+    public CompletableFuture<List<NoticeBrief>> getNoticeBriefByPageUrl(String url, int dataType) {
         List<NoticeBrief> list = new ArrayList<>(2);
         if (!ComUtils.isValidHtmlUrl(url)) {
             LOG.error("notice brief url is wrong, url: {}. ", url);
@@ -49,7 +52,8 @@ import java.util.stream.Collectors;
         return CompletableFuture.completedFuture(list);
     }
 
-    @Async public void addNoticeDetails(List<NoticeBrief> noticeBriefs, CountDownLatch latch) {
+    @Async
+    public void addNoticeDetails(List<NoticeBrief> noticeBriefs, CountDownLatch latch) {
         List<NoticeDetails> list = new ArrayList<>(2);
         if (CollectionUtils.isEmpty(noticeBriefs)) {
             LOG.error("notice brief is null, can not get notice details. ");
@@ -63,7 +67,7 @@ import java.util.stream.Collectors;
             });
             LOG.info("parse notice details success, size {}. ", list.size());
             List<NoticeDetailsDaoBean> daoBeans =
-                list.stream().map(nd -> cvt2NoticeDetailsDaoBean(nd)).collect(Collectors.toList());
+                    list.stream().map(nd -> cvt2NoticeDetailsDaoBean(nd)).collect(Collectors.toList());
             noticeDetailsDao.insertBatch(daoBeans);
             LOG.info("insert notice details success, size {}. ", daoBeans.size());
         }

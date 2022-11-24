@@ -12,7 +12,8 @@ import java.util.List;
  * @create: 2022-03-24 17:07
  * @Version 1.0
  **/
-@Mapper public interface NoticeDetailsDao {
+@Mapper
+public interface NoticeDetailsDao {
 
     /**
      * 获取noticedetailsdaobean列表

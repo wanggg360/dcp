@@ -25,20 +25,23 @@ import java.util.Objects;
  * @Version 1.0
  **/
 
-@Intercepts({@Signature(type = ResultSetHandler.class, method = "handleResultSets", args = Statement.class)}) @Component
+@Intercepts({@Signature(type = ResultSetHandler.class, method = "handleResultSets", args = Statement.class)})
+@Component
 public class MybatisDataDecryptInterceptor implements Interceptor {
 
     private static final Logger LOG = LoggerFactory.getLogger(MybatisDataDecryptInterceptor.class);
 
-    @Autowired SystemConfig.KeyConfig keyConfig;
+    @Autowired
+    SystemConfig.KeyConfig keyConfig;
 
-    @Override public Object intercept(Invocation invocation) throws Throwable {
+    @Override
+    public Object intercept(Invocation invocation) throws Throwable {
         //取出查询的结果
         Object resultObject = invocation.proceed();
         if (Objects.nonNull(resultObject)) {
             //基于selectList
             if (resultObject instanceof ArrayList) {
-                ArrayList resultList = (ArrayList)resultObject;
+                ArrayList resultList = (ArrayList) resultObject;
                 if (!CollectionUtils.isEmpty(resultList)) {
                     for (Object result : resultList) {
                         //逐一解密
@@ -52,7 +55,8 @@ public class MybatisDataDecryptInterceptor implements Interceptor {
         return resultObject;
     }
 
-    @Override public Object plugin(Object target) {
+    @Override
+    public Object plugin(Object target) {
         return Plugin.wrap(target, this);
     }
 
@@ -76,7 +80,7 @@ public class MybatisDataDecryptInterceptor implements Interceptor {
                     // 设置解密结果
                     if (obj instanceof String) {
                         String decryptStr = CipherManager.getInstance()
-                            .decrypt(sensitive.algorithm(), (String)obj, keyConfig.getAesKey(), keyConfig.getAesIv());
+                                .decrypt(sensitive.algorithm(), (String) obj, keyConfig.getAesKey(), keyConfig.getAesIv());
                         f.set(result, decryptStr);
                     }
                 } catch (Throwable t) {

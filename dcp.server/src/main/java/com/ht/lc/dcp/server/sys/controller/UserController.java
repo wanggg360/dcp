@@ -17,20 +17,26 @@ import org.springframework.web.bind.annotation.*;
  * @Version 1.0
  **/
 
-@CrossOrigin @RestController @RequestMapping(value = "/api/user") public class UserController {
+@CrossOrigin
+@RestController
+@RequestMapping(value = "/api/user")
+public class UserController {
 
-    @Autowired UserService userService;
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultObject login(@RequestBody @Validated LoginReq req) {
         return userService.login(req);
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST) public ResultObject logout() {
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public ResultObject logout() {
         return ResultObject.success("");
     }
 
-    @RequestMapping(value = "/addUser") public ResultObject addUser(@RequestBody @Validated AddUserReq req) {
+    @RequestMapping(value = "/addUser")
+    public ResultObject addUser(@RequestBody @Validated AddUserReq req) {
         return userService.addUser(req);
     }
 

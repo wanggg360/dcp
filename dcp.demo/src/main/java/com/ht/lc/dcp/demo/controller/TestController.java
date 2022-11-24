@@ -19,12 +19,16 @@ import java.time.LocalDateTime;
  * @Version 1.0
  **/
 
-@RestController @RequestMapping(value = "/test") public class TestController {
+@RestController
+@RequestMapping(value = "/test")
+public class TestController {
 
     private static Logger LOG = LoggerFactory.getLogger("testlogger");
-    @Autowired UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
-    @RequestMapping(value = "/getConfig", method = RequestMethod.GET) public void getConfig() {
+    @RequestMapping(value = "/getConfig", method = RequestMethod.GET)
+    public void getConfig() {
 
         User user1 = new User();
         user1.setUserId("018200");

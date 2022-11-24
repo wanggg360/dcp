@@ -38,10 +38,10 @@ public class HttpClientManager {
     public HttpClientManager() {
         this.httpConfig = SpringContextManager.getInstance().getBean(SystemConfig.HttpConfig.class);
         this.requestConfig = HttpClientUtils
-            .getDefaultRequestConfig(httpConfig.getReqConnTimeout(), httpConfig.getReqConnRequestTimeout(),
-                httpConfig.getRspTimeout());
+                .getDefaultRequestConfig(httpConfig.getReqConnTimeout(), httpConfig.getReqConnRequestTimeout(),
+                        httpConfig.getRspTimeout());
         this.syncHttpClient = SyncHttpClientBuilder.create().setPoolMaxConnPerRoute(httpConfig.getPoolMaxConnPerRoute())
-            .setPoolMaxConnTotal(httpConfig.getPoolMaxConnTotal()).build();
+                .setPoolMaxConnTotal(httpConfig.getPoolMaxConnTotal()).build();
     }
 
     public static HttpClientManager getInstance() {
@@ -54,7 +54,7 @@ public class HttpClientManager {
             url = getUrlWithParameters(url, params);
         }
         // 生成httpGet请求
-        HttpGet req = (HttpGet)HttpClientUtils.getHttpRequest(url, HttpMethod.GET);
+        HttpGet req = (HttpGet) HttpClientUtils.getHttpRequest(url, HttpMethod.GET);
         req.setConfig(requestConfig);
         // 处理header
         if (!CollectionUtils.isEmpty(headers)) {

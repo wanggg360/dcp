@@ -17,7 +17,8 @@ public class ApplicationReadyEventListener implements ApplicationListener<Applic
 
     private static final Logger log = LoggerFactory.getLogger(ApplicationReadyEventListener.class);
 
-    @Override public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
+    @Override
+    public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         log.info("Get App ready event.");
     }
 }

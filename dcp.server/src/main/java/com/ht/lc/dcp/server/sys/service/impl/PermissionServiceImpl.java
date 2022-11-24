@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @Version 1.0
  **/
 
-@Service public class PermissionServiceImpl implements PermissionService {
+@Service
+public class PermissionServiceImpl implements PermissionService {
 
     private static Logger LOG = LoggerFactory.getLogger(PermissionServiceImpl.class);
 
-    @Autowired RoleDao roleDao;
+    @Autowired
+    RoleDao roleDao;
 
     public ResultObject addRoles(@RequestBody @Validated AddRolesReq req) {
         return null;

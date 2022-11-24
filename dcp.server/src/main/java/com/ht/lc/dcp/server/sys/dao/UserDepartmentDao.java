@@ -13,7 +13,8 @@ import java.util.List;
  * @create: 2022-07-29 22:35
  * @Version 1.0
  **/
-@Mapper public interface UserDepartmentDao {
+@Mapper
+public interface UserDepartmentDao {
 
     /**
      * 根据用户ID查询关系

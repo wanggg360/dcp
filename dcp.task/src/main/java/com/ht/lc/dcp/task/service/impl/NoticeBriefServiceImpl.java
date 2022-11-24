@@ -37,15 +37,19 @@ import java.util.stream.Collectors;
  * @create: 2022-03-24 19:17
  * @Version 1.0
  **/
-@Service public class NoticeBriefServiceImpl implements NoticeBriefService {
+@Service
+public class NoticeBriefServiceImpl implements NoticeBriefService {
 
     private static Logger LOG = LoggerFactory.getLogger(NoticeBriefServiceImpl.class);
 
-    @Autowired AsyncService asyncService;
+    @Autowired
+    AsyncService asyncService;
 
-    @Autowired NoticeBriefDao noticeBriefDao;
+    @Autowired
+    NoticeBriefDao noticeBriefDao;
 
-    @Override public int addNoticeBriefBySiteInfo(SiteInfo siteInfo, String taskId) {
+    @Override
+    public int addNoticeBriefBySiteInfo(SiteInfo siteInfo, String taskId) {
         int result = 0;
         if (Objects.isNull(siteInfo)) {
             LOG.error("siteinfo is null, please check! ");
@@ -65,21 +69,21 @@ import java.util.stream.Collectors;
             NoticePageInfo pageInfo = JsoupUtils.getNoticePageInfo(rspdoc);
             if (pageInfo.getTotalCnt() > 0 && pageInfo.getPageCnt() > 0) {
                 LOG.info("get pageinfo success, branch: {}, total: {}, page: {}. ", siteInfo.getBranchName(),
-                    pageInfo.getTotalCnt(), pageInfo.getPageCnt());
+                        pageInfo.getTotalCnt(), pageInfo.getPageCnt());
                 // 解析出pageinfo后直接处理第一页
                 briefInfos.addAll(JsoupUtils.getNoticeBriefListFromDoc(rspdoc, siteInfo.getDataType()));
                 List<String> supMBriefUrls = cvtBaseUrl2PageUrlList(reqUrl, pageInfo.getPageCnt());
                 // 异步调用各分页的url，完成后汇聚结果
                 CompletableFuture[] futures =
-                    supMBriefUrls.stream().map(url -> asyncService.getNoticeBriefByPageUrl(url, siteInfo.getDataType()))
-                        .toArray(CompletableFuture[]::new);
+                        supMBriefUrls.stream().map(url -> asyncService.getNoticeBriefByPageUrl(url, siteInfo.getDataType()))
+                                .toArray(CompletableFuture[]::new);
                 CompletableFuture<Void> all = CompletableFuture.allOf(futures);
                 all.thenAccept(s -> LOG.info("combine all page result accept. "));
                 all.whenComplete((v, h) -> {
                     LOG.info("combine all page result completed. ");
                 }).join();
                 for (CompletableFuture f : futures) {
-                    briefInfos.addAll((List<NoticeBrief>)f.get());
+                    briefInfos.addAll((List<NoticeBrief>) f.get());
                 }
                 if (!CollectionUtils.isEmpty(briefInfos)) {
                     noticeBriefDao.insertBatch(cvt2NoticeBriefDaoBeanList(briefInfos, siteInfo, taskId));
@@ -134,35 +138,38 @@ import java.util.stream.Collectors;
         return urls;
     }
 
-    @Override public List<NoticeBrief> getNoticeBriefsByTaskId(String taskId) {
+    @Override
+    public List<NoticeBrief> getNoticeBriefsByTaskId(String taskId) {
         NoticeBriefDaoBean db = new NoticeBriefDaoBean();
         db.setTaskId(taskId);
         List<NoticeBriefDaoBean> briefDbs = noticeBriefDao.getListByDaoBean(db);
         return briefDbs.stream().map(dbs -> cvt2NoticeBrief(dbs)).collect(Collectors.toList());
     }
 
-    @Override public List<NoticeBrief> getNoticeBriefsByDateRange(String taskId, String branchId, String startDate,
-        String endDate) {
+    @Override
+    public List<NoticeBrief> getNoticeBriefsByDateRange(String taskId, String branchId, String startDate,
+                                                        String endDate) {
         NoticeBriefDaoBean db = new NoticeBriefDaoBean();
         db.setTaskId(taskId);
         db.setBranchId(branchId);
         if (StringUtils.hasText(startDate)) {
             if (ComUtils.checkStr(BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, startDate)) {
                 db.setStartDate(
-                    LocalDate.parse(startDate, DateTimeFormatter.ofPattern(BizConst.Common.DATE_FORMAT_NORMAL)));
+                        LocalDate.parse(startDate, DateTimeFormatter.ofPattern(BizConst.Common.DATE_FORMAT_NORMAL)));
             }
         }
         if (StringUtils.hasText(endDate)) {
             if (ComUtils.checkStr(BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, endDate)) {
                 db.setEndDate(
-                    LocalDate.parse(endDate, DateTimeFormatter.ofPattern(BizConst.Common.DATE_FORMAT_NORMAL)));
+                        LocalDate.parse(endDate, DateTimeFormatter.ofPattern(BizConst.Common.DATE_FORMAT_NORMAL)));
             }
         }
         List<NoticeBriefDaoBean> briefDbs = noticeBriefDao.getListByDaoBean(db);
         return briefDbs.stream().map(dbs -> cvt2NoticeBrief(dbs)).collect(Collectors.toList());
     }
 
-    @Override public List<NoticeBrief> getNoticeBriefsByDaoBean(NoticeBriefDaoBean daoBean) {
+    @Override
+    public List<NoticeBrief> getNoticeBriefsByDaoBean(NoticeBriefDaoBean daoBean) {
         if (Objects.isNull(daoBean)) {
             LOG.error("input dao bean is nu");
             return null;

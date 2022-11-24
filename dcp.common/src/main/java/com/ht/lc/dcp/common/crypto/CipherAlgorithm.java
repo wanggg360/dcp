@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
  **/
 public enum CipherAlgorithm {
     AES_GCM_NOPADDING_256(CipherConst.ALG_NAME_AES, CipherConst.ALG_MODE_GCM, CipherConst.ALG_PADDING_NOPADDING,
-        CipherConst.SIZE_256, CipherConst.SIZE_128);
+            CipherConst.SIZE_256, CipherConst.SIZE_128);
 
     private String algName;
 

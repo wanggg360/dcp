@@ -12,9 +12,12 @@ import javax.validation.constraints.Size;
  **/
 public class LoginReq extends BaseReq {
 
-    @NotBlank @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10") private String userId;
+    @NotBlank
+    @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10")
+    private String userId;
 
-    @NotBlank private String password;
+    @NotBlank
+    private String password;
 
     public String getUserId() {
         return userId;

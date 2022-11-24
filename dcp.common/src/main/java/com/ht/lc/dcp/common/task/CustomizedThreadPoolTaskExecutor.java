@@ -28,35 +28,41 @@ public class CustomizedThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
             return;
         }
         LOG.info("CorePoolSize: {}, MaxPoolSize: {}, TaskCount: {}, ActiveCount: {}.", te.getCorePoolSize(),
-            te.getMaximumPoolSize(), te.getTaskCount(), te.getActiveCount());
+                te.getMaximumPoolSize(), te.getTaskCount(), te.getActiveCount());
     }
 
-    @Override public void execute(Runnable task) {
+    @Override
+    public void execute(Runnable task) {
         threadPoolInfo();
         super.execute(task);
     }
 
-    @Override public void execute(Runnable task, long startTimeout) {
+    @Override
+    public void execute(Runnable task, long startTimeout) {
         threadPoolInfo();
         super.execute(task, startTimeout);
     }
 
-    @Override public Future<?> submit(Runnable task) {
+    @Override
+    public Future<?> submit(Runnable task) {
         threadPoolInfo();
         return super.submit(task);
     }
 
-    @Override public <T> Future<T> submit(Callable<T> task) {
+    @Override
+    public <T> Future<T> submit(Callable<T> task) {
         threadPoolInfo();
         return super.submit(task);
     }
 
-    @Override public ListenableFuture<?> submitListenable(Runnable task) {
+    @Override
+    public ListenableFuture<?> submitListenable(Runnable task) {
         threadPoolInfo();
         return super.submitListenable(task);
     }
 
-    @Override public <T> ListenableFuture<T> submitListenable(Callable<T> task) {
+    @Override
+    public <T> ListenableFuture<T> submitListenable(Callable<T> task) {
         threadPoolInfo();
         return super.submitListenable(task);
     }

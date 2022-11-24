@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  **/
 
-@Component public class SpringContextManager implements ApplicationContextAware {
+@Component
+public class SpringContextManager implements ApplicationContextAware {
 
     private static SpringContextManager INSTANCE = new SpringContextManager();
 
@@ -26,7 +27,8 @@ import org.springframework.stereotype.Component;
         return INSTANCE;
     }
 
-    @Override public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
 

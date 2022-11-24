@@ -23,12 +23,15 @@ public class AddUserReq extends BaseReq {
     /**
      * 工号
      */
-    @NotEmpty @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10") private String userId;
+    @NotEmpty
+    @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10")
+    private String userId;
 
     /**
      * 全名
      */
-    @NotEmpty private String fullName;
+    @NotEmpty
+    private String fullName;
 
     /**
      * 密码
@@ -49,7 +52,8 @@ public class AddUserReq extends BaseReq {
     /**
      * 创建类型
      */
-    @NotEmpty private String createType;
+    @NotEmpty
+    private String createType;
 
     /**
      * 部门编码

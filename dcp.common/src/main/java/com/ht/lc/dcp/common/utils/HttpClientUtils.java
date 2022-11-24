@@ -51,8 +51,8 @@ public class HttpClientUtils {
 
     public static RequestConfig getDefaultRequestConfig(int connTimeout, int connReqTimeout, int rspTimeout) {
         return RequestConfig.custom().setConnectTimeout(connTimeout, TimeUnit.SECONDS)
-            .setConnectionRequestTimeout(connReqTimeout, TimeUnit.SECONDS)
-            .setResponseTimeout(rspTimeout, TimeUnit.SECONDS).build();
+                .setConnectionRequestTimeout(connReqTimeout, TimeUnit.SECONDS)
+                .setResponseTimeout(rspTimeout, TimeUnit.SECONDS).build();
     }
 
     // 信任所有的证书
@@ -61,8 +61,9 @@ public class HttpClientUtils {
         SSLContext sslContext = null;
         try {
             sslContext = SSLContexts.custom().loadTrustMaterial(new TrustStrategy() {
-                @Override public boolean isTrusted(X509Certificate[] x509Certificates, String s)
-                    throws CertificateException {
+                @Override
+                public boolean isTrusted(X509Certificate[] x509Certificates, String s)
+                        throws CertificateException {
                     return true;
                 }
             }).build();
@@ -74,18 +75,18 @@ public class HttpClientUtils {
 
     public static SSLConnectionSocketFactory getDefaultSSLSocketFactory(SSLContext sslContext) {
         return SSLConnectionSocketFactoryBuilder.create().setSslContext(sslContext)
-            .setTlsVersions(TLS.V_1_0, TLS.V_1_1, TLS.V_1_2, TLS.V_1_3).build();
+                .setTlsVersions(TLS.V_1_0, TLS.V_1_1, TLS.V_1_2, TLS.V_1_3).build();
     }
 
     public static HttpClientConnectionManager getConnectManager(SSLConnectionSocketFactory sslcsf, int maxConnTotal,
-        int maxConnPerRoute) {
+                                                                int maxConnPerRoute) {
         PoolingHttpClientConnectionManager pool = null;
         if (maxConnTotal <= 0 || maxConnPerRoute <= 0) {
             LOG.error("get http connection pool paramter wrong, use default config.");
             pool = PoolingHttpClientConnectionManagerBuilder.create().setSSLSocketFactory(sslcsf).build();
         } else {
             pool = PoolingHttpClientConnectionManagerBuilder.create().setSSLSocketFactory(sslcsf)
-                .setMaxConnTotal(maxConnTotal).setMaxConnPerRoute(maxConnPerRoute).build();
+                    .setMaxConnTotal(maxConnTotal).setMaxConnPerRoute(maxConnPerRoute).build();
         }
         return pool;
     }
@@ -118,7 +119,8 @@ public class HttpClientUtils {
     public static String getHttpResponseString(HttpUriRequest req, CloseableHttpClient client) {
         String response = "";
         final HttpClientResponseHandler<String> handler = new HttpClientResponseHandler<String>() {
-            @Override public String handleResponse(final ClassicHttpResponse response) {
+            @Override
+            public String handleResponse(final ClassicHttpResponse response) {
                 String result = "";
                 final int status = response.getCode();
                 LOG.info("response status error, status code: {}. ", status);

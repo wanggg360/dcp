@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @create: 2022-08-12 19:43
  * @Version 1.0
  **/
-@RestController @RequestMapping(value = "/api/resource")
+@RestController
+@RequestMapping(value = "/api/resource")
 
 public class ResourceController {
 
-    @Autowired private ResourceService resourceService;
+    @Autowired
+    private ResourceService resourceService;
 
     @RequestMapping(value = "/addPages", method = RequestMethod.POST)
     public ResultObject addPages(@RequestBody @Validated AddPagesReq req) {

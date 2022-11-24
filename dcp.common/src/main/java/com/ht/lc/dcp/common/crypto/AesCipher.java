@@ -22,9 +22,9 @@ public class AesCipher extends AbstractCipher {
     public static void main(String[] args) {
         AesCipher aes = new AesCipher(CipherAlgorithm.AES_GCM_NOPADDING_256);
         String aa = aes.encrypt("root", "f4fd5f31498ac8db4f9262e061200cd2a9a52ad4fd1f37ffe8c59675d3b0207e",
-            "37f82343accd6ee494f792601c46e686");
+                "37f82343accd6ee494f792601c46e686");
         String org = aes.decrypt(aa, "f4fd5f31498ac8db4f9262e061200cd2a9a52ad4fd1f37ffe8c59675d3b0207e",
-            "37f82343accd6ee494f792601c46e686");
+                "37f82343accd6ee494f792601c46e686");
         System.out.println("===== encrypt : " + aa);
         System.out.println("===== decrypt : " + org);
     }
@@ -34,7 +34,7 @@ public class AesCipher extends AbstractCipher {
             throw new ServiceException("aes encrypt error, srcdata or key or iv string is blank. ");
         }
         byte[] encryptData =
-            encrypt(src.getBytes(StandardCharsets.UTF_8), CipherUtils.decodeHex(hexKey), CipherUtils.decodeHex(hexIV));
+                encrypt(src.getBytes(StandardCharsets.UTF_8), CipherUtils.decodeHex(hexKey), CipherUtils.decodeHex(hexIV));
         return CipherUtils.encodeHexString(encryptData);
 
     }
@@ -44,7 +44,7 @@ public class AesCipher extends AbstractCipher {
             throw new ServiceException("aes decrypt error, srcdata or key or iv string is blank. ");
         }
         return new String(
-            decrypt(CipherUtils.decodeHex(src), CipherUtils.decodeHex(hexKey), CipherUtils.decodeHex(hexIV)));
+                decrypt(CipherUtils.decodeHex(src), CipherUtils.decodeHex(hexKey), CipherUtils.decodeHex(hexIV)));
     }
 
 }

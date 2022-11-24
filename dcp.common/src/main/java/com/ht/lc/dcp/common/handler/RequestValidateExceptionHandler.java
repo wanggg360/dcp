@@ -23,7 +23,8 @@ import java.util.List;
  * @Version 1.0
  **/
 
-@RestControllerAdvice public class RequestValidateExceptionHandler {
+@RestControllerAdvice
+public class RequestValidateExceptionHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(RequestValidateExceptionHandler.class);
 
@@ -33,26 +34,27 @@ import java.util.List;
      * @param exception
      * @return
      */
-    @ExceptionHandler(MethodArgumentNotValidException.class) public ResultObject handleMethodArgumentNotValidException(
-        MethodArgumentNotValidException exception) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResultObject handleMethodArgumentNotValidException(
+            MethodArgumentNotValidException exception) {
         BindingResult result = exception.getBindingResult();
         String message = "";
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             if (!CollectionUtils.isEmpty(errors)) {
                 errors.forEach(p -> {
-                    FieldError fieldError = (FieldError)p;
+                    FieldError fieldError = (FieldError) p;
                     LOG.error(
-                        "request parameter wrong : object: " + fieldError.getObjectName() + ", field: " + fieldError
-                            .getField() + ", errorMessage: " + fieldError.getDefaultMessage() + ". ");
+                            "request parameter wrong : object: " + fieldError.getObjectName() + ", field: " + fieldError
+                                    .getField() + ", errorMessage: " + fieldError.getDefaultMessage() + ". ");
                 });
 
-                FieldError fieldError = (FieldError)errors.get(0);
+                FieldError fieldError = (FieldError) errors.get(0);
                 message = fieldError.getDefaultMessage();
             }
         }
         return ResultObject.error(ResultCode.SYS_REQ_PARAM_ERROR.getCode(),
-            message == "" ? ResultCode.SYS_REQ_PARAM_ERROR.getDesc() : message);
+                message == "" ? ResultCode.SYS_REQ_PARAM_ERROR.getDesc() : message);
     }
 
     /**
@@ -61,8 +63,9 @@ import java.util.List;
      * @param exception 错误
      * @return 错误信息
      */
-    @ExceptionHandler(HttpMessageConversionException.class) public ResultObject parameterTypeException(
-        HttpMessageConversionException exception) {
+    @ExceptionHandler(HttpMessageConversionException.class)
+    public ResultObject parameterTypeException(
+            HttpMessageConversionException exception) {
         LOG.error(exception.getCause().getLocalizedMessage());
         return ResultObject.error(ResultCode.SYS_REQ_PARAM_ERROR);
     }

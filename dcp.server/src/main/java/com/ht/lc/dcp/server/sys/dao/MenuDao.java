@@ -10,7 +10,8 @@ import org.apache.ibatis.annotations.Mapper;
  * @create: 2022-07-29 22:35
  * @Version 1.0
  **/
-@Mapper public interface MenuDao {
+@Mapper
+public interface MenuDao {
 
     // 根据元素ID查询（非主键ID）
     MenuDaoBean selectById(String mid);

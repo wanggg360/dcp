@@ -47,7 +47,7 @@ public class SyncHttpClientBuilder {
     public CloseableHttpClient build() {
 
         return HttpClients.custom().setConnectionManager(HttpClientUtils
-            .getConnectManager(HttpClientUtils.getDefaultSSLSocketFactory(HttpClientUtils.getDefaultSSLContext()),
-                poolMaxConnTotal, poolMaxConnPerRoute)).build();
+                .getConnectManager(HttpClientUtils.getDefaultSSLSocketFactory(HttpClientUtils.getDefaultSSLContext()),
+                        poolMaxConnTotal, poolMaxConnPerRoute)).build();
     }
 }

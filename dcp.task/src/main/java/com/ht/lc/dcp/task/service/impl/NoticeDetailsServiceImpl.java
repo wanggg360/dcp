@@ -24,15 +24,19 @@ import java.util.concurrent.CountDownLatch;
  * @create: 2022-04-02 17:21
  * @Version 1.0
  **/
-@Service public class NoticeDetailsServiceImpl implements NoticeDetailsService {
+@Service
+public class NoticeDetailsServiceImpl implements NoticeDetailsService {
 
     private static Logger LOG = LoggerFactory.getLogger(NoticeDetailsServiceImpl.class);
 
-    @Autowired AsyncService asyncService;
+    @Autowired
+    AsyncService asyncService;
 
-    @Autowired NoticeDetailsDao noticeDetailsDao;
+    @Autowired
+    NoticeDetailsDao noticeDetailsDao;
 
-    @Override public void addNoticeDetailsByBriefs(List<NoticeBrief> briefs) {
+    @Override
+    public void addNoticeDetailsByBriefs(List<NoticeBrief> briefs) {
         if (CollectionUtils.isEmpty(briefs)) {
             LOG.error("noticebriefs list empty, will return. ");
             return;

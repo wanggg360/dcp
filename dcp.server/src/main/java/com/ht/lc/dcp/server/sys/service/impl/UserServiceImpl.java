@@ -32,17 +32,22 @@ import java.util.Objects;
  * @Version 1.0
  **/
 
-@Service public class UserServiceImpl implements UserService {
+@Service
+public class UserServiceImpl implements UserService {
 
     private static Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    @Autowired UserDao userDao;
+    @Autowired
+    UserDao userDao;
 
-    @Autowired UserDepartmentDao userDepartmentDao;
+    @Autowired
+    UserDepartmentDao userDepartmentDao;
 
-    @Autowired DepartmentDao departmentDao;
+    @Autowired
+    DepartmentDao departmentDao;
 
-    @Override public ResultObject login(LoginReq req) {
+    @Override
+    public ResultObject login(LoginReq req) {
         UserDaoBean userDaoBean = userDao.findByUserId(req.getUserId());
         if (Objects.isNull(userDaoBean)) {
             LOG.error("can't find such user, id: {}. ", req.getUserId());
@@ -56,7 +61,8 @@ import java.util.Objects;
         return ResultObject.success("");
     }
 
-    @Override public ResultObject addUser(@RequestBody AddUserReq req) {
+    @Override
+    public ResultObject addUser(@RequestBody AddUserReq req) {
         // 校验请求参数
         if (!req.isValidRequest()) {
             LOG.error("email, mobile or createtype may wrong, please check! ");
@@ -112,7 +118,8 @@ import java.util.Objects;
         return ResultObject.success("");
     }
 
-    @Override public ResultObject queryUserDetails(QueryUserDetailReq req) {
+    @Override
+    public ResultObject queryUserDetails(QueryUserDetailReq req) {
 
         return ResultObject.success("");
     }
