@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
  * @create: 2022-10-24 19:11
  * @Version 1.0
  **/
-public class QueryUserDetailReq extends BaseReq {
+public class QueryUserDetailsReq extends BaseReq {
 
     /**
      * 用户ID
@@ -18,4 +18,12 @@ public class QueryUserDetailReq extends BaseReq {
     @NotEmpty
     @Size(min = 5, max = 10, message = "size must larger than 5, smaller than 10")
     private String userId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

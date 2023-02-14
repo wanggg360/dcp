@@ -3,7 +3,7 @@ package com.ht.lc.dcp.server.sys.service;
 import com.ht.lc.dcp.common.base.ResultObject;
 import com.ht.lc.dcp.server.sys.pojo.req.AddUserReq;
 import com.ht.lc.dcp.server.sys.pojo.req.LoginReq;
-import com.ht.lc.dcp.server.sys.pojo.req.QueryUserDetailReq;
+import com.ht.lc.dcp.server.sys.pojo.req.QueryUserDetailsReq;
 
 /**
  * @program: dcp
@@ -36,5 +36,7 @@ public interface UserService {
      * @param req
      * @return
      */
-    ResultObject queryUserDetails(QueryUserDetailReq req);
+    ResultObject queryUserDetails(QueryUserDetailsReq req);
+
+
 }

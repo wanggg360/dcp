@@ -50,37 +50,134 @@ export default defineConfig({
         },
       ],
     },
+
+    // 根路径重定向
+    {
+      path: '/',
+      redirect: '/home',
+    },
+
+    // 首页
+    {
+      name: 'home',
+      icon: 'home',
+      path: '/home',
+      component: './home'
+    },
+
+    // 工作空间
     {
       name: 'workspace',
       icon: 'desktop',
       path: '/workspace',
       routes: [
         {
-          path: '/workspace',
-          redirect: '/workspace/home',
+          name: 'process-center',
+          path: '/workspace/process-center',
+          component: './account/settings',
+          routes: [
+            {
+              path: '/workspace/process-center',
+              redirect: '/workspace/process-center/my-process',
+            },
+            {
+              name: 'new-process',
+              path: '/workspace/process-center/new-process',
+              component: './list/search/articles',
+            },
+            {
+              name: 'my-process',
+              path: '/workspace/process-center/my-process',
+              component: './list/search/articles',
+            },
+            {
+              name: 'process-map',
+              path: '/workspace/process-center/process-map',
+              component: './list/search/articles',
+            }
+          ]
         },
         {
-          name: 'home',
-          icon: 'home',
-          path: '/workspace/home',
-          component: './workspace/home',
+          name: 'task-center',
+          path: '/workspace/task-center',
+          component: './account/settings',
+          routes: [
+            {
+              path: '/workspace/task-center',
+              redirect: '/workspace/task-center/my-task',
+            },
+            {
+              name: 'new-task',
+              path: '/workspace/task-center/new-task',
+              component: './list/search/articles',
+            },
+            {
+              name: 'my-task',
+              path: '/workspace/task-center/my-task',
+              component: './list/search/articles',
+            }
+          ]
         },
         {
-          name: 'center',
-          icon: 'user',
-          path: '/workspace/center',
+          name: 'warn-center',
+          path: '/workspace/warn-center',
+          component: './account/settings',
+        },
+        {
+          name: 'my-profile',
+          path: '/workspace/my-profile',
           component: './account/settings',
         }
       ],
     },
 
-
-
-
-
-
-
-
+    // 系统管理
+    {
+      name: 'system',
+      icon: 'setting',
+      path: '/system',
+      routes: [
+        {
+          name: 'configuration',
+          path: '/system/configuration',
+          component: './account/center',
+          routes: [
+            {
+              name: 'parameter',
+              path: '/system/configuration/parameter',
+              component: './list/search/articles',
+            },
+            {
+              name: 'dictionary',
+              path: '/system/configuration/dictionary',
+              component: './list/search/articles',
+            }
+          ]
+        },
+        {
+          name: 'permission',
+          path: '/system/permission',
+          component: './account/settings',
+          routes: [
+            {
+              name: 'department',
+              path: '/system/permission/department',
+              component: './list/search/articles',
+            },
+            {
+              name: 'user',
+              path: '/system/permission/user',
+              component: './list/search/articles',
+            },
+            {
+              name: 'role',
+              path: '/system/permission/role',
+              component: './list/search/articles',
+            }
+          ]
+        },
+      ],
+    },
 
 
 
@@ -331,13 +428,6 @@ export default defineConfig({
           component: './editor/koni',
         },
       ],
-    },
-    {
-      path: '/',
-      redirect: '/dashboard/analysis',
-    },
-    {
-      component: '404',
     },
   ],
 

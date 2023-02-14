@@ -1,10 +1,8 @@
 import { request } from 'umi';
 
-const serverUrl = BACKEND_SERVER_URL
-
 // 登陆
 export async function login(body: Sys.LoginReq, options?: { [key: string]: any }) {
-  return request('/api/user/login', {
+  return request('/sys/user/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -16,16 +14,15 @@ export async function login(body: Sys.LoginReq, options?: { [key: string]: any }
 
 // 登出
 export async function logout(options?: { [key: string]: any }) {
-  return request('/api/user/logout', {
+  return request('/sys/user/logout', {
     method: 'POST',
     ...(options || {}),
   });
 }
 
-
-// 获取用户信息
-export async function queryUsers(body: Sys.QueryUsersReq, options?: { [key: string]: any }) {
-  return request('/api/user/queryUsers', {
+// 获取用户详情信息
+export async function queryUserDetails(body: Sys.QueryUserDetailsReq, options?: { [key: string]: any }) {
+  return request('/sys/user/queryUserDetails', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -34,3 +31,5 @@ export async function queryUsers(body: Sys.QueryUsersReq, options?: { [key: stri
     ...(options || {}),
   });
 }
+
+//

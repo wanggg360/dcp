@@ -136,11 +136,11 @@ public class AddUserReq extends BaseReq {
         if (Objects.nonNull(getCreateType())) {
             result = Arrays.asList(BizConst.DictCollection.USER_CREATE_TYPE).contains(getCreateType());
         }
-        if (StringUtils.hasText(getEmail())) {
+        if (StringUtils.hasText(getMobile())) {
             result = result && getMobile().matches(CommonConst.RegexRule.VALID_MOBILE);
         }
-        if (StringUtils.hasText(getMobile())) {
-            result = result && getEmail().matches(CommonConst.RegexRule.VALID_MOBILE);
+        if (StringUtils.hasText(getEmail())) {
+            result = result && getEmail().matches(CommonConst.RegexRule.VALID_EMAIL);
         }
         return result;
     }

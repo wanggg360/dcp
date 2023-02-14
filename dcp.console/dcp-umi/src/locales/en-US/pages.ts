@@ -2,7 +2,7 @@ export default {
   'pages.layouts.userLayout.title':' ',
   'pages.login.success': 'Login successful!',
   'pages.login.failure': 'Login failed, please try again!',
-  'pages.login.error.username_or_passwd': '用户名或密码错误！',
+  'pages.login.error.username_or_passwd': 'Error Username or password!',
   'pages.login.username.placeholder': 'Please input your username',
   'pages.login.username.required': 'Username not empty!',
   'pages.login.password.placeholder': 'Please input your password',
@@ -14,6 +14,27 @@ export default {
   'pages.logout.failure': 'Logout failed!',
 
 
+  // 个人信息设置页面
+  'pages.my-profile.menuMap.basic': 'Basic Settings',
+  'pages.my-profile.menuMap.security': 'Security Settings',
+  'pages.my-profile.basic.avatar': 'Avatar',
+  'pages.my-profile.basic.change-avatar': 'Change avatar',
+  'pages.my-profile.basic.email': 'Email',
+  'pages.my-profile.basic.email-message': 'Please input your email!',
+  'pages.my-profile.basic.nickname': 'Nickname',
+  'pages.my-profile.basic.nickname-message': 'Please input your Nickname!',
+  'pages.my-profile.basic.profile': 'Personal profile',
+  'pages.my-profile.basic.profile-message': 'Please input your personal profile!',
+  'pages.my-profile.basic.profile-placeholder': 'Brief introduction to yourself',
+  'pages.my-profile.basic.country': 'Country/Region',
+  'pages.my-profile.basic.country-message': 'Please input your country!',
+  'pages.my-profile.basic.geographic': 'Province or city',
+  'pages.my-profile.basic.geographic-message': 'Please input your geographic info!',
+  'pages.my-profile.basic.address': 'Street Address',
+  'pages.my-profile.basic.address-message': 'Please input your address!',
+  'pages.my-profile.basic.phone': 'Phone Number',
+  'pages.my-profile.basic.phone-message': 'Please input your phone!',
+  'pages.my-profile.basic.update': 'Update Information',
 
 
 

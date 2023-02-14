@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl, useModel } from 'umi';
-import Footer from '@/components/Footer';
 import styles from './index.less';
+import { SettingOutlined } from '@ant-design/icons';
 
 
 const Home: React.FC = () => {
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
       <div className={styles.content}>
         <p> 这个是home页 </p>
       </div>
-      <Footer />
+      <SettingOutlined></SettingOutlined>
     </div>
   );
 };

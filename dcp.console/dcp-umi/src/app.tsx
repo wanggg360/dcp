@@ -26,7 +26,7 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = () => {
     try {
-      const userObj = localStorage.getItem("userinfo");
+      const userObj = localStorage.getItem(USER_DETAILS_TAG);
       if (userObj === null) {
         return undefined;
       }

@@ -19,7 +19,7 @@ const logOut = async () => {
   const logoutRsp = await logout();
   if (logoutRsp?.success === true) {
     // 登出成功删除localStorage
-    localStorage.removeItem("userinfo")
+    localStorage.removeItem(USER_DETAILS_TAG)
     const { query = {}, search, pathname } = history.location;
     const { redirect } = query;
     if (window.location.pathname !== '/user/login' && !redirect) {
@@ -46,7 +46,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
         logOut();
         return;
       }
-      history.push(`/account/${key}`);
+      history.push(`/workspace/${key}`);
     },
     [setInitialState],
   );
@@ -76,17 +76,12 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   const menuHeaderDropdown = (
     <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
       {menu && (
-        <Menu.Item key="center">
+        <Menu.Item key="my-profile">
           <UserOutlined />
-          个人中心
+          个人信息
         </Menu.Item>
       )}
-      {menu && (
-        <Menu.Item key="settings">
-          <SettingOutlined />
-          个人设置
-        </Menu.Item>
-      )}
+
       {menu && <Menu.Divider />}
 
       <Menu.Item key="logout">

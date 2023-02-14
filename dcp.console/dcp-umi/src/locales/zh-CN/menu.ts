@@ -1,7 +1,30 @@
 export default {
+  'menu.home': '首页',
+
+  // 工作空间层级
   'menu.workspace': '工作空间',
-  'menu.workspace.home': '我的首页',
-  'menu.workspace.center': '个人中心',
+  'menu.workspace.process-center': '流程中心',
+  'menu.workspace.process-center.new-process': '新建流程',
+  'menu.workspace.process-center.my-process': '我的流程',
+  'menu.workspace.process-center.process-map': '流程地图',
+  'menu.workspace.task-center': '任务中心',
+  'menu.workspace.task-center.new-task': '新建任务',
+  'menu.workspace.task-center.my-task': '我的任务',
+  'menu.workspace.warn-center': '预警中心',
+  'menu.workspace.my-profile': '个人信息',
+
+  // 系统管理层级
+  'menu.system': '系统管理',
+  'menu.system.configuration': '系统配置',
+  'menu.system.configuration.parameter': '系统参数',
+  'menu.system.configuration.dictionary': '系统字典',
+  'menu.system.permission': '权限管理',
+  'menu.system.permission.department': '部门管理',
+  'menu.system.permission.user': '用户管理',
+  'menu.system.permission.role': '角色管理',
+
+
+
 
 
 
@@ -10,7 +33,6 @@ export default {
 
   'menu.welcome': '欢迎',
   'menu.more-blocks': '更多区块',
-  'menu.home': '首页',
   'menu.admin': '管理页',
   'menu.admin.sub-page': '二级管理页',
   'menu.login': '登录',

@@ -7,7 +7,7 @@ import React from 'react';
 import { ProFormCheckbox, ProFormText, LoginForm } from '@ant-design/pro-form';
 import { useIntl, history, FormattedMessage, SelectLang, useModel } from 'umi';
 import Footer from '@/components/Footer';
-import {login, queryUsers} from '@/services/sys/user'
+import {login, queryUserDetails} from '@/services/sys/user'
 import styles from './index.less';
 
 
@@ -30,17 +30,15 @@ const Login: React.FC = () => {
       // 登录
       const loginRsp = await login( {...values}, {skipErrorHandler: true} );
 
-      if (loginRsp?.success === true) {
-        const queryUsersReq: Sys.QueryUsersReq = {
-          userId: values?.userId
-        };
-        const queryUsersRsp = await queryUsers({...queryUsersReq})
-        if (queryUsersRsp?.success === true && queryUsersRsp.data.length > 0) {
-          // 获取用户信息
-          let user = queryUsersRsp.data[0]
+      if (loginRsp?.success === true && loginRsp?.data) {
+        // const queryDetailsReq: Sys.QueryUserDetailsReq = {
+        //   userId: values?.userId
+        // };
+        // const userDetailsResp = await queryUserDetails(queryDetailsReq)
+        // if (userDetailsResp?.success === true) {
 
           // 登陆成功后设置storage
-          localStorage.setItem("userinfo", JSON.stringify(user))
+          localStorage.setItem(USER_DETAILS_TAG, JSON.stringify(loginRsp.data))
 
           const defaultLoginSuccessMessage = intl.formatMessage({
             id: 'pages.login.success',
@@ -56,7 +54,7 @@ const Login: React.FC = () => {
           const { redirect } = query as { redirect: string };
           history.push(redirect || '/');
           return;
-        }
+        // }
       }
       const loginFailureMessage = intl.formatMessage({
         id: 'pages.login.error.username_or_passwd',

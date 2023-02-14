@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 
 @RestController
-@RequestMapping(value = "/api/permission")
+@RequestMapping(value = "/sys/permission")
 public class PermissionController {
 
     @Autowired

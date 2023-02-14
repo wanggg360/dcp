@@ -1,5 +1,5 @@
 ###
-POST http://localhost:8080/api/user/login
+POST http://localhost:8080/sys/user/login
 Content-Type: application/json
 
 {
@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/user/logout
+POST http://localhost:8080/sys/user/logout
 Content-Type: application/json
 
 {
@@ -17,14 +17,14 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:8080/api/user/addUser
+POST http://localhost:8080/sys/user/addUser
 Content-Type: application/json
 
 {
   "userId": "018208",
   "fullName": "王刚",
-  "email": "",
-  "mobile": "",
+  "email": "wanggang@sina.com",
+  "mobile": "15996346500",
   "createType": "1",
   "departmentCode": "",
   "password": "wanggg360&"
@@ -32,7 +32,7 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:8080/api/user/queryUsers
+POST http://localhost:8080/sys/user/queryUsers
 Content-Type: application/json
 
 {

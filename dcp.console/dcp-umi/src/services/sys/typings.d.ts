@@ -6,19 +6,11 @@ declare namespace Sys {
     autoLogin?: boolean;
   };
 
-  type QueryUsersReq = {
+  type QueryUserDetailsReq = {
     userId?: string;
-    fullName?: string;
-    email?: string;
-    mobile?: string;
-    status?: string;
-    departmentCode?: string;
-    createType?: string;
-    updateBy?: string;
-    createBy?: string;
   };
 
-
+  // 此处是dto定义
   type User = {
     userId?: string;
     fullName?: string;
@@ -26,7 +18,7 @@ declare namespace Sys {
     email?: string;
     mobile?: string;
     createType?: string;
-    departmentCode?: string;
+    departments?: array;
     avatar?: string;
     status?: string;
     createBy?: string;

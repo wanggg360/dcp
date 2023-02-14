@@ -1,7 +1,7 @@
 export default {
   dev: {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
-    '/api/': {
+    '/sys/': {
       // 要代理的地址
       target: 'http://127.0.0.1:8080',
       // 配置了这个可以从 http 代理到 https
@@ -10,14 +10,14 @@ export default {
     },
   },
   test: {
-    '/api/': {
+    '/sys/': {
       target: 'http://127.0.0.1:8081',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
   },
   prod: {
-    '/api/': {
+    '/sys/': {
       target: 'http://127.0.0.1:8082',
       changeOrigin: true,
       pathRewrite: { '^': '' },

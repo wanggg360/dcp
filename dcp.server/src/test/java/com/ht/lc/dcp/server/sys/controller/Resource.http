@@ -1,5 +1,5 @@
 ###
-POST http://localhost:8080/api/resource/addPages
+POST http://localhost:8080/sys/resource/addPages
 Content-Type: application/json
 
 {

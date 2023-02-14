@@ -3,7 +3,7 @@ package com.ht.lc.dcp.server.sys.controller;
 import com.ht.lc.dcp.common.base.ResultObject;
 import com.ht.lc.dcp.server.sys.pojo.req.AddUserReq;
 import com.ht.lc.dcp.server.sys.pojo.req.LoginReq;
-import com.ht.lc.dcp.server.sys.pojo.req.QueryUserDetailReq;
+import com.ht.lc.dcp.server.sys.pojo.req.QueryUserDetailsReq;
 import com.ht.lc.dcp.server.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/api/user")
+@RequestMapping(value = "/sys/user")
 public class UserController {
 
     @Autowired
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/queryUserDetails")
-    public ResultObject queryUserDetails(@RequestBody @Validated QueryUserDetailReq req) {
+    public ResultObject queryUserDetails(@RequestBody @Validated QueryUserDetailsReq req) {
         return userService.queryUserDetails(req);
     }
 }

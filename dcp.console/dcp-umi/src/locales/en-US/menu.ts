@@ -1,13 +1,34 @@
 export default {
+  'menu.home': 'Home',
+
+  // 工作空间层级
   'menu.workspace': 'Workspace',
-  'menu.workspace.home': 'Home',
-  'menu.workspace.center': 'Center',
+  'menu.workspace.process-center': 'Process Center',
+  'menu.workspace.process-center.new-process': 'New Process',
+  'menu.workspace.process-center.my-process': 'My Process',
+  'menu.workspace.process-center.process-map': 'Process Map',
+  'menu.workspace.task-center': 'Task Center',
+  'menu.workspace.task-center.new-task': 'New Task',
+  'menu.workspace.task-center.my-task': 'My Task',
+  'menu.workspace.warn-center': 'Warn Center',
+  'menu.workspace.my-profile': 'My Profile',
+
+  // 系统管理层级
+  'menu.system': 'System Management',
+  'menu.system.configuration': 'Configuration',
+  'menu.system.configuration.parameter': 'Parameter',
+  'menu.system.configuration.dictionary': 'Dictionary',
+  'menu.system.permission': 'Permission',
+  'menu.system.permission.department': 'Department',
+  'menu.system.permission.user': 'User',
+  'menu.system.permission.role': 'Role',
+
 
 
 
   'menu.welcome': 'Welcome',
   'menu.more-blocks': 'More Blocks',
-  'menu.home': 'Home',
+
   'menu.admin': 'Admin',
   'menu.admin.sub-page': 'Sub-Page',
   'menu.login': 'Login',

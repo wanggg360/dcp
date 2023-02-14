@@ -8,13 +8,11 @@ import ProForm, {
   ProFormText,
   ProFormTextArea,
 } from '@ant-design/pro-form';
-import { useIntl, useRequest } from 'umi';
-
+import { useRequest, useIntl, FormattedMessage } from 'umi';
 import { queryCurrent } from '../service';
 import { queryProvince, queryCity } from '../service';
 
 import styles from './BaseView.less';
-
 
 const validatorPhone = (rule: any, value: string[], callback: (message?: string) => void) => {
   if (!value[0]) {
@@ -29,10 +27,11 @@ const validatorPhone = (rule: any, value: string[], callback: (message?: string)
 // 头像组件 方便以后独立，增加裁剪之类的功能
 const AvatarView = ({ avatar }: { avatar: string }) => (
   <>
-    <div className={styles.avatar_title}>{useIntl().formatMessage({
-      id: 'pages.my-profile.basic.avatar',
-      defaultMessage: '头像',
-    })}
+    <div className={styles.avatar_title}>
+      {useIntl().formatMessage({
+        id: 'pages.my-profile.basic.avatar',
+        defaultMessage: '头像',
+      })}
     </div>
     <div className={styles.avatar}>
       <img src={avatar} alt="avatar" />
@@ -41,10 +40,7 @@ const AvatarView = ({ avatar }: { avatar: string }) => (
       <div className={styles.button_view}>
         <Button>
           <UploadOutlined />
-          {useIntl().formatMessage({
-            id: 'pages.my-profile.basic.change-avatar',
-            defaultMessage: '更换头像',
-          })}
+          更换头像
         </Button>
       </div>
     </Upload>

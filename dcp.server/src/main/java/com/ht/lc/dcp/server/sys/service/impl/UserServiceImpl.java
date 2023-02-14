@@ -8,12 +8,15 @@ import com.ht.lc.dcp.server.sys.dao.UserDepartmentDao;
 import com.ht.lc.dcp.server.sys.daobean.DepartmentDaoBean;
 import com.ht.lc.dcp.server.sys.daobean.UserDaoBean;
 import com.ht.lc.dcp.server.sys.daobean.UserDepartmentDaoBean;
+import com.ht.lc.dcp.server.sys.pojo.Department;
+import com.ht.lc.dcp.server.sys.pojo.User;
 import com.ht.lc.dcp.server.sys.pojo.req.AddUserReq;
 import com.ht.lc.dcp.server.sys.pojo.req.LoginReq;
-import com.ht.lc.dcp.server.sys.pojo.req.QueryUserDetailReq;
+import com.ht.lc.dcp.server.sys.pojo.req.QueryUserDetailsReq;
 import com.ht.lc.dcp.server.sys.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -23,6 +26,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @program: dcp
@@ -58,7 +62,30 @@ public class UserServiceImpl implements UserService {
             LOG.error("username or password wrong. ");
             return ResultObject.error(ResultCode.USER_LOGIN_FAILED.getCode(), ResultCode.USER_LOGIN_FAILED.getDesc());
         }
-        return ResultObject.success("");
+
+        User user = new User();
+        BeanUtils.copyProperties(userDaoBean, user);
+
+        List<UserDepartmentDaoBean> userDepts = userDepartmentDao.selectByUserId(req.getUserId());
+
+        if (!CollectionUtils.isEmpty(userDepts)) {
+            List<String> deptCodes = userDepts
+                    .stream()
+                    .map(uddb -> uddb.getDeptCode())
+                    .collect(Collectors.toList());
+
+            List<DepartmentDaoBean> depts = departmentDao.selectByDeptCodes(deptCodes);
+            if (!CollectionUtils.isEmpty(depts)) {
+                List<Department> departments = depts.stream()
+                        .map(ddb -> {
+                            Department d = new Department();
+                            BeanUtils.copyProperties(ddb, d);
+                            return d; })
+                        .collect(Collectors.toList());
+                user.setDepartments(departments);
+            }
+        }
+        return ResultObject.success(user);
     }
 
     @Override
@@ -98,19 +125,20 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        userDaoBean.setUserId(req.getUserId());
-        userDaoBean.setFullName(req.getFullName());
-        userDaoBean.setPassword(req.getPassword());
-        userDaoBean.setEmail(req.getEmail());
-        userDaoBean.setMobile(req.getMobile());
-        userDaoBean.setRemark(req.getRemark());
-        userDaoBean.setCreateType(req.getCreateType());
-        userDaoBean.setUpdateBy("");
-        userDaoBean.setUpdateTime(LocalDateTime.now());
-        userDaoBean.setCreateBy("");
-        userDaoBean.setCreateTime(LocalDateTime.now());
+        UserDaoBean newUser = new UserDaoBean();
+        newUser.setUserId(req.getUserId());
+        newUser.setFullName(req.getFullName());
+        newUser.setPassword(req.getPassword());
+        newUser.setEmail(req.getEmail());
+        newUser.setMobile(req.getMobile());
+        newUser.setRemark(req.getRemark());
+        newUser.setCreateType(req.getCreateType());
+        newUser.setUpdateBy("");
+        newUser.setUpdateTime(LocalDateTime.now());
+        newUser.setCreateBy("");
+        newUser.setCreateTime(LocalDateTime.now());
 
-        userDao.insert(userDaoBean);
+        userDao.insert(newUser);
         if (!CollectionUtils.isEmpty(lists)) {
             userDepartmentDao.insertBatch(lists);
         }
@@ -119,7 +147,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultObject queryUserDetails(QueryUserDetailReq req) {
+    public ResultObject queryUserDetails(QueryUserDetailsReq req) {
 
         return ResultObject.success("");
     }

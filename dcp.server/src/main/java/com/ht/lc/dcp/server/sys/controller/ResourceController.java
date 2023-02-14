@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  **/
 @RestController
-@RequestMapping(value = "/api/resource")
+@RequestMapping(value = "/sys/resource")
 
 public class ResourceController {
 

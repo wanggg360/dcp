@@ -1,6 +1,7 @@
 package com.ht.lc.dcp.server.sys.pojo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @program: dcp
@@ -22,11 +23,6 @@ public class User {
     private String fullName;
 
     /**
-     * 密码
-     */
-    private String password;
-
-    /**
      * 邮箱
      */
     private String email;
@@ -40,11 +36,6 @@ public class User {
      * 创建类型
      */
     private String createType;
-
-    /**
-     * 部门信息
-     */
-    private String departmentCode;
 
     /**
      * 头像
@@ -61,13 +52,38 @@ public class User {
      */
     private String createBy;
 
+    /**
+     * 创建时间
+     */
     private LocalDateTime createTime;
 
+    /**
+     * 更新人
+     */
     private String updateBy;
 
+    /**
+     * 更新时间
+     */
     private LocalDateTime updateTime;
 
+    /**
+     * 批注
+     */
     private String remark;
+
+    /**
+     * 部门信息
+     */
+    private List<Department> departments;
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
+    }
 
     public String getUserId() {
         return userId;
@@ -83,14 +99,6 @@ public class User {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmail() {
@@ -115,14 +123,6 @@ public class User {
 
     public void setCreateType(String createType) {
         this.createType = createType;
-    }
-
-    public String getDepartmentCode() {
-        return departmentCode;
-    }
-
-    public void setDepartmentCode(String departmentCode) {
-        this.departmentCode = departmentCode;
     }
 
     public String getAvatar() {
