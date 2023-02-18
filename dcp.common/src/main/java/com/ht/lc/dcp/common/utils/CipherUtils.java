@@ -98,6 +98,13 @@ public class CipherUtils {
     }
 
     public static void main(String[] args) {
+
+        StringBuilder aaaa = new StringBuilder();
+        aaaa.append("wanggang");
+        aaaa.delete(0, 0);
+        System.out.println(aaaa);
+
+
         SecretKey key = CipherUtils.generateKey(256, "AES");
         String keyString = encodeHexString(key.getEncoded());
         System.out.println("key byte : " + key.getEncoded());
