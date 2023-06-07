@@ -1,5 +1,6 @@
 package com.ht.lc.dcp.task.req;
 
+import com.ht.lc.dcp.common.constants.CommonConst;
 import com.ht.lc.dcp.task.constant.BizConst;
 
 import javax.validation.constraints.NotBlank;
@@ -20,11 +21,11 @@ public class GatherNoticeDetailsReq extends BaseReq {
     @Size(min = 16, message = "size must larger than 16")
     private String taskId;
 
-    @Pattern(regexp = BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, message = "format yyyy-MM-dd")
+    @Pattern(regexp = CommonConst.RegexRule.DATE_FORMAT_PATTERN_2, message = "format yyyy-MM-dd")
     private String
             startDate = "1990-01-01";
 
-    @Pattern(regexp = BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, message = "format yyyy-MM-dd")
+    @Pattern(regexp = CommonConst.RegexRule.DATE_FORMAT_PATTERN_2, message = "format yyyy-MM-dd")
     private String
             endDate = "2200-12-31";
 

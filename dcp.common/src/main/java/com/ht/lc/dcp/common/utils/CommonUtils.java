@@ -1,12 +1,16 @@
 package com.ht.lc.dcp.common.utils;
 
+import com.ht.lc.dcp.common.constants.CommonConst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 /**
  * @program: dcp
@@ -57,5 +61,20 @@ public class CommonUtils {
             }
         }
         return resultList;
+    }
+
+    public static String generateUniqueTaskId() {
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(CommonConst.DateFormat.DATE_FORMAT_TIMESTAMP);
+        String dateTime = dtf.format(time);
+        return dateTime + "-" + CommonUtils.getRandomString(3);
+    }
+
+    public static boolean checkStr(String pattern, String source) {
+        return Pattern.matches(pattern, source);
+    }
+
+    public static boolean isValidHtmlUrl(String url) {
+        return (url.startsWith("http") && url.endsWith("html"));
     }
 }

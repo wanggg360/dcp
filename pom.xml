@@ -15,6 +15,7 @@
 		<module>dcp.parent</module>
 		<module>dcp.task</module>
         <module>dcp.demo</module>
+        <module>dcp.mailsearch</module>
     </modules>
 
     <properties>

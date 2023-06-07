@@ -1,12 +1,14 @@
-package com.ht.lc.dcp.task.utils;
+package com.ht.lc.dcp.task.handler;
 
 import com.ht.lc.dcp.common.constants.CommonConst;
 import com.ht.lc.dcp.common.exception.ServiceException;
+import com.ht.lc.dcp.common.utils.CommonUtils;
+import com.ht.lc.dcp.common.utils.DateUtils;
+import com.ht.lc.dcp.common.utils.JsoupUtils;
 import com.ht.lc.dcp.task.constant.BizConst;
 import com.ht.lc.dcp.task.entity.NoticeBrief;
 import com.ht.lc.dcp.task.entity.NoticeDetails;
 import com.ht.lc.dcp.task.entity.NoticePageInfo;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -18,7 +20,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -29,41 +30,18 @@ import java.util.Optional;
  * @Version 1.0
  **/
 
-public class JsoupUtils {
+public class NoticeJsoupHandler {
 
-    private static final Logger LOG = LoggerFactory.getLogger(JsoupUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(NoticeJsoupHandler.class);
 
     private static int[] NOTICE_DETAILS_TYPE_ARRAY =
             {BizConst.ElementKeyStr.NOTICE_DETAILS_FORMAT_TYPE_1, BizConst.ElementKeyStr.NOTICE_DETAILS_FORMAT_TYPE_2};
 
-    private JsoupUtils() {
-    }
-
-    public static Document getDocFromStr(String input) throws ServiceException {
-        if (!StringUtils.hasText(input)) {
-            throw new ServiceException("jsoup error, input string empty. ");
-        }
-        return Jsoup.parse(input);
-    }
-
-    public static Element getElementById(Document doc, String id) throws ServiceException {
-        validateDocument(doc);
-        return doc.getElementById(id);
-    }
-
-    public static Elements getElementsByClass(Document doc, String className) throws ServiceException {
-        validateDocument(doc);
-        return doc.getElementsByClass(className);
-    }
-
-    public static void validateDocument(Document document) throws ServiceException {
-        if (Objects.isNull(document)) {
-            throw new ServiceException("jsoup error, input doc is null. ");
-        }
+    private NoticeJsoupHandler() {
     }
 
     public static NoticePageInfo getNoticePageInfo(Document document) throws ServiceException {
-        validateDocument(document);
+        JsoupUtils.validateDocument(document);
         NoticePageInfo noticePageInfo = new NoticePageInfo();
         String pageSize = Optional.ofNullable(document.select(BizConst.ElementKeyStr.LOC_PAGE_SIZE).first())
                 .map(e -> e.attr(BizConst.ElementKeyStr.ATTR_VALUE)).orElse(BizConst.ElementKeyStr.DEFAULT_PAGE_SIZE);
@@ -71,7 +49,7 @@ public class JsoupUtils {
 
         String pageInfo = document.select(BizConst.ElementKeyStr.LOC_PAGE_INFO_FUN).first().data();
 
-        if (!ComUtils.checkStr(BizConst.ElementKeyStr.PAGE_INFO_CHECK_PATTERN, pageInfo)) {
+        if (!CommonUtils.checkStr(BizConst.ElementKeyStr.PAGE_INFO_CHECK_PATTERN, pageInfo)) {
             LOG.info("page info string not meet the pattern, str: {}. ", pageInfo);
             return noticePageInfo;
         }
@@ -83,10 +61,10 @@ public class JsoupUtils {
         }
         String pageCnt = strArray[CommonConst.Number.NUM_1];
         String totalCnt = strArray[CommonConst.Number.NUM_5];
-        if (ComUtils.checkStr(BizConst.ElementKeyStr.NUMBER_CHECK_PATTERN, pageCnt)) {
+        if (CommonUtils.checkStr(BizConst.ElementKeyStr.NUMBER_CHECK_PATTERN, pageCnt)) {
             noticePageInfo.setPageCnt(Integer.valueOf(pageCnt));
         }
-        if (ComUtils.checkStr(BizConst.ElementKeyStr.NUMBER_CHECK_PATTERN, totalCnt)) {
+        if (CommonUtils.checkStr(BizConst.ElementKeyStr.NUMBER_CHECK_PATTERN, totalCnt)) {
             noticePageInfo.setTotalCnt(Integer.valueOf(totalCnt));
         }
         return noticePageInfo;
@@ -99,7 +77,7 @@ public class JsoupUtils {
      * @return
      */
     public static NoticeDetails cycleGenerateNoticeDetailsFromDoc(Document document, NoticeBrief nb) {
-        validateDocument(document);
+        JsoupUtils.validateDocument(document);
         NoticeDetails noticeDetails = new NoticeDetails();
 
         for (int type : NOTICE_DETAILS_TYPE_ARRAY) {
@@ -155,7 +133,7 @@ public class JsoupUtils {
         String content = parseNoticeDetailsContent(contents, contentChildPattern);
         noticeDetails.setContent(content);
         String dateStr = parseNoticeDetailsElement(contents.last(), contentChildPattern);
-        LocalDate localDate = ComUtils.cvtString2Date(dateStr);
+        LocalDate localDate = DateUtils.cvtString2Date(dateStr);
         noticeDetails.setNoticeDate(localDate);
         return noticeDetails;
     }
@@ -235,7 +213,7 @@ public class JsoupUtils {
     }
 
     public static List<NoticeBrief> getNoticeBriefListFromDoc(Document document, int dataType) {
-        validateDocument(document);
+        JsoupUtils.validateDocument(document);
         List<NoticeBrief> briefList = new ArrayList<>(2);
         switch (dataType) {
             case BizConst.DataType.SUP_MEASURE:
@@ -265,7 +243,7 @@ public class JsoupUtils {
         String linkURL = e.select(BizConst.ElementKeyStr.TAG_A).first().attr(BizConst.ElementKeyStr.ATTR_HREF);
         String localDate = e.select(BizConst.ElementKeyStr.TAG_SPAN).first().html();
         String title = e.select(BizConst.ElementKeyStr.TAG_A).first().html();
-        LocalDate ld = LocalDate.parse(localDate, DateTimeFormatter.ofPattern(BizConst.Common.DATE_FORMAT_NORMAL));
+        LocalDate ld = LocalDate.parse(localDate, DateTimeFormatter.ofPattern(CommonConst.DateFormat.DATE_FORMAT_NORMAL));
         sbmi.setContentUrl(linkURL);
         sbmi.setPublishDate(ld);
         sbmi.setTitle(title);

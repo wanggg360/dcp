@@ -99,6 +99,13 @@ public class CipherUtils {
 
     public static void main(String[] args) {
 
+        boolean flag = false;
+        if(flag)
+            System.out.println("wanggang1");
+
+        System.out.println("wanggang2");
+
+
         StringBuilder aaaa = new StringBuilder();
         aaaa.append("wanggang");
         aaaa.delete(0, 0);

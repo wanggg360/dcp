@@ -1,7 +1,10 @@
 package com.ht.lc.dcp.task.service.impl;
 
+import com.ht.lc.dcp.common.constants.CommonConst;
 import com.ht.lc.dcp.common.exception.ServiceException;
 import com.ht.lc.dcp.common.http.HttpClientManager;
+import com.ht.lc.dcp.common.utils.CommonUtils;
+import com.ht.lc.dcp.common.utils.JsoupUtils;
 import com.ht.lc.dcp.task.constant.BizConst;
 import com.ht.lc.dcp.task.dao.NoticeBriefDao;
 import com.ht.lc.dcp.task.daobean.NoticeBriefDaoBean;
@@ -10,8 +13,7 @@ import com.ht.lc.dcp.task.entity.NoticePageInfo;
 import com.ht.lc.dcp.task.entity.SiteInfo;
 import com.ht.lc.dcp.task.service.AsyncService;
 import com.ht.lc.dcp.task.service.NoticeBriefService;
-import com.ht.lc.dcp.task.utils.ComUtils;
-import com.ht.lc.dcp.task.utils.JsoupUtils;
+import com.ht.lc.dcp.task.handler.NoticeJsoupHandler;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +59,7 @@ public class NoticeBriefServiceImpl implements NoticeBriefService {
         }
         // 原始url字符串
         String reqUrl = siteInfo.getUrl();
-        if (!ComUtils.isValidHtmlUrl(reqUrl)) {
+        if (!CommonUtils.isValidHtmlUrl(reqUrl)) {
             LOG.error("siteinfo url wrong, url: {}. ", reqUrl);
             return result;
         }
@@ -66,12 +68,12 @@ public class NoticeBriefServiceImpl implements NoticeBriefService {
             // 响应字符串
             String response = HttpClientManager.getInstance().doGet(reqUrl, null, null);
             Document rspdoc = JsoupUtils.getDocFromStr(response);
-            NoticePageInfo pageInfo = JsoupUtils.getNoticePageInfo(rspdoc);
+            NoticePageInfo pageInfo = NoticeJsoupHandler.getNoticePageInfo(rspdoc);
             if (pageInfo.getTotalCnt() > 0 && pageInfo.getPageCnt() > 0) {
                 LOG.info("get pageinfo success, branch: {}, total: {}, page: {}. ", siteInfo.getBranchName(),
                         pageInfo.getTotalCnt(), pageInfo.getPageCnt());
                 // 解析出pageinfo后直接处理第一页
-                briefInfos.addAll(JsoupUtils.getNoticeBriefListFromDoc(rspdoc, siteInfo.getDataType()));
+                briefInfos.addAll(NoticeJsoupHandler.getNoticeBriefListFromDoc(rspdoc, siteInfo.getDataType()));
                 List<String> supMBriefUrls = cvtBaseUrl2PageUrlList(reqUrl, pageInfo.getPageCnt());
                 // 异步调用各分页的url，完成后汇聚结果
                 CompletableFuture[] futures =
@@ -153,15 +155,15 @@ public class NoticeBriefServiceImpl implements NoticeBriefService {
         db.setTaskId(taskId);
         db.setBranchId(branchId);
         if (StringUtils.hasText(startDate)) {
-            if (ComUtils.checkStr(BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, startDate)) {
+            if (CommonUtils.checkStr(CommonConst.RegexRule.DATE_FORMAT_PATTERN_2, startDate)) {
                 db.setStartDate(
-                        LocalDate.parse(startDate, DateTimeFormatter.ofPattern(BizConst.Common.DATE_FORMAT_NORMAL)));
+                        LocalDate.parse(startDate, DateTimeFormatter.ofPattern(CommonConst.DateFormat.DATE_FORMAT_NORMAL)));
             }
         }
         if (StringUtils.hasText(endDate)) {
-            if (ComUtils.checkStr(BizConst.Common.PARAMS_DATE_FORMAT_PATTERN, endDate)) {
+            if (CommonUtils.checkStr(CommonConst.RegexRule.DATE_FORMAT_PATTERN_2, endDate)) {
                 db.setEndDate(
-                        LocalDate.parse(endDate, DateTimeFormatter.ofPattern(BizConst.Common.DATE_FORMAT_NORMAL)));
+                        LocalDate.parse(endDate, DateTimeFormatter.ofPattern(CommonConst.DateFormat.DATE_FORMAT_NORMAL)));
             }
         }
         List<NoticeBriefDaoBean> briefDbs = noticeBriefDao.getListByDaoBean(db);

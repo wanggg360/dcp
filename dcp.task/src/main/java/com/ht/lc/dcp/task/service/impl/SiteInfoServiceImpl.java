@@ -27,7 +27,7 @@ public class SiteInfoServiceImpl implements SiteInfoService {
     @Override
     public List<SiteInfo> getAllValidSiteInfos() {
         SiteInfoDaoBean bean = new SiteInfoDaoBean();
-        bean.setIsValid(BizConst.Common.DATA_FLAG_VALID);
+        bean.setIsValid(BizConst.DataValidFlag.VALID);
         List<SiteInfoDaoBean> daoBeans = siteInfoDao.getListByDaoBean(bean);
         List<SiteInfo> result = daoBeans.stream().map(dao -> cvt2SiteInfo(dao)).collect(Collectors.toList());
         return result;

@@ -33,5 +33,23 @@ public interface CommonConst {
         String VALID_EMAIL = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
 
         String VALID_MOBILE = "^1[23456789]\\d{9}$";
+
+        String DATE_FORMAT_PATTERN_1 =
+                "[1-4][0-9]{3}年(([1-9]|[1][0-2])|([0][1-9]|[1][0-2]))月(([1-9]|[1-3][0-9])|([0][1-9]|[1-3][0-9]))日";
+
+        String DATE_FORMAT_PATTERN_2 = "[1-4][0-9]{3}-([0][1-9]|[1][0-2])-([0][1-9]|[1-3][0-9])";
+    }
+
+    interface DateFormat {
+
+        String DATE_FORMAT_NORMAL = "yyyy-MM-dd";
+
+        String DATE_FORMAT_TIMESTAMP = "yyyyMMddHHmmss";
+
+        String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    }
+
+    interface Symbol {
+        String HYPHEN = "-";
     }
 }

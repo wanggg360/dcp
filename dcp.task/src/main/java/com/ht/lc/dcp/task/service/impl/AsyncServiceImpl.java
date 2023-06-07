@@ -6,8 +6,8 @@ import com.ht.lc.dcp.task.daobean.NoticeDetailsDaoBean;
 import com.ht.lc.dcp.task.entity.NoticeBrief;
 import com.ht.lc.dcp.task.entity.NoticeDetails;
 import com.ht.lc.dcp.task.service.AsyncService;
-import com.ht.lc.dcp.task.utils.ComUtils;
-import com.ht.lc.dcp.task.utils.JsoupUtils;
+import com.ht.lc.dcp.task.handler.ComUtils;
+import com.ht.lc.dcp.task.handler.NoticeJsoupHandler;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +45,8 @@ public class AsyncServiceImpl implements AsyncService {
             LOG.error("notice brief url is wrong, url: {}. ", url);
         } else {
             String response = HttpClientManager.getInstance().doGet(url, null, null);
-            Document rspDoc = JsoupUtils.getDocFromStr(response);
-            list = JsoupUtils.getNoticeBriefListFromDoc(rspDoc, dataType);
+            Document rspDoc = NoticeJsoupHandler.getDocFromStr(response);
+            list = NoticeJsoupHandler.getNoticeBriefListFromDoc(rspDoc, dataType);
             LOG.info("parse notice brief success, url: {}. ", url);
         }
         return CompletableFuture.completedFuture(list);
@@ -60,8 +60,8 @@ public class AsyncServiceImpl implements AsyncService {
         } else {
             noticeBriefs.stream().forEach(l -> {
                 String response = HttpClientManager.getInstance().doGet(l.getContentUrl(), null, null);
-                Document rspDoc = JsoupUtils.getDocFromStr(response);
-                NoticeDetails nd = JsoupUtils.cycleGenerateNoticeDetailsFromDoc(rspDoc, l);
+                Document rspDoc = NoticeJsoupHandler.getDocFromStr(response);
+                NoticeDetails nd = NoticeJsoupHandler.cycleGenerateNoticeDetailsFromDoc(rspDoc, l);
 
                 list.add(nd);
             });

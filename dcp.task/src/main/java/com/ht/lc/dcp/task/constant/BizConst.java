@@ -9,20 +9,14 @@ package com.ht.lc.dcp.task.constant;
  **/
 public interface BizConst {
 
-    interface Common {
-
-        String DATE_FORMAT_NORMAL = "yyyy-MM-dd";
-
-        String DATE_FORMAT_TIMESTAMP = "yyyyMMddHHmmss";
+    interface DataValidFlag {
 
         // 格式：2021-01-09
-        String PARAMS_DATE_FORMAT_PATTERN = "[1-4][0-9]{3}-([0][1-9]|[1][0-2])-([0][1-9]|[1-3][0-9])";
 
-        String DATA_FLAG_VALID = "1";
+        String VALID = "1";
 
-        String DATA_FLAG_INVALID = "0";
+        String INVALID = "0";
 
-        String SYMBOL_HYPHEN = "-";
     }
 
     interface DataType {
@@ -70,9 +64,6 @@ public interface BizConst {
 
         String LOC_NOTICE_DETAILS_OBJECT_BJ =
                 "div.detail-news > p[style=line-height: 1.5;]:not([align]) > font[face] > span";
-
-        String NOTICE_DETAILS_DATE_FORMAT_PATTERN =
-                "[1-4][0-9]{3}年(([1-9]|[1][0-2])|([0][1-9]|[1][0-2]))月(([1-9]|[1-3][0-9])|([0][1-9]|[1-3][0-9]))日";
 
         String ATTR_VALUE = "value";
 
