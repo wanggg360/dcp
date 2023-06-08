@@ -1,6 +1,9 @@
 package com.ht.lc.dcp.mailsearch.service.impl;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.ht.lc.dcp.common.constants.CommonConst;
 import com.ht.lc.dcp.common.utils.CommonUtils;
 import com.ht.lc.dcp.common.utils.DateUtils;
@@ -62,25 +65,23 @@ public class MailParseServiceImpl implements MailParseService {
         List<File> msgFiles = new ArrayList<>();
         // 获取所有文件
         File parentFile = new File(parentDir);
-        String[] suff = {"msg"};
+        String[] suffix = {"msg"};
         if (parentFile.isDirectory()) {
-            msgFiles =(ArrayList) FileUtils.listFiles(parentFile, suff, true);
+            msgFiles =(ArrayList) FileUtils.listFiles(parentFile, suffix, true);
         }
         // 文件不为空，解析内容
         if (!CollectionUtils.isEmpty(msgFiles)) {
-            LOG.info("begin to parser msg files...");
-            List<MailInfo> infos = new ArrayList<>();
+            LOG.info("begin to parser msg mail files...");
+            List<MailInfo> infos = new ArrayList<>(2);
             for (File f : msgFiles) {
-                if (f.getAbsolutePath().endsWith(".msg")) {
-                    OutlookMessage msg = MailUtils.parseMsgFile(f);
-                    infos.add(fromOutlookMessage(msg, f));
-                }
+                OutlookMessage msg = MailUtils.parseMsgFile(f);
+                infos.add(fromOutlookMessage(msg, f));
             }
             // 大对象写入文件
             if (!CollectionUtils.isEmpty(infos)) {
                 jsonObject2File(infos, mailParseConfig.getMsgResultJsonFile());
             }
-            LOG.info("finish parse msg files, generate json file, list size: {}. ", infos.size());
+            LOG.info("finish parse msg mail files, generate json file, list size: {}. ", infos.size());
         }
     }
 
@@ -94,24 +95,22 @@ public class MailParseServiceImpl implements MailParseService {
         List<File> emlFiles = new ArrayList<>();
         // 获取所有文件句柄
         File parentFile = new File(parentDir);
-        String[] suff = {"eml"};
+        String[] suffix = {"eml"};
         if (parentFile.isDirectory()) {
-            emlFiles =(ArrayList) FileUtils.listFiles(parentFile, suff, true);
+            emlFiles =(ArrayList) FileUtils.listFiles(parentFile, suffix, true);
         }
         // 文件不为空，解析内容
         if (!CollectionUtils.isEmpty(emlFiles)) {
-            LOG.info("begin to parser eml files...");
+            LOG.info("begin to parser eml mail files...");
             List<MailInfo> infos = new ArrayList<>();
             for (File f : emlFiles) {
-                if (f.getAbsolutePath().endsWith(".eml")) {
-                    MimeMessageParser msg = MailUtils.parseEmlFile(f);
-                    infos.add(fromMimeMessage(msg, f));
-                }
+                MimeMessageParser msg = MailUtils.parseEmlFile(f);
+                infos.add(fromMimeMessage(msg, f));
             }
             if (!CollectionUtils.isEmpty(infos)) {
                 jsonObject2File(infos, mailParseConfig.getEmlResultJsonFile());
             }
-            LOG.info("finish parse eml files, generate json file, list size: {}. ", infos.size());
+            LOG.info("finish parse eml mail files, generate json file, list size: {}. ", infos.size());
         }
     }
 
@@ -125,9 +124,7 @@ public class MailParseServiceImpl implements MailParseService {
         LOG.info("mail file is : {}. ", file.getAbsolutePath());
         String sendName = StringUtils.hasText(message.getFromName()) ? message.getFromName().trim() : "";
         String sendEmail = StringUtils.hasText(message.getFromEmail()) ? message.getFromEmail().trim() : "";
-
         String uuid = sendEmail + "_" + CommonUtils.getRandomString(16);
-
         MailInfo mailInfo = new MailInfo();
         // 发件人
         MailAddress from = new MailAddress();
@@ -138,9 +135,7 @@ public class MailParseServiceImpl implements MailParseService {
         // 主题内容时间
         mailInfo.setTitle(StringUtils.hasText(message.getSubject()) ? message.getSubject().trim() : "");
         mailInfo.setContent(message.getBodyText());
-        //mailInfo.setHtmlContent(message.getConvertedBodyHTML());
-        //mailInfo.setMessageId(message.getMessageId());
-        mailInfo.setSendtime(DateUtils.date2String(message.getDate(), CommonConst.DateFormat.DATE_TIME_FORMAT));
+        mailInfo.setSendtime(DateUtils.date2String(message.getClientSubmitTime(), CommonConst.DateFormat.DATE_TIME_FORMAT));
         mailInfo.setOriginFileName(file.getName());
         mailInfo.setId(uuid);
 
@@ -178,10 +173,11 @@ public class MailParseServiceImpl implements MailParseService {
 
         // 处理attachment
         List<OutlookAttachment> outlookAttachments = message.getOutlookAttachments();
+        List<MailAttachment> attachments = new ArrayList<>();
         if (!CollectionUtils.isEmpty(outlookAttachments)) {
-            List<MailAttachment> attachments = outlookAttachments.stream().map(a -> {
-                MailAttachment attachment = new MailAttachment();
+            attachments = outlookAttachments.stream().map(a -> {
                 if (a instanceof OutlookFileAttachment) {
+                    MailAttachment attachment = new MailAttachment();
                     OutlookFileAttachment temp = (OutlookFileAttachment)a;
                     attachment.setFilename(temp.getFilename());
                     String uri = mailParseConfig.getMsgAttachDir() + "/" + uuid + "_" + temp.getFilename();
@@ -197,13 +193,15 @@ public class MailParseServiceImpl implements MailParseService {
                     } catch (IOException e) {
                         LOG.error("download attachment error, file: {},  exception: {}. ", temp.getFilename(), e.getMessage());
                     }
+                    return attachment;
                 } else if (a instanceof OutlookMsgAttachment) {
-
+                    return null;
+                } else {
+                    return null;
                 }
-                return attachment;
-            }).collect(Collectors.toList());
-            mailInfo.setAttachments(attachments);
+            }).filter(m -> Objects.nonNull(m)).collect(Collectors.toList());
         }
+        mailInfo.setAttachments(attachments);
         return mailInfo;
     }
 
@@ -219,7 +217,6 @@ public class MailParseServiceImpl implements MailParseService {
         try {
             String uuid = parser.getFrom() + "_" + CommonUtils.getRandomString(16);
             mailInfo.setId(uuid);
-            //mailInfo.setMessageId(parser.getMimeMessage().getContentType());
             mailInfo.setTitle(parser.getSubject());
             mailInfo.setOriginFileName(file.getName());
             mailInfo.setContent(StringUtils.hasText(parser.getPlainContent()) ? parser.getPlainContent() : parser.getHtmlContent());
@@ -237,18 +234,22 @@ public class MailParseServiceImpl implements MailParseService {
             // 收件人、抄送人员处理
             List<MailAddress> to = new ArrayList<>();
             List<MailAddress> cc = new ArrayList<>();
-            to = parser.getTo().stream().map(t -> fromAddress(t)).collect(Collectors.toList());
-            cc = parser.getCc().stream().map(c -> fromAddress(c)).collect(Collectors.toList());
+            to = parser.getTo().stream().map(t -> fromAddress(t)).filter(m -> Objects.nonNull(m)).collect(Collectors.toList());
+            cc = parser.getCc().stream().map(c -> fromAddress(c)).filter(m -> Objects.nonNull(m)).collect(Collectors.toList());
             mailInfo.setToList(to);
             mailInfo.setCcList(cc);
 
             // 处理附件
+            List<MailAttachment> attachments = new ArrayList<>();
             if (parser.hasAttachments()) {
                 List<DataSource> rawAttachList = parser.getAttachmentList();
-                List<MailAttachment> attachments = rawAttachList.stream().map(a -> {
-                    MailAttachment attachment = new MailAttachment();
+                attachments = rawAttachList.stream().map(a -> {
                     if (a instanceof ByteArrayDataSource) {
                         ByteArrayDataSource temp = (ByteArrayDataSource)a;
+                        if (Objects.isNull(a.getName()) || a.getContentType().startsWith("message")) {
+                            return null;
+                        }
+                        MailAttachment attachment = new MailAttachment();
                         attachment.setFilename(temp.getName());
                         String uri = mailParseConfig.getEmlAttachDir() + "/" + uuid + "_" + temp.getName();
                         attachment.setUri(uri);
@@ -258,19 +259,18 @@ public class MailParseServiceImpl implements MailParseService {
                             attach.delete();
                         }
                         attach.mkdir();
-
                         try {
                             FileUtils.copyToFile(temp.getInputStream(), new File(mailParseConfig.getEmlParentDir() + uri));
                         } catch (IOException e) {
                             LOG.error("download attachment error, file: {},  exception: {}. ", temp.getName(), e.getMessage());
                         }
+                        return attachment;
                     } else {
-
+                        return null;
                     }
-                    return attachment;
-                }).collect(Collectors.toList());
-                mailInfo.setAttachments(attachments);
+                }).filter(m -> Objects.nonNull(m)).collect(Collectors.toList());
             }
+            mailInfo.setAttachments(attachments);
         } catch (Exception e) {
             LOG.error("parse MimeMessage error,exception: {}. ", e.getMessage());
         }
@@ -283,10 +283,10 @@ public class MailParseServiceImpl implements MailParseService {
      * @return
      */
     private MailAddress fromAddress(Address address) {
-        MailAddress mailAddress = new MailAddress();
         if (Objects.isNull(address)) {
-            return mailAddress;
+            return null;
         }
+        MailAddress mailAddress = new MailAddress();
         if (address instanceof InternetAddress) {
             InternetAddress ia = (InternetAddress) address;
             mailAddress.setName(ia.getPersonal());
@@ -312,6 +312,12 @@ public class MailParseServiceImpl implements MailParseService {
         try {
             file.createNewFile();
             ObjectMapper mapper = new ObjectMapper();
+//            mapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>() {
+//                @Override
+//                public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+//                    jsonGenerator.writeString("");
+//                }
+//            });
             mapper.writeValue(file, json);
         } catch (IOException e) {
             LOG.error("create json file failed! ");

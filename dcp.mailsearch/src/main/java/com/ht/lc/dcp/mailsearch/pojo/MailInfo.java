@@ -14,8 +14,6 @@ public class MailInfo implements Serializable {
 
     private String id;
 
-    private String messageId;
-
     private String originFileName;
 
     private String sendtime;
@@ -96,14 +94,6 @@ public class MailInfo implements Serializable {
 
     public void setAttachments(List<MailAttachment> attachments) {
         this.attachments = attachments;
-    }
-
-    public String getMessageId() {
-        return messageId;
-    }
-
-    public void setMessageId(String messageId) {
-        this.messageId = messageId;
     }
 
     public String getOriginFileName() {

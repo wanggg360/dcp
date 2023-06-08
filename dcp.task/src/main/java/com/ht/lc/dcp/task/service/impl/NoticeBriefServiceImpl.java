@@ -155,13 +155,13 @@ public class NoticeBriefServiceImpl implements NoticeBriefService {
         db.setTaskId(taskId);
         db.setBranchId(branchId);
         if (StringUtils.hasText(startDate)) {
-            if (CommonUtils.checkStr(CommonConst.RegexRule.DATE_FORMAT_PATTERN_2, startDate)) {
+            if (CommonUtils.checkStringWithPattern(CommonConst.RegexRule.DATE_FORMAT_PATTERN_2, startDate)) {
                 db.setStartDate(
                         LocalDate.parse(startDate, DateTimeFormatter.ofPattern(CommonConst.DateFormat.DATE_FORMAT_NORMAL)));
             }
         }
         if (StringUtils.hasText(endDate)) {
-            if (CommonUtils.checkStr(CommonConst.RegexRule.DATE_FORMAT_PATTERN_2, endDate)) {
+            if (CommonUtils.checkStringWithPattern(CommonConst.RegexRule.DATE_FORMAT_PATTERN_2, endDate)) {
                 db.setEndDate(
                         LocalDate.parse(endDate, DateTimeFormatter.ofPattern(CommonConst.DateFormat.DATE_FORMAT_NORMAL)));
             }

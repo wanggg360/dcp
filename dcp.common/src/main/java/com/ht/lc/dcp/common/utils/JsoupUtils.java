@@ -22,31 +22,18 @@ import java.util.Objects;
 
 public class JsoupUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(JsoupUtils.class);
-
     private JsoupUtils() {
     }
-
-    public static Document getDocFromStr(String input) throws ServiceException {
-        if (!StringUtils.hasText(input)) {
-            throw new ServiceException("jsoup error, input string empty. ");
-        }
-        return Jsoup.parse(input);
+    public static Document getDocFromStr(String input) {
+        return StringUtils.hasText(input) ? Jsoup.parse(input) : null;
     }
 
-    public static Element getElementById(Document doc, String id) throws ServiceException {
-        validateDocument(doc);
-        return doc.getElementById(id);
+    public static Element getElementById(Document doc, String id) {
+        return Objects.isNull(doc) ? null : doc.getElementById(id);
     }
 
-    public static Elements getElementsByClass(Document doc, String className) throws ServiceException {
-        validateDocument(doc);
-        return doc.getElementsByClass(className);
-    }
+    public static Elements getElementsByClass(Document doc, String className) {
 
-    public static void validateDocument(Document document) throws ServiceException {
-        if (Objects.isNull(document)) {
-            throw new ServiceException("jsoup error, input doc is null. ");
-        }
+        return Objects.isNull(doc) ? null : doc.getElementsByClass(className);
     }
 }

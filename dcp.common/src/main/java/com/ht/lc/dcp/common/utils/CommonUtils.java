@@ -28,6 +28,12 @@ public class CommonUtils {
     private CommonUtils() {
     }
 
+    /**
+     * 获取固定位数随机数
+     *
+     * @param len
+     * @return
+     */
     public static String getRandomString(int len) {
         Random random = new Random();
         StringBuffer sb = new StringBuffer();
@@ -38,6 +44,14 @@ public class CommonUtils {
         return sb.toString();
     }
 
+    /**
+     * 切分数组
+     *
+     * @param src
+     * @param num
+     * @param <T>
+     * @return
+     */
     public static <T> List<List<T>> splitList(List<T> src, int num) {
         List<List<T>> resultList = new ArrayList<List<T>>();
         if (CollectionUtils.isEmpty(src)) {
@@ -63,17 +77,23 @@ public class CommonUtils {
         return resultList;
     }
 
-    public static String generateUniqueTaskId() {
-        LocalDateTime time = LocalDateTime.now();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(CommonConst.DateFormat.DATE_FORMAT_TIMESTAMP);
-        String dateTime = dtf.format(time);
-        return dateTime + "-" + CommonUtils.getRandomString(3);
-    }
-
-    public static boolean checkStr(String pattern, String source) {
+    /**
+     * 检查字符串是否满足表达式
+     *
+     * @param pattern
+     * @param source
+     * @return
+     */
+    public static boolean checkStringWithPattern(String pattern, String source) {
         return Pattern.matches(pattern, source);
     }
 
+    /**
+     * 判断是否是有效的html的url
+     *
+     * @param url
+     * @return
+     */
     public static boolean isValidHtmlUrl(String url) {
         return (url.startsWith("http") && url.endsWith("html"));
     }

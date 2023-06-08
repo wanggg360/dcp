@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -41,15 +42,17 @@ public class NoticeJsoupHandler {
     }
 
     public static NoticePageInfo getNoticePageInfo(Document document) throws ServiceException {
-        JsoupUtils.validateDocument(document);
         NoticePageInfo noticePageInfo = new NoticePageInfo();
+        if (Objects.isNull(document)) {
+            return noticePageInfo;
+        }
         String pageSize = Optional.ofNullable(document.select(BizConst.ElementKeyStr.LOC_PAGE_SIZE).first())
                 .map(e -> e.attr(BizConst.ElementKeyStr.ATTR_VALUE)).orElse(BizConst.ElementKeyStr.DEFAULT_PAGE_SIZE);
         noticePageInfo.setPageSize(Integer.valueOf(pageSize));
 
         String pageInfo = document.select(BizConst.ElementKeyStr.LOC_PAGE_INFO_FUN).first().data();
 
-        if (!CommonUtils.checkStr(BizConst.ElementKeyStr.PAGE_INFO_CHECK_PATTERN, pageInfo)) {
+        if (!CommonUtils.checkStringWithPattern(BizConst.ElementKeyStr.PAGE_INFO_CHECK_PATTERN, pageInfo)) {
             LOG.info("page info string not meet the pattern, str: {}. ", pageInfo);
             return noticePageInfo;
         }
@@ -61,10 +64,10 @@ public class NoticeJsoupHandler {
         }
         String pageCnt = strArray[CommonConst.Number.NUM_1];
         String totalCnt = strArray[CommonConst.Number.NUM_5];
-        if (CommonUtils.checkStr(BizConst.ElementKeyStr.NUMBER_CHECK_PATTERN, pageCnt)) {
+        if (CommonUtils.checkStringWithPattern(BizConst.ElementKeyStr.NUMBER_CHECK_PATTERN, pageCnt)) {
             noticePageInfo.setPageCnt(Integer.valueOf(pageCnt));
         }
-        if (CommonUtils.checkStr(BizConst.ElementKeyStr.NUMBER_CHECK_PATTERN, totalCnt)) {
+        if (CommonUtils.checkStringWithPattern(BizConst.ElementKeyStr.NUMBER_CHECK_PATTERN, totalCnt)) {
             noticePageInfo.setTotalCnt(Integer.valueOf(totalCnt));
         }
         return noticePageInfo;
@@ -77,9 +80,10 @@ public class NoticeJsoupHandler {
      * @return
      */
     public static NoticeDetails cycleGenerateNoticeDetailsFromDoc(Document document, NoticeBrief nb) {
-        JsoupUtils.validateDocument(document);
         NoticeDetails noticeDetails = new NoticeDetails();
-
+        if (Objects.isNull(document)) {
+            return noticeDetails;
+        }
         for (int type : NOTICE_DETAILS_TYPE_ARRAY) {
             noticeDetails = generateNoticeDetailsByType(document, type);
             if (StringUtils.hasText(noticeDetails.getContent())) {
@@ -213,8 +217,10 @@ public class NoticeJsoupHandler {
     }
 
     public static List<NoticeBrief> getNoticeBriefListFromDoc(Document document, int dataType) {
-        JsoupUtils.validateDocument(document);
         List<NoticeBrief> briefList = new ArrayList<>(2);
+        if (Objects.isNull(document)) {
+            return briefList;
+        }
         switch (dataType) {
             case BizConst.DataType.SUP_MEASURE:
                 briefList = parseSupMeasureBriefList(document);

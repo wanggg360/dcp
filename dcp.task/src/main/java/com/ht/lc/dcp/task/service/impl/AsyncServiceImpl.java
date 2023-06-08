@@ -1,12 +1,13 @@
 package com.ht.lc.dcp.task.service.impl;
 
 import com.ht.lc.dcp.common.http.HttpClientManager;
+import com.ht.lc.dcp.common.utils.CommonUtils;
+import com.ht.lc.dcp.common.utils.JsoupUtils;
 import com.ht.lc.dcp.task.dao.NoticeDetailsDao;
 import com.ht.lc.dcp.task.daobean.NoticeDetailsDaoBean;
 import com.ht.lc.dcp.task.entity.NoticeBrief;
 import com.ht.lc.dcp.task.entity.NoticeDetails;
 import com.ht.lc.dcp.task.service.AsyncService;
-import com.ht.lc.dcp.task.handler.ComUtils;
 import com.ht.lc.dcp.task.handler.NoticeJsoupHandler;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
@@ -41,11 +42,11 @@ public class AsyncServiceImpl implements AsyncService {
     @Async
     public CompletableFuture<List<NoticeBrief>> getNoticeBriefByPageUrl(String url, int dataType) {
         List<NoticeBrief> list = new ArrayList<>(2);
-        if (!ComUtils.isValidHtmlUrl(url)) {
+        if (!CommonUtils.isValidHtmlUrl(url)) {
             LOG.error("notice brief url is wrong, url: {}. ", url);
         } else {
             String response = HttpClientManager.getInstance().doGet(url, null, null);
-            Document rspDoc = NoticeJsoupHandler.getDocFromStr(response);
+            Document rspDoc = JsoupUtils.getDocFromStr(response);
             list = NoticeJsoupHandler.getNoticeBriefListFromDoc(rspDoc, dataType);
             LOG.info("parse notice brief success, url: {}. ", url);
         }
@@ -60,7 +61,7 @@ public class AsyncServiceImpl implements AsyncService {
         } else {
             noticeBriefs.stream().forEach(l -> {
                 String response = HttpClientManager.getInstance().doGet(l.getContentUrl(), null, null);
-                Document rspDoc = NoticeJsoupHandler.getDocFromStr(response);
+                Document rspDoc = JsoupUtils.getDocFromStr(response);
                 NoticeDetails nd = NoticeJsoupHandler.cycleGenerateNoticeDetailsFromDoc(rspDoc, l);
 
                 list.add(nd);

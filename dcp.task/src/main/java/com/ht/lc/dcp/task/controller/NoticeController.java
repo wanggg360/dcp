@@ -1,7 +1,9 @@
 package com.ht.lc.dcp.task.controller;
 
 import com.ht.lc.dcp.common.base.ResultCode;
+import com.ht.lc.dcp.common.constants.CommonConst;
 import com.ht.lc.dcp.common.utils.CommonUtils;
+import com.ht.lc.dcp.common.utils.DateUtils;
 import com.ht.lc.dcp.task.entity.NoticeBrief;
 import com.ht.lc.dcp.task.entity.SiteInfo;
 import com.ht.lc.dcp.task.req.GatherNoticeDetailsReq;
@@ -10,7 +12,6 @@ import com.ht.lc.dcp.task.rsp.GatherNoticeDetailsRsp;
 import com.ht.lc.dcp.task.service.NoticeBriefService;
 import com.ht.lc.dcp.task.service.NoticeDetailsService;
 import com.ht.lc.dcp.task.service.SiteInfoService;
-import com.ht.lc.dcp.task.handler.ComUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class NoticeController {
 
     @RequestMapping(value = "/gatherNoticeBriefs", method = RequestMethod.POST)
     public GatherNoticeBriefsRsp gatherNoticeBriefs(@RequestBody GatherNoticeDetailsReq req) {
-        String taskId = CommonUtils.generateUniqueTaskId();
+        String taskId = DateUtils.getCurrentTimeString(CommonConst.DateFormat.DATE_FORMAT_TIMESTAMP) + "-" + CommonUtils.getRandomString(3);
         List<SiteInfo> sites = siteInfoService.getAllValidSiteInfos();
         int cnt = sites.stream().mapToInt(s -> noticeBriefService.addNoticeBriefBySiteInfo(s, taskId)).sum();
         GatherNoticeBriefsRsp rsp = new GatherNoticeBriefsRsp();

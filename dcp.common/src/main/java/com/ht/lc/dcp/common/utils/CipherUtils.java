@@ -28,8 +28,6 @@ public class CipherUtils {
     private CipherUtils() {
     }
 
-    //private static final Logger LOG = LoggerFactory.getLogger(CipherUtils.class);
-
     public static SecretKey generateKey(int keyBitSize, String algorithmName) throws ServiceException {
         KeyGenerator kg = null;
         try {

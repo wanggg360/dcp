@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
@@ -25,6 +26,24 @@ public class DateUtils {
 
     private DateUtils() {}
 
+    /**
+     * 获取当前时间的字符串
+     *
+     * @return
+     */
+    public static String getCurrentTimeString(String format) {
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
+        return dtf.format(time);
+    }
+
+    /**
+     * 时间转字符串
+     *
+     * @param date
+     * @param format
+     * @return
+     */
     public static String date2String(Date date, String format) {
         String result = "";
         if (!StringUtils.hasText(format) || Objects.isNull(date)) {
@@ -41,14 +60,11 @@ public class DateUtils {
      * @return 日期
      */
     public static LocalDate cvtString2Date(String date) {
-        LocalDate localDate = null;
         String temp = StringUtils.trimAllWhitespace(date);
-        if (!CommonUtils.checkStr(CommonConst.RegexRule.DATE_FORMAT_PATTERN_1, temp)) {
-            LOG.error("notice details date string format not correct, str:{}. ", temp);
-            return localDate;
+        if (!CommonUtils.checkStringWithPattern(CommonConst.RegexRule.DATE_FORMAT_PATTERN_1, temp)) {
+            return null;
         }
         temp = date.replaceAll("年|月|日", CommonConst.Symbol.HYPHEN);
-        temp = temp.substring(0, temp.length() - 1);
         String[] dateSplit = temp.split(CommonConst.Symbol.HYPHEN);
         String y = dateSplit[0];
         String m = dateSplit[1].length() == 1 ? "0" + dateSplit[1] : dateSplit[1];
