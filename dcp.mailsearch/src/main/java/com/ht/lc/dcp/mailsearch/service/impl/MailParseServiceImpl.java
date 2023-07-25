@@ -219,7 +219,7 @@ public class MailParseServiceImpl implements MailParseService {
             mailInfo.setId(uuid);
             mailInfo.setTitle(parser.getSubject());
             mailInfo.setOriginFileName(file.getName());
-            mailInfo.setContent(StringUtils.hasText(parser.getPlainContent()) ? parser.getPlainContent() : parser.getHtmlContent());
+            mailInfo.setContent(StringUtils.hasText(parser.getHtmlContent()) ? parser.getHtmlContent() : parser.getPlainContent());
             mailInfo.setSendtime(DateUtils.date2String(parser.getMimeMessage().getSentDate(), CommonConst.DateFormat.DATE_TIME_FORMAT));
             // 收件人
             MailAddress mailSender = new MailAddress();
